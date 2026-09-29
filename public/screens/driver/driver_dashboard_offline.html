@@ -1,0 +1,226 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<title>Driver Dashboard - Hurriya Ride</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "utility-indigo": "#818CF8",
+                        "tertiary-fixed-dim": "#45dfa4",
+                        "primary": "#ffc174",
+                        "surface-container-highest": "#273647",
+                        "on-primary-fixed-variant": "#653e00",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "tertiary-container": "#22c990",
+                        "safety-emerald": "#34D399",
+                        "outline": "#a08e7a",
+                        "on-secondary-fixed": "#131b2e",
+                        "on-error-container": "#ffdad6",
+                        "surface-dim": "#051424",
+                        "surface": "#051424",
+                        "primary-container": "#f59e0b",
+                        "utility-cyan": "#22D3EE",
+                        "slate-border": "#334155",
+                        "on-secondary-container": "#adb4ce",
+                        "midnight-bg": "#020617",
+                        "background": "#051424",
+                        "surface-container": "#122131",
+                        "on-tertiary-container": "#004e35",
+                        "surface-bright": "#2c3a4c",
+                        "secondary-container": "#3f465c",
+                        "on-error": "#690005",
+                        "outline-variant": "#534434",
+                        "on-background": "#d4e4fa",
+                        "inverse-surface": "#d4e4fa",
+                        "on-tertiary-fixed-variant": "#005137",
+                        "surface-container-low": "#0d1c2d",
+                        "tertiary-fixed": "#68fcbf",
+                        "on-tertiary-fixed": "#002114",
+                        "inverse-on-surface": "#233143",
+                        "inverse-primary": "#855300",
+                        "on-secondary": "#283044",
+                        "secondary-fixed": "#dae2fd",
+                        "error": "#ffb4ab",
+                        "primary-fixed-dim": "#ffb95f",
+                        "surface-container-high": "#1c2b3c",
+                        "surface-tint": "#ffb95f",
+                        "surface-container-lowest": "#010f1f",
+                        "on-surface-variant": "#d8c3ad",
+                        "error-container": "#93000a",
+                        "secondary": "#bec6e0",
+                        "white-high-emphasis": "#FFFFFF",
+                        "on-primary-container": "#613b00",
+                        "primary-fixed": "#ffddb8",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "on-primary": "#472a00",
+                        "tertiary": "#4de6aa",
+                        "surface-variant": "#273647",
+                        "on-surface": "#d4e4fa",
+                        "on-primary-fixed": "#2a1700",
+                        "slate-surface": "#1E293B",
+                        "on-tertiary": "#003825"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-xl": "24px",
+                        "section-gap": "32px",
+                        "unit": "4px",
+                        "margin-lg": "20px",
+                        "gutter-md": "16px",
+                        "gutter-xs": "10px",
+                        "gutter-sm": "12px"
+                    },
+                    "fontFamily": {
+                        "display-xl": ["Plus Jakarta Sans"],
+                        "micro-reg": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "micro-bold": ["Plus Jakarta Sans"],
+                        "subhead-md": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "label-bold": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "display-xl": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "micro-reg": ["10px", { "lineHeight": "12px", "fontWeight": "400" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "800" }],
+                        "micro-bold": ["11px", { "lineHeight": "14px", "fontWeight": "700" }],
+                        "subhead-md": ["18px", { "lineHeight": "24px", "fontWeight": "800" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-bold": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["22px", { "lineHeight": "28px", "fontWeight": "800" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        .gold-glow {
+            box-shadow: 0px 10px 15px -3px rgba(245, 158, 11, 0.2);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-sm h-screen overflow-hidden flex flex-col antialiased">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full bg-surface-dim dark:bg-surface-dim shadow-md bg-surface-container-high border-b border-outline-variant z-50">
+<div class="flex justify-between items-center px-margin-xl h-16 w-full">
+<button class="scale-95 duration-100 active:opacity-80 transition-opacity text-primary dark:text-primary">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h1 class="font-display-xl text-display-xl text-primary md:hidden">GoJuba Driver</h1>
+<h1 class="font-display-xl text-display-xl text-primary hidden md:block">GoJuba Driver</h1>
+<div class="flex items-center gap-2">
+<span class="text-on-surface-variant font-label-bold text-label-bold">OFFLINE</span>
+<button aria-label="Toggle Online Status" class="w-12 h-6 bg-surface-container-highest rounded-full p-1 transition-colors duration-300 focus:outline-none" onclick="this.classList.toggle('bg-safety-emerald'); this.children[0].classList.toggle('translate-x-6'); this.children[0].classList.toggle('bg-surface-dim'); this.previousElementSibling.textContent = this.classList.contains('bg-safety-emerald') ? 'ONLINE' : 'OFFLINE'; this.previousElementSibling.classList.toggle('text-safety-emerald'); this.previousElementSibling.classList.toggle('text-on-surface-variant');">
+<div class="w-4 h-4 bg-outline-variant rounded-full transform transition-transform duration-300"></div>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas (Map Background) -->
+<main class="flex-grow relative w-full h-full pt-16 pb-20">
+<!-- Map Placeholder -->
+<div class="absolute inset-0 z-0 bg-surface-container-low" data-alt="A dark-mode styled satellite map view of Juba city, South Sudan, emphasizing major roads with subtle cyan and indigo accents against a deep midnight blue background. The map should look highly detailed, modern, and navigational, fitting a premium ride-hailing app interface. Street layouts should be clearly visible with a high-contrast aesthetic." data-location="Juba, South Sudan" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDYqOXRpvAZsbA0LL_5NCZ4kM3I4GcCh3jJksbnrr09UEjEvzTnRUYU2NmMsw97yWBjv02l1-8heTBmPbvU60yHVrCtCVdu5A34VPRxQeceWne5qT9bvnMDFmduU78Ksfj_yUOmZnjw_TbO1QiGk1WLglxNKb0F-aSat7FdS7s09tXvNIpXQbZ-8pCnYAvEpQ1eajauZd7lCFGW1mMleEm8eqG1LlbpOPxLde0VR2rCJ2OtiAw0g_Ul')"></div>
+<!-- Map Gradient Overlay to ensure readability of UI elements -->
+<div class="absolute inset-0 bg-gradient-to-b from-background/80 via-transparent to-background/90 z-0 pointer-events-none"></div>
+<!-- Dashboard Stats Overlay -->
+<div class="relative z-10 p-margin-xl w-full max-w-2xl mx-auto mt-4">
+<div class="grid grid-cols-3 gap-unit md:gap-gutter-sm">
+<!-- Today's Earnings -->
+<div class="bg-surface-container-high/90 backdrop-blur-md rounded-xl p-gutter-md shadow-lg border border-slate-border flex flex-col items-center justify-center text-center">
+<span class="text-on-surface-variant font-micro-bold text-micro-bold uppercase tracking-wider mb-1">Today's Earnings</span>
+<span class="text-primary font-subhead-md text-subhead-md">SSP 0.00</span>
+</div>
+<!-- Trips -->
+<div class="bg-surface-container-high/90 backdrop-blur-md rounded-xl p-gutter-md shadow-lg border border-slate-border flex flex-col items-center justify-center text-center">
+<span class="text-on-surface-variant font-micro-bold text-micro-bold uppercase tracking-wider mb-1">Trips</span>
+<span class="text-on-surface font-subhead-md text-subhead-md">0</span>
+</div>
+<!-- Acceptance Rate -->
+<div class="bg-surface-container-high/90 backdrop-blur-md rounded-xl p-gutter-md shadow-lg border border-slate-border flex flex-col items-center justify-center text-center">
+<span class="text-on-surface-variant font-micro-bold text-micro-bold uppercase tracking-wider mb-1">Acceptance</span>
+<span class="text-safety-emerald font-subhead-md text-subhead-md">100%</span>
+</div>
+</div>
+</div>
+<!-- Floating 'GO ONLINE' Button -->
+<div class="absolute bottom-6 left-0 w-full flex justify-center z-20 px-margin-xl">
+<button class="bg-safety-emerald text-surface-dim font-headline-lg-mobile text-headline-lg-mobile px-8 py-4 rounded-full shadow-[0px_10px_15px_-3px_rgba(52,211,153,0.3)] hover:scale-105 transition-transform duration-300 flex items-center justify-center gap-2 w-full max-w-sm uppercase tracking-wide">
+<span class="material-symbols-outlined font-bold">power_settings_new</span>
+                Go Online
+            </button>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full rounded-t-xl shadow-lg bg-surface-container dark:bg-surface-container border-t border-outline-variant md:hidden z-50">
+<div class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-gutter-sm pb-4 pt-2">
+<!-- Home (Active) -->
+<button class="flex flex-col items-center justify-center bg-secondary-container text-primary rounded-xl px-gutter-md py-unit scale-110 duration-200 transition-transform active:bg-surface-bright">
+<span class="material-symbols-outlined fill-icon" data-icon="dashboard">dashboard</span>
+<span class="font-label-bold text-label-bold mt-1">Home</span>
+</button>
+<!-- Earnings (Inactive) -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-gutter-md py-unit scale-110 duration-200 transition-transform active:bg-surface-bright">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-label-bold text-label-bold mt-1">Earnings</span>
+</button>
+<!-- Ratings (Inactive) -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-gutter-md py-unit scale-110 duration-200 transition-transform active:bg-surface-bright">
+<span class="material-symbols-outlined" data-icon="star">star</span>
+<span class="font-label-bold text-label-bold mt-1">Ratings</span>
+</button>
+<!-- Account (Inactive) -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-gutter-md py-unit scale-110 duration-200 transition-transform active:bg-surface-bright">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-bold text-label-bold mt-1">Account</span>
+</button>
+</div>
+</nav>
+<!-- Desktop Side Nav (Hidden on Mobile) -->
+<aside class="hidden md:flex fixed inset-y-0 left-0 z-40 w-64 pt-16 bg-surface-container shadow-2xl flex-col border-r border-slate-border">
+<div class="p-margin-xl flex-grow overflow-y-auto">
+<!-- Desktop nav items mimicking BottomNav logic -->
+<div class="space-y-unit">
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container text-primary rounded-xl font-label-bold text-label-bold" href="#">
+<span class="material-symbols-outlined fill-icon" data-icon="dashboard">dashboard</span>
+                    Home
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant rounded-xl font-label-bold text-label-bold transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+                    Earnings
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant rounded-xl font-label-bold text-label-bold transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="star">star</span>
+                    Ratings
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant rounded-xl font-label-bold text-label-bold transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+                    Account
+                </a>
+</div>
+</div>
+</aside>
+</body></html>

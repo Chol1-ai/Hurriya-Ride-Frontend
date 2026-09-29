@@ -1,0 +1,19 @@
+:root {
+  --surface: #051424;
+  --surface-lowest: #010f1f;
+  --surface-low: #0d1c2d;
+  --surface-container: #142537;
+  --surface-high: #203244;
+  --surface-highest: #2c3a4c;
+  --on-surface: #d4e4fa;
+  --muted: #9eafc5;
+  --outline: #334155;
+  --primary: #f59e0b;
+  --primary-soft: #ffc174;
+  --secondary: #22a6df;
+  --success: #10b981;
+  --danger: #ef4444;
+  --font-family: 'Plus Jakarta Sans', sans-serif;
+  --sidebar-width: 256px;
+  --header-height: 80px;
+}

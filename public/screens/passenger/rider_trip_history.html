@@ -1,0 +1,296 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Trip History - Hurriya Ride</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "utility-indigo": "#818CF8",
+                        "tertiary-container": "#22c990",
+                        "tertiary-fixed": "#68fcbf",
+                        "on-error": "#690005",
+                        "on-error-container": "#ffdad6",
+                        "outline": "#a08e7a",
+                        "surface-bright": "#2c3a4c",
+                        "primary-container": "#f59e0b",
+                        "white-high-emphasis": "#FFFFFF",
+                        "surface-container-low": "#0d1c2d",
+                        "tertiary-fixed-dim": "#45dfa4",
+                        "on-primary-container": "#613b00",
+                        "secondary-fixed": "#dae2fd",
+                        "on-tertiary-fixed-variant": "#005137",
+                        "error": "#ffb4ab",
+                        "surface-container-lowest": "#010f1f",
+                        "primary-fixed": "#ffddb8",
+                        "surface-tint": "#ffb95f",
+                        "slate-surface": "#1E293B",
+                        "inverse-surface": "#d4e4fa",
+                        "surface-container": "#122131",
+                        "inverse-primary": "#855300",
+                        "on-primary": "#472a00",
+                        "surface-container-highest": "#273647",
+                        "on-surface": "#d4e4fa",
+                        "utility-cyan": "#22D3EE",
+                        "on-tertiary": "#003825",
+                        "secondary": "#bec6e0",
+                        "on-primary-fixed": "#2a1700",
+                        "inverse-on-surface": "#233143",
+                        "primary-fixed-dim": "#ffb95f",
+                        "on-secondary-fixed": "#131b2e",
+                        "on-tertiary-container": "#004e35",
+                        "surface-variant": "#273647",
+                        "surface-container-high": "#1c2b3c",
+                        "on-tertiary-fixed": "#002114",
+                        "on-surface-variant": "#d8c3ad",
+                        "on-background": "#d4e4fa",
+                        "background": "#051424",
+                        "error-container": "#93000a",
+                        "on-secondary-container": "#adb4ce",
+                        "tertiary": "#4de6aa",
+                        "on-primary-fixed-variant": "#653e00",
+                        "midnight-bg": "#020617",
+                        "outline-variant": "#534434",
+                        "secondary-container": "#3f465c",
+                        "on-secondary": "#283044",
+                        "surface": "#051424",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "surface-dim": "#051424",
+                        "safety-emerald": "#34D399",
+                        "slate-border": "#334155",
+                        "primary": "#ffc174"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "gutter-sm": "12px",
+                        "margin-lg": "20px",
+                        "gutter-md": "16px",
+                        "gutter-xs": "10px",
+                        "section-gap": "32px",
+                        "margin-xl": "24px"
+                    },
+                    "fontFamily": {
+                        "display-xl": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "subhead-md": ["Plus Jakarta Sans"],
+                        "micro-reg": ["Plus Jakarta Sans"],
+                        "micro-bold": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "label-bold": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "display-xl": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["22px", { "lineHeight": "28px", "fontWeight": "800" }],
+                        "subhead-md": ["18px", { "lineHeight": "24px", "fontWeight": "800" }],
+                        "micro-reg": ["10px", { "lineHeight": "12px", "fontWeight": "400" }],
+                        "micro-bold": ["11px", { "lineHeight": "14px", "fontWeight": "700" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "800" }],
+                        "label-bold": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-sm min-h-screen flex flex-col pt-16 pb-20 md:pb-0 md:flex-row md:pt-0">
+<!-- TopAppBar (Mobile Only) -->
+<header class="md:hidden flex items-center justify-between px-margin-lg h-16 w-full fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md shadow-sm">
+<div class="flex items-center gap-4">
+<div class="h-10 w-10 rounded-full overflow-hidden border border-slate-border">
+<img alt="user_profile_photo" class="w-full h-full object-cover" data-alt="A close up, high quality headshot portrait of a professional driver. The driver has a warm, confident expression. The lighting is soft and studio quality, casting gentle shadows. The background is a clean, neutral dark tone that complements the dark mode design. Deep blacks, Slate-950 and Slate-900 tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5d1PsLYnq0FOlpQixKMCxj29IEkX_ubWNYD6i8OmQPi5YDMjG9TxD3iZuVv5wfQLCAquwIohBaapNmQ-Iv2JtZ6IQzoKIYVnG1u5Up40wKbCvpCwWxoqMKLFctwUYDrz12_cur2fKCBR-EgmgGZIeIaDVkmIDA6sCqNqo8u48TTHV1EMlaaCYArrksYOTTWtXP-Fu-p2iKDVloLK6ZLHoe3YkB87OsJUgrzOn_lgDkIRgAlRIx_hv">
+</div>
+<h1 class="font-display-xl text-display-xl text-primary-container font-black">Hurriya Ride</h1>
+</div>
+<button class="text-primary hover:bg-surface-variant/20 p-2 rounded-full transition-colors duration-200">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</header>
+<!-- NavigationDrawer (Desktop Only) -->
+<aside class="hidden md:flex h-full w-80 rounded-r-xl bg-surface dark:bg-surface-container-lowest shadow-xl flex-col p-margin-xl gap-4 fixed left-0 top-0 bottom-0 z-40 bg-surface-container-high border-r border-slate-border">
+<div class="flex items-center gap-4 mb-8">
+<div class="h-12 w-12 rounded-full overflow-hidden border border-slate-border">
+<img alt="driver_headshot" class="w-full h-full object-cover" data-alt="A close up, high quality headshot portrait of a professional driver. The driver has a warm, confident expression. The lighting is soft and studio quality, casting gentle shadows. The background is a clean, neutral dark tone that complements the dark mode design. Deep blacks, Slate-950 and Slate-900 tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWOey5gchbZCP6TUVDZmKT0CDkyKsfXFZEL-bXm7eKw9aKLHGUzdc-N-pQvUpLgDunXFI9tRHjzZHqQuwbGFqHejHs-yVS34mkNsMLRHTmait2O__8gbJR_lsiYWLluEhqwy6TkCi0TYhT9NyfklW9nR4st_biYBJ4vnEwofDrJYc9mkXL1_LzbnpWCNsgbT1s1L5Sn55DzfIr1ta6QcwAVhTtT2AREvYT2xahYXsegBl4rRL7y3ZC">
+</div>
+<div>
+<h2 class="font-subhead-md text-subhead-md text-primary">Arop Deng</h2>
+<p class="font-micro-reg text-micro-reg text-on-surface-variant">Gold Tier Driver</p>
+<p class="font-micro-bold text-micro-bold text-primary-container">4.9 ★ Rating</p>
+</div>
+</div>
+<h1 class="text-primary-container font-headline-lg mb-6">Hurriya Ride</h1>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-variant/30 rounded-lg transition-all duration-300 ease-in-out font-subhead-md text-subhead-md" href="#">
+<span class="material-symbols-outlined" data-icon="local_taxi">local_taxi</span>
+                Ride History
+            </a>
+<a class="flex items-center gap-3 p-3 bg-primary-container text-on-primary-container font-bold rounded-lg transition-all duration-300 ease-in-out font-subhead-md text-subhead-md" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+                Activity
+            </a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-variant/30 rounded-lg transition-all duration-300 ease-in-out font-subhead-md text-subhead-md" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+                Earnings
+            </a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-variant/30 rounded-lg transition-all duration-300 ease-in-out font-subhead-md text-subhead-md" href="#">
+<span class="material-symbols-outlined" data-icon="directions_car">directions_car</span>
+                Vehicle Info
+            </a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-variant/30 rounded-lg transition-all duration-300 ease-in-out font-subhead-md text-subhead-md" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                Settings
+            </a>
+</nav>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 px-margin-lg py-section-gap md:ml-80 max-w-4xl w-full mx-auto">
+<div class="flex flex-col gap-6">
+<!-- Header & Filters -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-primary-fixed">Your Activity</h2>
+<div class="flex gap-2 bg-surface-container-low p-1 rounded-full border border-slate-border overflow-x-auto w-full md:w-auto">
+<button class="px-4 py-2 rounded-full bg-slate-800 text-on-surface font-label-bold text-label-bold whitespace-nowrap shadow-[0px_4px_10px_rgba(0,0,0,0.2)]">All Trips</button>
+<button class="px-4 py-2 rounded-full text-on-surface-variant hover:bg-surface-variant/50 font-label-bold text-label-bold whitespace-nowrap transition-colors">Completed</button>
+<button class="px-4 py-2 rounded-full text-on-surface-variant hover:bg-surface-variant/50 font-label-bold text-label-bold whitespace-nowrap transition-colors">Cancelled</button>
+</div>
+</div>
+<!-- Trip List -->
+<div class="flex flex-col gap-4">
+<!-- Trip Card 1 -->
+<div class="bg-slate-900 rounded-[16px] p-[16px] border border-slate-800 hover:border-primary-container hover:shadow-[0px_10px_15px_-3px_rgba(245,158,11,0.1)] transition-all duration-300 flex flex-col sm:flex-row gap-4 relative overflow-hidden group cursor-pointer">
+<!-- Map Thumbnail -->
+<div class="w-full sm:w-32 h-32 sm:h-auto rounded-lg overflow-hidden bg-slate-950 relative flex-shrink-0">
+<img alt="Map Route" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" data-alt="A stylized, dark-mode map view showing a route line in a vibrant gold color. The map interface is minimalist with deep blues and slate colors representing the terrain and roads. A small pulsing location marker indicates the destination. The aesthetic is clean and modern, matching the premium ruggedness style of the app." data-location="Juba" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNybvwEUM93RSd42HuNc84t5gyrzqNonyQWz7o0ih3O1DDXLnDH0jD8Yubcqeae-AZ4bS_9b7jDu_o6sdRUeC46goutfytak2yBmJKcM_hfSoV8vy5rN7zShGDEXlb41xpf-DTBMr2RrwGCeCoEm1tpUAQtARHXxL7yLtBBmAfGpsGaZVqOuer8a_Eomjre3vk5D66utJS0vXPg-jQmxsxiFMthPmjmsR3z3KOj70Wj8A55UHJqNYU">
+</div>
+<!-- Trip Details -->
+<div class="flex-1 flex flex-col justify-between py-1">
+<div class="flex justify-between items-start mb-2">
+<div>
+<p class="font-micro-bold text-micro-bold text-tertiary-fixed-dim uppercase tracking-wider mb-1 flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-tertiary-fixed-dim"></span> Completed
+                                </p>
+<h3 class="font-subhead-md text-subhead-md text-on-surface">Juba International Airport</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="calendar_today">calendar_today</span> Oct 24, 2:30 PM
+                                </p>
+</div>
+<div class="text-right">
+<p class="font-subhead-md text-subhead-md text-primary-container">4,500 SSP</p>
+<p class="font-micro-reg text-micro-reg text-on-surface-variant mt-1">Cash</p>
+</div>
+</div>
+<div class="flex items-center gap-4 mt-auto">
+<div class="flex items-center gap-2 bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800">
+<span class="material-symbols-outlined text-primary" data-icon="directions_car">directions_car</span>
+<span class="font-label-bold text-label-bold text-on-surface">Car</span>
+</div>
+<button class="text-primary hover:text-primary-container font-label-bold text-label-bold ml-auto flex items-center gap-1 transition-colors">
+                                Details <span class="material-symbols-outlined text-[16px]" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Trip Card 2 -->
+<div class="bg-slate-900 rounded-[16px] p-[16px] border border-slate-800 hover:border-primary-container hover:shadow-[0px_10px_15px_-3px_rgba(245,158,11,0.1)] transition-all duration-300 flex flex-col sm:flex-row gap-4 relative overflow-hidden group cursor-pointer">
+<div class="w-full sm:w-32 h-32 sm:h-auto rounded-lg overflow-hidden bg-slate-950 relative flex-shrink-0">
+<img alt="Map Route" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" data-alt="A stylized, dark-mode map view showing a short route line in a vibrant gold color. The map interface is minimalist with deep blues and slate colors representing the terrain and roads. A small pulsing location marker indicates the destination. The aesthetic is clean and modern, matching the premium ruggedness style of the app." data-location="Juba Market" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTdXMzCjRAHZ7FXMAIjD59d2DMvjQRf6Cf434-bpkUtSk-ISG-m7A2QzvClWftSAdZ8C5ODd1HFw_UCEzsDF46gLTnG2P0SrY268n88FhXlAft3ENQKD2qhkCsiY7mi1n9YGQs20EL0JjCh8f6Lfm0UfXvri9kow8jThpnw8O_6sHrM4iRLKUXVXAW4bUZE_q38kfV2a9mVWE102K__FFSZl17FJl2P6uA659MrlJ4pGwrO_iLFTPy">
+</div>
+<div class="flex-1 flex flex-col justify-between py-1">
+<div class="flex justify-between items-start mb-2">
+<div>
+<p class="font-micro-bold text-micro-bold text-tertiary-fixed-dim uppercase tracking-wider mb-1 flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-tertiary-fixed-dim"></span> Completed
+                                </p>
+<h3 class="font-subhead-md text-subhead-md text-on-surface">Konyo Konyo Market</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="calendar_today">calendar_today</span> Oct 22, 10:15 AM
+                                </p>
+</div>
+<div class="text-right">
+<p class="font-subhead-md text-subhead-md text-primary-container">1,200 SSP</p>
+<p class="font-micro-reg text-micro-reg text-on-surface-variant mt-1">Wallet</p>
+</div>
+</div>
+<div class="flex items-center gap-4 mt-auto">
+<div class="flex items-center gap-2 bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800">
+<span class="material-symbols-outlined text-primary" data-icon="two_wheeler">two_wheeler</span>
+<span class="font-label-bold text-label-bold text-on-surface">Boda</span>
+</div>
+<button class="text-primary hover:text-primary-container font-label-bold text-label-bold ml-auto flex items-center gap-1 transition-colors">
+                                Details <span class="material-symbols-outlined text-[16px]" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Trip Card 3 -->
+<div class="bg-slate-900 rounded-[16px] p-[16px] border border-slate-800 hover:border-primary-container hover:shadow-[0px_10px_15px_-3px_rgba(245,158,11,0.1)] transition-all duration-300 flex flex-col sm:flex-row gap-4 relative overflow-hidden group cursor-pointer opacity-75">
+<div class="w-full sm:w-32 h-32 sm:h-auto rounded-lg overflow-hidden bg-slate-950 relative flex-shrink-0 flex items-center justify-center border border-slate-800">
+<span class="material-symbols-outlined text-surface-variant text-5xl" data-icon="location_off">location_off</span>
+</div>
+<div class="flex-1 flex flex-col justify-between py-1">
+<div class="flex justify-between items-start mb-2">
+<div>
+<p class="font-micro-bold text-micro-bold text-error uppercase tracking-wider mb-1 flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-error"></span> Cancelled
+                                </p>
+<h3 class="font-subhead-md text-subhead-md text-on-surface">University of Juba</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="calendar_today">calendar_today</span> Oct 20, 8:45 AM
+                                </p>
+</div>
+<div class="text-right">
+<p class="font-subhead-md text-subhead-md text-on-surface-variant line-through">2,000 SSP</p>
+<p class="font-micro-reg text-micro-reg text-on-surface-variant mt-1">Fee: 0 SSP</p>
+</div>
+</div>
+<div class="flex items-center gap-4 mt-auto">
+<div class="flex items-center gap-2 bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800">
+<span class="material-symbols-outlined text-primary" data-icon="electric_rickshaw">electric_rickshaw</span>
+<span class="font-label-bold text-label-bold text-on-surface">Tuktuk</span>
+</div>
+<button class="text-primary hover:text-primary-container font-label-bold text-label-bold ml-auto flex items-center gap-1 transition-colors">
+                                Details <span class="material-symbols-outlined text-[16px]" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="flex justify-center mt-4">
+<button class="px-6 py-3 rounded-full border border-slate-800 text-on-surface hover:bg-surface-variant/30 font-label-bold text-label-bold transition-colors">Load More Trips</button>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden flex justify-around items-center h-20 px-gutter-md pb-safe fixed bottom-0 w-full z-50 rounded-t-xl bg-surface-container border-t border-slate-border shadow-[0px_-4px_10px_rgba(0,0,0,0.1)]">
+<a class="flex flex-col items-center justify-center text-on-surface-variant scale-95 active:scale-90 transition-transform hover:bg-surface-variant p-2 rounded-xl" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="home">home</span>
+<span class="font-label-bold text-label-bold">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container/10 text-primary rounded-xl px-4 py-1 scale-95 active:scale-90 transition-transform hover:bg-surface-variant" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="history" style="font-variation-settings: 'FILL' 1;">history</span>
+<span class="font-label-bold text-label-bold">Activity</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant scale-95 active:scale-90 transition-transform hover:bg-surface-variant p-2 rounded-xl" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-label-bold text-label-bold">Wallet</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant scale-95 active:scale-90 transition-transform hover:bg-surface-variant p-2 rounded-xl" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="person">person</span>
+<span class="font-label-bold text-label-bold">Profile</span>
+</a>
+</nav>
+</body></html>

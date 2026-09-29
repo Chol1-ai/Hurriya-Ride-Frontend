@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>System Integration - Hurriya Command</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                            "tertiary-fixed-dim": "#bdc2ff",
+                            "surface-dim": "#051424",
+                            "on-primary": "#472a00",
+                            "inverse-primary": "#855300",
+                            "surface-tint": "#ffb95f",
+                            "secondary": "#7bd0ff",
+                            "outline-variant": "#534434",
+                            "on-secondary-container": "#00374d",
+                            "primary-container": "#f59e0b",
+                            "secondary-fixed-dim": "#7bd0ff",
+                            "primary-fixed-dim": "#ffb95f",
+                            "surface-container-high": "#1c2b3c",
+                            "surface-container-lowest": "#010f1f",
+                            "on-background": "#d4e4fa",
+                            "status-inactive": "#6b7280",
+                            "on-tertiary-fixed-variant": "#2f3aa3",
+                            "surface-container-low": "#0d1c2d",
+                            "surface-bright": "#2c3a4c",
+                            "on-secondary-fixed": "#001e2c",
+                            "status-warning": "#f59e0b",
+                            "tertiary-container": "#a3abff",
+                            "tertiary": "#c5c9ff",
+                            "secondary-fixed": "#c4e7ff",
+                            "on-surface-variant": "#d8c3ad",
+                            "status-success": "#10b981",
+                            "on-primary-fixed-variant": "#653e00",
+                            "on-primary-fixed": "#2a1700",
+                            "tertiary-fixed": "#e0e0ff",
+                            "primary": "#ffc174",
+                            "on-secondary": "#00354a",
+                            "on-tertiary-container": "#2c36a0",
+                            "secondary-container": "#00a6e0",
+                            "on-secondary-fixed-variant": "#004c69",
+                            "on-error-container": "#ffdad6",
+                            "inverse-surface": "#d4e4fa",
+                            "surface-container-highest": "#2c3a4c",
+                            "error-container": "#93000a",
+                            "surface": "#051424",
+                            "surface-variant": "#273647",
+                            "on-surface": "#d4e4fa",
+                            "on-tertiary": "#131e8c",
+                            "on-primary-container": "#613b00",
+                            "error": "#ffb4ab",
+                            "outline": "#a08e7a",
+                            "inverse-on-surface": "#233143",
+                            "status-danger": "#ef4444",
+                            "primary-fixed": "#ffddb8",
+                            "background": "#051424",
+                            "surface-container": "#122131",
+                            "on-error": "#690005",
+                            "on-tertiary-fixed": "#000767"
+                    },
+                    "borderRadius": {
+                            "DEFAULT": "0.25rem",
+                            "lg": "0.5rem",
+                            "xl": "0.75rem",
+                            "full": "9999px"
+                    },
+                    "spacing": {
+                            "sidebar-width": "16rem",
+                            "stack-gap-sm": "0.5rem",
+                            "stack-gap-lg": "2rem",
+                            "container-padding": "2rem",
+                            "stack-gap-md": "1.5rem",
+                            "header-height": "5rem"
+                    },
+                    "fontFamily": {
+                            "title-md": ["Plus Jakarta Sans"],
+                            "headline-md": ["Plus Jakarta Sans"],
+                            "body-md": ["Plus Jakarta Sans"],
+                            "label-sm": ["Plus Jakarta Sans"],
+                            "display-lg": ["Plus Jakarta Sans"],
+                            "stats-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                            "title-md": ["18px", {"lineHeight": "1.4", "fontWeight": "700"}],
+                            "headline-md": ["20px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                            "body-md": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                            "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                            "display-lg": ["30px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                            "stats-lg": ["30px", {"lineHeight": "1", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #051424; color: #d4e4fa; }
+        .glass-panel { background: rgba(18, 33, 49, 0.4); backdrop-filter: blur(12px); border: 1px solid #1c2b3c; }
+        .glass-row:hover { background: rgba(28, 43, 60, 0.6); }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #010f1f; }
+        ::-webkit-scrollbar-thumb { background: #273647; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #ffc174; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased overflow-hidden flex">
+<!-- Sidebar injected from JSON (simulated via structural commands mapping) -->
+<aside class="fixed h-full w-sidebar-width left-0 top-0 bg-surface-container-lowest dark:bg-surface-container-lowest shadow-2xl flex flex-col z-50">
+<div class="p-6 border-b border-surface-container-high">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container" data-icon="admin_panel_settings">admin_panel_settings</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md text-primary font-bold">Hurriya Command</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Mobility Super-App Admin</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 overflow-y-auto py-4 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors duration-200 active:scale-95 transition-transform font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                General Configuration
+            </a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors duration-200 active:scale-95 transition-transform font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="local_shipping">local_shipping</span>
+                Fleet Parameters
+            </a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors duration-200 active:scale-95 transition-transform font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="security">security</span>
+                Security &amp; Access
+            </a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors duration-200 active:scale-95 transition-transform font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="gavel">gavel</span>
+                Compliance Protocols
+            </a>
+<!-- Active State Navigation -->
+<a class="flex items-center gap-3 px-6 py-3 bg-surface-container-high text-primary border-l-4 border-primary font-bold transition-colors duration-200 active:scale-95 transition-transform font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="api" style="font-variation-settings: 'FILL' 1;">api</span>
+                System Integration
+            </a>
+</nav>
+<div class="p-6 border-t border-surface-container-high">
+<div class="bg-status-success/10 text-status-success px-4 py-2 rounded border border-status-success/20 font-label-sm text-label-sm text-center mb-4 flex items-center justify-center gap-2">
+<span class="w-2 h-2 rounded-full bg-status-success animate-pulse"></span>
+                System Status: Active
+            </div>
+<div class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-2 py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors duration-200 rounded font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+                    Support
+                </a>
+<a class="flex items-center gap-3 px-2 py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors duration-200 rounded font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                    Logout
+                </a>
+</div>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="ml-sidebar-width flex-1 h-screen overflow-y-auto flex flex-col">
+<!-- TopAppBar Content Context (No global shell requested, but context header) -->
+<header class="h-header-height px-container-padding flex items-center justify-between border-b border-surface-container-high/50 bg-surface-container-lowest/80 backdrop-blur-md sticky top-0 z-40">
+<div>
+<h2 class="font-display-lg text-display-lg text-on-surface">System Integration &amp; API</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Manage external connections, webhooks, and developer access.</p>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<img alt="Admin Profile" class="w-10 h-10 rounded-full border border-surface-container-high object-cover" data-alt="A futuristic, high-contrast dark mode profile avatar of an admin, glowing emerald eyes, sleek cybernetic details, hyper-realistic, 8k resolution, cinematic lighting, corporate command center aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoQopeVvbzyc2dvIIVzUNb9hqBIgLWaLqMyZ-VEZyCNqzrV1yH9gst-vR5HpgIPWj7qPwSeFMaQvkUskTWHAsb3KCVtWk0TiWCw16dKm4DEZt7fub-pgkKnkqmO2TlampqI7dC6d9VDbsMHJAO6pO6R6T5H7dbQPyePinfJoBKy_kRU6klh7R34AbWwQh2wWeBzCh6xl5gTEzL9-f-wteSNbqPycgIc48sP-VGipIGH81YuohVez5k"/>
+</div>
+</header>
+<div class="p-container-padding grid grid-cols-12 gap-stack-lg pb-24">
+<!-- Monitoring Stats (Bento Grid Style) -->
+<section class="col-span-12 grid grid-cols-1 md:grid-cols-3 gap-stack-md">
+<div class="glass-panel p-6 rounded-xl flex flex-col justify-between relative overflow-hidden shadow-2xl">
+<div class="flex justify-between items-start mb-4 relative z-10">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">API Latency</p>
+<h3 class="font-stats-lg text-stats-lg text-on-surface mt-1">120<span class="text-title-md text-on-surface-variant">ms</span></h3>
+</div>
+<div class="w-10 h-10 rounded-lg bg-primary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="speed">speed</span>
+</div>
+</div>
+<div class="w-full h-12 relative z-10 flex items-end">
+<!-- Simulated sparkline -->
+<div class="flex items-end gap-1 w-full h-full">
+<div class="w-full bg-primary/40 rounded-t" style="height: 40%"></div>
+<div class="w-full bg-primary/60 rounded-t" style="height: 60%"></div>
+<div class="w-full bg-primary/50 rounded-t" style="height: 50%"></div>
+<div class="w-full bg-primary rounded-t" style="height: 80%"></div>
+<div class="w-full bg-primary/40 rounded-t" style="height: 45%"></div>
+<div class="w-full bg-primary/70 rounded-t" style="height: 75%"></div>
+<div class="w-full bg-primary/30 rounded-t" style="height: 35%"></div>
+</div>
+</div>
+</div>
+<div class="glass-panel p-6 rounded-xl flex flex-col justify-between relative overflow-hidden shadow-2xl">
+<div class="flex justify-between items-start mb-4 relative z-10">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">System Uptime</p>
+<h3 class="font-stats-lg text-stats-lg text-status-success mt-1">99.98%</h3>
+</div>
+<div class="w-10 h-10 rounded-lg bg-status-success/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-status-success" data-icon="check_circle">check_circle</span>
+</div>
+</div>
+<div class="w-full bg-surface-container rounded-full h-2 mt-4 relative z-10">
+<div class="bg-status-success h-2 rounded-full" style="width: 99.98%"></div>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-2 text-right relative z-10">Last 30 days</p>
+</div>
+<div class="glass-panel p-6 rounded-xl flex flex-col justify-between relative overflow-hidden shadow-2xl">
+<div class="flex justify-between items-start mb-4 relative z-10">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Total Requests (24h)</p>
+<h3 class="font-stats-lg text-stats-lg text-on-surface mt-1">1.4M</h3>
+</div>
+<div class="w-10 h-10 rounded-lg bg-secondary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary" data-icon="data_usage">data_usage</span>
+</div>
+</div>
+<div class="flex items-center gap-2 mt-2 relative z-10">
+<span class="material-symbols-outlined text-status-success text-sm" data-icon="trending_up">trending_up</span>
+<span class="font-label-sm text-label-sm text-status-success">+12.5%</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">vs yesterday</span>
+</div>
+</div>
+</section>
+<!-- Main Content Area: Keys & Webhooks -->
+<section class="col-span-12 xl:col-span-8 flex flex-col gap-stack-lg">
+<!-- API Keys Table Container -->
+<div class="glass-panel rounded-xl shadow-2xl flex flex-col">
+<div class="p-6 border-b border-surface-container-high flex justify-between items-center">
+<h3 class="font-title-md text-title-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="key">key</span>
+                            Active API Keys
+                        </h3>
+<button class="bg-primary text-on-primary font-label-sm text-label-sm px-4 py-2 rounded shadow-lg shadow-primary/20 hover:bg-primary-fixed transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+                            Generate New Key
+                        </button>
+</div>
+<div class="overflow-x-auto w-full">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-lowest font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">
+<th class="p-4 font-semibold">Environment</th>
+<th class="p-4 font-semibold">Key Prefix</th>
+<th class="p-4 font-semibold">Created</th>
+<th class="p-4 font-semibold">Last Used</th>
+<th class="p-4 font-semibold text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md divide-y divide-surface-container-high">
+<tr class="glass-row transition-colors">
+<td class="p-4">
+<span class="bg-status-success/10 text-status-success border border-status-success/20 px-2 py-1 rounded text-xs font-bold inline-flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-status-success"></span> Production
+                                        </span>
+</td>
+<td class="p-4 font-mono text-on-surface">pk_live_8f92...</td>
+<td class="p-4 text-on-surface-variant">Oct 12, 2023</td>
+<td class="p-4 text-on-surface-variant">2 mins ago</td>
+<td class="p-4 text-right">
+<button class="text-primary hover:text-primary-fixed transition-colors flex items-center justify-end gap-1 ml-auto font-label-sm">
+<span class="material-symbols-outlined text-sm" data-icon="sync">sync</span> Rotate
+                                        </button>
+</td>
+</tr>
+<tr class="glass-row transition-colors">
+<td class="p-4">
+<span class="bg-status-warning/10 text-status-warning border border-status-warning/20 px-2 py-1 rounded text-xs font-bold inline-flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-status-warning"></span> Sandbox
+                                        </span>
+</td>
+<td class="p-4 font-mono text-on-surface">pk_test_a1b2...</td>
+<td class="p-4 text-on-surface-variant">Nov 05, 2023</td>
+<td class="p-4 text-on-surface-variant">1 hr ago</td>
+<td class="p-4 text-right">
+<button class="text-primary hover:text-primary-fixed transition-colors flex items-center justify-end gap-1 ml-auto font-label-sm">
+<span class="material-symbols-outlined text-sm" data-icon="sync">sync</span> Rotate
+                                        </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Webhook Management -->
+<div class="glass-panel rounded-xl shadow-2xl flex flex-col">
+<div class="p-6 border-b border-surface-container-high flex justify-between items-center">
+<h3 class="font-title-md text-title-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="webhook">webhook</span>
+                            Webhook Endpoints
+                        </h3>
+<button class="border border-surface-container-high bg-surface hover:bg-surface-container transition-colors text-on-surface font-label-sm text-label-sm px-4 py-2 rounded flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="add_link">add_link</span>
+                            Add Endpoint
+                        </button>
+</div>
+<div class="p-6 flex flex-col gap-4">
+<!-- Webhook Item -->
+<div class="bg-surface-container/30 border border-surface-container-high rounded-lg p-4 flex items-start justify-between hover:bg-surface-container/50 transition-colors">
+<div class="flex items-start gap-4">
+<div class="mt-1 w-2 h-2 rounded-full bg-status-success shadow-[0_0_8px_rgba(16,185,129,0.8)]"></div>
+<div>
+<h4 class="font-title-md text-title-md text-on-surface">Trip Events</h4>
+<p class="font-mono text-xs text-secondary mt-1 bg-surface-container-lowest px-2 py-1 rounded inline-block">https://api.partner.com/webhooks/trips</p>
+<div class="flex gap-2 mt-3">
+<span class="bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded text-xs font-semibold">trip.started</span>
+<span class="bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded text-xs font-semibold">trip.completed</span>
+</div>
+</div>
+</div>
+<button class="w-8 h-8 rounded bg-surface-container hover:bg-surface-container-high flex items-center justify-center text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="edit">edit</span>
+</button>
+</div>
+<!-- Webhook Item (Failing) -->
+<div class="bg-error-container/10 border border-error/30 rounded-lg p-4 flex items-start justify-between hover:bg-error-container/20 transition-colors">
+<div class="flex items-start gap-4">
+<div class="mt-1 w-2 h-2 rounded-full bg-status-danger shadow-[0_0_8px_rgba(239,68,68,0.8)] animate-pulse"></div>
+<div>
+<h4 class="font-title-md text-title-md text-on-surface flex items-center gap-2">
+                                        Payment Updates 
+                                        <span class="bg-status-danger/20 text-status-danger px-2 py-0.5 rounded text-xs font-bold border border-status-danger/30">Failing</span>
+</h4>
+<p class="font-mono text-xs text-secondary mt-1 bg-surface-container-lowest px-2 py-1 rounded inline-block">https://finance.partner.com/hooks/pay</p>
+<p class="font-label-sm text-label-sm text-status-danger mt-2">Error 503: Service Unavailable (Last 4 attempts)</p>
+</div>
+</div>
+<button class="w-8 h-8 rounded bg-surface-container hover:bg-surface-container-high flex items-center justify-center text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="edit">edit</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Sidebar Content Area -->
+<aside class="col-span-12 xl:col-span-4 flex flex-col gap-stack-lg">
+<!-- Developer Links Bento Card -->
+<div class="glass-panel rounded-xl shadow-2xl p-6 relative overflow-hidden group">
+<!-- Decorative gradient orb -->
+<div class="absolute -top-10 -right-10 w-32 h-32 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-500"></div>
+<h3 class="font-title-md text-title-md text-on-surface mb-4 flex items-center gap-2 relative z-10">
+<span class="material-symbols-outlined text-primary" data-icon="code_blocks">code_blocks</span>
+                        Developer Resources
+                    </h3>
+<div class="flex flex-col gap-3 relative z-10">
+<a class="bg-surface-container-lowest border border-surface-container-high p-4 rounded-lg flex items-center justify-between hover:border-primary/50 hover:bg-surface-container-low transition-all group/link" href="#">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-surface-container flex items-center justify-center group-hover/link:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant group-hover/link:text-primary transition-colors text-sm" data-icon="menu_book">menu_book</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface font-semibold">API Documentation</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover/link:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</a>
+<a class="bg-surface-container-lowest border border-surface-container-high p-4 rounded-lg flex items-center justify-between hover:border-primary/50 hover:bg-surface-container-low transition-all group/link" href="#">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-surface-container flex items-center justify-center group-hover/link:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant group-hover/link:text-primary transition-colors text-sm" data-icon="api">api</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface font-semibold">Postman Collection</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover/link:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</a>
+<a class="bg-surface-container-lowest border border-surface-container-high p-4 rounded-lg flex items-center justify-between hover:border-primary/50 hover:bg-surface-container-low transition-all group/link" href="#">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-surface-container flex items-center justify-center group-hover/link:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant group-hover/link:text-primary transition-colors text-sm" data-icon="download">download</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface font-semibold">SDK Downloads</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover/link:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Integration Logs Placeholder -->
+<div class="glass-panel rounded-xl shadow-2xl flex flex-col flex-1 min-h-[300px]">
+<div class="p-4 border-b border-surface-container-high flex justify-between items-center">
+<h3 class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="terminal">terminal</span>
+                            Live Traffic Log
+                        </h3>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-status-success animate-pulse"></span>
+<span class="font-label-sm text-[10px] text-on-surface-variant">Streaming</span>
+</div>
+</div>
+<div class="p-4 font-mono text-xs overflow-y-auto flex-1 flex flex-col gap-2 opacity-70">
+<div class="flex gap-2"><span class="text-status-success">POST</span> <span class="text-on-surface-variant">/v1/fleet/status</span> <span class="text-on-surface ml-auto">200 OK</span></div>
+<div class="flex gap-2"><span class="text-secondary">GET</span> <span class="text-on-surface-variant">/v1/users/metrics</span> <span class="text-on-surface ml-auto">200 OK</span></div>
+<div class="flex gap-2"><span class="text-status-danger">POST</span> <span class="text-on-surface-variant">/v1/payments/process</span> <span class="text-status-danger ml-auto">503 ERR</span></div>
+<div class="flex gap-2"><span class="text-secondary">GET</span> <span class="text-on-surface-variant">/v1/routes/optimal</span> <span class="text-on-surface ml-auto">200 OK</span></div>
+<div class="flex gap-2"><span class="text-status-success">POST</span> <span class="text-on-surface-variant">/v1/fleet/status</span> <span class="text-on-surface ml-auto">200 OK</span></div>
+</div>
+</div>
+</aside>
+</div>
+</main>
+</body></html>

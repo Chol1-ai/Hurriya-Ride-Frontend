@@ -1,0 +1,524 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Driver Verification Dashboard - Hurriya Admin</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800;900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-error": "#690005",
+                      "on-tertiary-fixed-variant": "#005137",
+                      "secondary-fixed-dim": "#bec6e0",
+                      "inverse-surface": "#d4e4fa",
+                      "slate-border": "#334155",
+                      "on-tertiary": "#003825",
+                      "primary-fixed-dim": "#ffb95f",
+                      "surface-tint": "#ffb95f",
+                      "midnight-bg": "#020617",
+                      "on-primary-container": "#613b00",
+                      "on-error-container": "#ffdad6",
+                      "surface-bright": "#2c3a4c",
+                      "on-secondary-fixed-variant": "#3f465c",
+                      "outline-variant": "#534434",
+                      "on-tertiary-fixed": "#002114",
+                      "surface-variant": "#273647",
+                      "on-primary-fixed-variant": "#653e00",
+                      "secondary": "#bec6e0",
+                      "tertiary": "#4de6aa",
+                      "utility-indigo": "#818CF8",
+                      "on-secondary-container": "#adb4ce",
+                      "utility-cyan": "#22D3EE",
+                      "on-primary-fixed": "#2a1700",
+                      "primary-container": "#f59e0b",
+                      "background": "#051424",
+                      "on-tertiary-container": "#004e35",
+                      "surface-dim": "#051424",
+                      "on-background": "#d4e4fa",
+                      "secondary-fixed": "#dae2fd",
+                      "primary": "#ffc174",
+                      "surface-container-highest": "#273647",
+                      "surface": "#051424",
+                      "inverse-on-surface": "#233143",
+                      "inverse-primary": "#855300",
+                      "on-secondary-fixed": "#131b2e",
+                      "error-container": "#93000a",
+                      "surface-container-high": "#1c2b3c",
+                      "outline": "#a08e7a",
+                      "tertiary-fixed": "#68fcbf",
+                      "tertiary-container": "#22c990",
+                      "surface-container": "#122131",
+                      "primary-fixed": "#ffddb8",
+                      "secondary-container": "#3f465c",
+                      "on-secondary": "#283044",
+                      "safety-emerald": "#34D399",
+                      "on-surface-variant": "#d8c3ad",
+                      "surface-container-lowest": "#010f1f",
+                      "white-high-emphasis": "#FFFFFF",
+                      "tertiary-fixed-dim": "#45dfa4",
+                      "surface-container-low": "#0d1c2d",
+                      "on-primary": "#472a00",
+                      "slate-surface": "#1E293B",
+                      "on-surface": "#d4e4fa",
+                      "error": "#ffb4ab"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "section-gap": "32px",
+                      "gutter-sm": "12px",
+                      "unit": "4px",
+                      "gutter-md": "16px",
+                      "margin-xl": "24px",
+                      "gutter-xs": "10px",
+                      "margin-lg": "20px"
+              },
+              "fontFamily": {
+                      "label-bold": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-lg-mobile": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "display-xl": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "subhead-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-sm": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "micro-bold": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "micro-reg": [
+                              "Plus Jakarta Sans"
+                      ]
+              },
+              "fontSize": {
+                      "label-bold": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "22px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "800"
+                              }
+                      ],
+                      "headline-lg": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "800"
+                              }
+                      ],
+                      "display-xl": [
+                              "30px",
+                              {
+                                      "lineHeight": "38px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "800"
+                              }
+                      ],
+                      "subhead-md": [
+                              "18px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "800"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "micro-bold": [
+                              "11px",
+                              {
+                                      "lineHeight": "14px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "micro-reg": [
+                              "10px",
+                              {
+                                      "lineHeight": "12px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+            },
+          }
+        }
+    </script>
+<style>
+        .gold-glow { box-shadow: 0px 10px 15px -3px rgba(245, 158, 11, 0.2); }
+        .hollow-input { background-color: theme('colors.midnight-bg'); border: 1px solid theme('colors.slate-border'); }
+        .glass-panel { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-sm min-h-screen flex selection:bg-primary-container selection:text-on-primary-container">
+<!-- SideNavBar (Desktop Only) -->
+<nav class="hidden md:flex flex-col h-screen w-64 left-0 sticky z-50 bg-surface-container-low dark:bg-surface-container-lowest border-r border-slate-border py-margin-xl shrink-0">
+<div class="px-margin-xl mb-section-gap flex flex-col gap-gutter-sm">
+<div class="flex items-center gap-gutter-sm">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-primary-container" style="font-variation-settings: 'FILL' 1;">local_taxi</span>
+</div>
+<div>
+<h1 class="font-headline-lg text-headline-lg font-extrabold text-primary dark:text-primary-fixed-dim">Hurriya Admin</h1>
+<p class="font-label-bold text-label-bold text-on-surface-variant">Juba Operations</p>
+</div>
+</div>
+</div>
+<ul class="flex-1 flex flex-col gap-unit px-gutter-md">
+<li>
+<a class="flex items-center gap-gutter-md px-gutter-md py-gutter-sm rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:hover:bg-surface-container transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-bold text-label-bold">Command Center</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-gutter-md px-gutter-md py-gutter-sm rounded-lg bg-surface-container-high text-primary dark:text-primary-fixed-dim font-bold border-r-2 border-primary translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="verified_user">verified_user</span>
+<span class="font-label-bold text-label-bold">Verification</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-gutter-md px-gutter-md py-gutter-sm rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:hover:bg-surface-container transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="local_taxi">local_taxi</span>
+<span class="font-label-bold text-label-bold">Fleet</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-gutter-md px-gutter-md py-gutter-sm rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:hover:bg-surface-container transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-label-bold text-label-bold">Revenue</span>
+</a>
+</li>
+</ul>
+<ul class="flex flex-col gap-unit px-gutter-md mt-auto pt-margin-xl border-t border-slate-border/50">
+<li>
+<a class="flex items-center gap-gutter-md px-gutter-md py-gutter-sm rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:hover:bg-surface-container transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="support_agent">support_agent</span>
+<span class="font-label-bold text-label-bold">Support</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-gutter-md px-gutter-md py-gutter-sm rounded-lg text-on-error hover:bg-error-container/20 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-label-bold text-label-bold">Logout</span>
+</a>
+</li>
+</ul>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col min-w-0 h-screen overflow-hidden">
+<!-- TopNavBar -->
+<header class="flex justify-between items-center w-full px-margin-xl py-gutter-md bg-surface/80 dark:bg-surface/80 backdrop-blur-md border-b border-slate-border docked full-width top-0 sticky z-40 shrink-0">
+<div class="flex items-center gap-margin-xl">
+<h2 class="md:hidden font-display-xl text-display-xl font-black text-primary dark:text-primary-fixed-dim tracking-tight">Hurriya Ride</h2>
+<h2 class="hidden md:block font-headline-lg text-headline-lg font-bold">Verification Pipeline</h2>
+<!-- Search -->
+<div class="hidden lg:flex items-center hollow-input rounded-full px-gutter-md py-unit focus-within:ring-1 focus-within:ring-primary focus-within:border-primary transition-all">
+<span class="material-symbols-outlined text-on-surface-variant mr-gutter-xs">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-on-surface placeholder:text-on-surface-variant w-64 font-body-sm text-body-sm h-8" placeholder="Search drivers by name, phone, or ID..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-gutter-md">
+<button class="w-10 h-10 rounded-full hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-200 flex items-center justify-center relative text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-error"></span>
+</button>
+<button class="w-10 h-10 rounded-full hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-200 flex items-center justify-center text-on-surface-variant hidden sm:flex">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<button class="w-10 h-10 rounded-full hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-200 flex items-center justify-center text-on-surface-variant hidden sm:flex">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-surface-container overflow-hidden ml-gutter-sm border border-slate-border">
+<img alt="Admin Profile Avatar" class="w-full h-full object-cover" data-alt="Close up professional portrait of an African admin staff member in high-tech setting. Dramatic dark background with soft rim lighting. The tone is serious and reliable, conveying high security clearance." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnEiCLdA6Fdh1uegyfneyNTCwULDMAIWvrRBd_8ViHrfIaC3hmCd2kFE0WeNOhoOCckCyehiEiEx1_ZIkM1UkrZBTolZQDtBgGzVMYpVRPazYHygOGc7VbU-FAzR7CEbVbjYkB2iqDEptHmkIw1jj1V4VGv1lLUyXazNwOou_M_sWDUNxPUMNf5R5CILdpYgHje3ADhM3eZ5FYXLC9Y_D7nLQbaYrIydJyGooYr7U5oRLm81U8OlAW">
+</div>
+</div>
+</header>
+<!-- Dashboard Content -->
+<div class="flex-1 overflow-auto flex flex-col lg:flex-row">
+<!-- Left Column: Pipeline & List -->
+<div class="flex-1 p-margin-xl flex flex-col gap-section-gap min-w-0">
+<!-- Pipeline Summary Bento -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-gutter-md">
+<div class="bg-slate-900 rounded-xl border border-slate-border p-gutter-md relative overflow-hidden group hover:border-primary/50 transition-colors">
+<div class="absolute top-0 right-0 w-24 h-24 bg-utility-cyan/5 rounded-bl-full -z-10 group-hover:bg-utility-cyan/10 transition-colors"></div>
+<div class="flex justify-between items-start mb-gutter-sm">
+<span class="material-symbols-outlined text-utility-cyan">post_add</span>
+<span class="bg-utility-cyan/10 text-utility-cyan px-2 py-0.5 rounded-full font-micro-bold text-micro-bold">Triage</span>
+</div>
+<p class="font-subhead-md text-subhead-md text-on-surface-variant mb-unit">New Applications</p>
+<p class="font-display-xl text-display-xl font-bold">12</p>
+</div>
+<div class="bg-slate-900 rounded-xl border border-slate-border p-gutter-md relative overflow-hidden group hover:border-primary-container/50 transition-colors">
+<div class="absolute top-0 right-0 w-24 h-24 bg-primary-container/5 rounded-bl-full -z-10 group-hover:bg-primary-container/10 transition-colors"></div>
+<div class="flex justify-between items-start mb-gutter-sm">
+<span class="material-symbols-outlined text-primary-container">pending_actions</span>
+<span class="bg-primary-container/10 text-primary-container px-2 py-0.5 rounded-full font-micro-bold text-micro-bold">Follow-up</span>
+</div>
+<p class="font-subhead-md text-subhead-md text-on-surface-variant mb-unit">Pending Docs</p>
+<p class="font-display-xl text-display-xl font-bold">8</p>
+</div>
+<div class="bg-slate-900 rounded-xl border border-primary/30 p-gutter-md relative overflow-hidden group hover:border-primary transition-colors shadow-[0_0_15px_rgba(255,193,116,0.05)]">
+<div class="absolute top-0 right-0 w-24 h-24 bg-primary/10 rounded-bl-full -z-10 group-hover:bg-primary/20 transition-colors"></div>
+<div class="flex justify-between items-start mb-gutter-sm">
+<span class="material-symbols-outlined text-primary">fact_check</span>
+<span class="bg-primary/20 text-primary px-2 py-0.5 rounded-full font-micro-bold text-micro-bold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span> Action Required
+                            </span>
+</div>
+<p class="font-subhead-md text-subhead-md text-primary mb-unit">Ready for Review</p>
+<p class="font-display-xl text-display-xl font-bold text-primary">4</p>
+</div>
+</section>
+<!-- Data Table Container -->
+<section class="bg-slate-900 rounded-xl border border-slate-border flex flex-col flex-1 min-h-[400px]">
+<div class="p-gutter-md border-b border-slate-border flex justify-between items-center bg-slate-surface/50 rounded-t-xl">
+<h3 class="font-subhead-md text-subhead-md font-bold">Pending Driver Applications</h3>
+<div class="flex gap-gutter-sm">
+<button class="px-gutter-sm py-unit rounded-md border border-slate-border hover:bg-surface-container transition flex items-center gap-unit text-body-sm">
+<span class="material-symbols-outlined text-[18px]">filter_list</span> Filter
+                            </button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-slate-border bg-midnight-bg/50">
+<th class="p-gutter-md font-label-bold text-label-bold text-on-surface-variant uppercase">Driver Info</th>
+<th class="p-gutter-md font-label-bold text-label-bold text-on-surface-variant uppercase">Vehicle</th>
+<th class="p-gutter-md font-label-bold text-label-bold text-on-surface-variant uppercase">ID Status</th>
+<th class="p-gutter-md font-label-bold text-label-bold text-on-surface-variant uppercase">License Status</th>
+<th class="p-gutter-md font-label-bold text-label-bold text-on-surface-variant uppercase text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-border/50">
+<!-- Row 1 - Active -->
+<tr class="bg-surface-container-high/50 hover:bg-surface-container-high transition-colors group cursor-pointer border-l-2 border-primary">
+<td class="p-gutter-md">
+<div class="flex items-center gap-gutter-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container border border-slate-border overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="Small thumbnail portrait of a South Sudanese male driver in a neat collared shirt. Clean, professional lighting on a dark background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBeGZ9iRiSBzPG-aCU3Pil4qw9BEbeiKyEZvOaH6jeqBqoBxBiJ0V5rWUW8bYjVqJ0dNB35hIUZOlQGF2485MX8a_AxltcRG1ZEFM3N_MZNKx6LOPbpMcpmquk2LvNQk3Enyb5VWfSJ2cmwYjEgtOD89eH7eY_LZhfzvnmA927q9DvAqQZl7ITnSNYMTeXqMQ6TNHyV6Xnaa2IBZ67Y4zjmZjNSKX6Yi9xbq9xkafiSmgsdhUfRShGH">
+</div>
+<div>
+<p class="font-body-sm text-body-sm font-bold text-on-surface">Mabior Deng</p>
+<p class="font-micro-reg text-micro-reg text-on-surface-variant">+211 92 123 4567</p>
+</div>
+</div>
+</td>
+<td class="p-gutter-md">
+<p class="font-body-sm text-body-sm">Toyota Belta</p>
+<p class="font-micro-reg text-micro-reg text-on-surface-variant">SSD 123A</p>
+</td>
+<td class="p-gutter-md">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-tertiary-container/10 text-tertiary-container border border-tertiary-container/20">
+<span class="material-symbols-outlined text-[14px] mr-1">check_circle</span> Verified
+                                        </span>
+</td>
+<td class="p-gutter-md">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-primary-container/10 text-primary-container border border-primary-container/20">
+<span class="material-symbols-outlined text-[14px] mr-1">hourglass_empty</span> Pending Review
+                                        </span>
+</td>
+<td class="p-gutter-md text-right">
+<button class="bg-primary hover:bg-primary-fixed text-on-primary font-label-bold text-label-bold px-gutter-md py-unit rounded-md transition-colors gold-glow">
+                                            Review
+                                        </button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-high/30 transition-colors group cursor-pointer border-l-2 border-transparent">
+<td class="p-gutter-md">
+<div class="flex items-center gap-gutter-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container border border-slate-border overflow-hidden shrink-0 flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">person</span>
+</div>
+<div>
+<p class="font-body-sm text-body-sm font-bold text-on-surface">Kuol Garang</p>
+<p class="font-micro-reg text-micro-reg text-on-surface-variant">+211 91 987 6543</p>
+</div>
+</div>
+</td>
+<td class="p-gutter-md">
+<p class="font-body-sm text-body-sm">Bajaj RE (Boda)</p>
+<p class="font-micro-reg text-micro-reg text-on-surface-variant">SSD 456B</p>
+</td>
+<td class="p-gutter-md">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-primary-container/10 text-primary-container border border-primary-container/20">
+<span class="material-symbols-outlined text-[14px] mr-1">hourglass_empty</span> Pending Review
+                                        </span>
+</td>
+<td class="p-gutter-md">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-primary-container/10 text-primary-container border border-primary-container/20">
+<span class="material-symbols-outlined text-[14px] mr-1">hourglass_empty</span> Pending Review
+                                        </span>
+</td>
+<td class="p-gutter-md text-right">
+<button class="bg-surface-container hover:bg-surface-container-high border border-slate-border text-on-surface font-label-bold text-label-bold px-gutter-md py-unit rounded-md transition-colors">
+                                            Open
+                                        </button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-high/30 transition-colors group cursor-pointer border-l-2 border-transparent">
+<td class="p-gutter-md">
+<div class="flex items-center gap-gutter-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container border border-slate-border overflow-hidden shrink-0 flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">person</span>
+</div>
+<div>
+<p class="font-body-sm text-body-sm font-bold text-on-surface">Simon Lual</p>
+<p class="font-micro-reg text-micro-reg text-on-surface-variant">+211 92 555 1234</p>
+</div>
+</div>
+</td>
+<td class="p-gutter-md">
+<p class="font-body-sm text-body-sm">Toyota Premio</p>
+<p class="font-micro-reg text-micro-reg text-on-surface-variant">Pending Reg.</p>
+</td>
+<td class="p-gutter-md">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-error/10 text-error border border-error/20">
+<span class="material-symbols-outlined text-[14px] mr-1">error</span> Missing Doc
+                                        </span>
+</td>
+<td class="p-gutter-md">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-tertiary-container/10 text-tertiary-container border border-tertiary-container/20">
+<span class="material-symbols-outlined text-[14px] mr-1">check_circle</span> Verified
+                                        </span>
+</td>
+<td class="p-gutter-md text-right">
+<button class="bg-surface-container hover:bg-surface-container-high border border-slate-border text-on-surface font-label-bold text-label-bold px-gutter-md py-unit rounded-md transition-colors">
+                                            Open
+                                        </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+<!-- Right Column: Detail Pane -->
+<aside class="w-full lg:w-96 bg-surface-container-lowest border-l border-slate-border flex flex-col shrink-0 h-full overflow-y-auto hidden lg:flex shadow-[-10px_0_20px_rgba(0,0,0,0.2)] z-10 relative">
+<!-- Detail Header -->
+<div class="p-margin-xl border-b border-slate-border sticky top-0 bg-surface-container-lowest/90 backdrop-blur-sm z-20">
+<div class="flex justify-between items-start mb-gutter-md">
+<h3 class="font-headline-lg text-headline-lg font-bold">Document Review</h3>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="flex items-center gap-gutter-md">
+<div class="w-16 h-16 rounded-full bg-surface-container border-2 border-primary overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="Thumbnail portrait of a South Sudanese male driver in a neat collared shirt. Clean, professional lighting on a dark background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcanoV-RoTo1ysQWBVriY2158VRJ0WywMpcjwfWBXaj7ALX_XHUIrLEZ_bsotUog3_1vHCDIoflijv0m5kBcNNCw_fEXxisegkSsrt7wrqWj4ZWxPVwDyK9q_NEbOpssHK4Ly0zNBFg-NkJ_fBHpfjdqRxubZ38vB5pL9QzpQVwQaGS5L81oc4VsICPLYz30576_n9bOqZtTIrOF_q4Kytshqv_MmWXe1Gw0FZh1nsEWE0l0bMui_9">
+</div>
+<div>
+<p class="font-subhead-md text-subhead-md font-bold">Mabior Deng</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">App ID: #APP-2938</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">+211 92 123 4567</p>
+</div>
+</div>
+</div>
+<!-- Review Content -->
+<div class="p-margin-xl flex flex-col gap-margin-xl flex-1">
+<!-- Progress Step -->
+<div class="bg-slate-900 rounded-lg p-gutter-md border border-slate-border">
+<div class="flex justify-between items-center mb-gutter-sm">
+<h4 class="font-label-bold text-label-bold text-on-surface-variant uppercase tracking-wider">Verification Progress</h4>
+<span class="font-label-bold text-label-bold text-primary">2 / 3 Steps</span>
+</div>
+<div class="flex gap-1 h-2">
+<div class="flex-1 bg-tertiary rounded-l-full"></div>
+<div class="flex-1 bg-tertiary"></div>
+<div class="flex-1 bg-surface-container-highest rounded-r-full"></div>
+</div>
+</div>
+<!-- Pending Document: License -->
+<div class="flex flex-col gap-gutter-sm">
+<div class="flex justify-between items-center">
+<h4 class="font-subhead-md text-subhead-md font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">id_card</span>
+                                Driving License
+                            </h4>
+<span class="bg-primary-container/10 text-primary-container px-2 py-0.5 rounded-full font-micro-bold text-micro-bold">Needs Review</span>
+</div>
+<!-- Document Preview Card -->
+<div class="bg-midnight-bg rounded-xl border border-slate-border p-gutter-sm relative group">
+<div class="aspect-[1.58/1] w-full rounded-lg bg-surface-container overflow-hidden relative border border-slate-border/50">
+<!-- Simulated Document Image -->
+<img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" data-alt="A macro photo of a South Sudan driving license card resting on a dark slate surface. High contrast, clear typography, professional lighting highlighting the holographic security features." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB67_VxcBAMFOwQTOLe2SA7NfXuR61-OnzikoeNslzIMzsgXfA_gInRA4OSfBMYTs4gFfvuEYJi9VMdSibfZSqmovQlfrN9bgGJri-oWzZorZwjOlH9AKtuICe9gcfh9IIYAFDKNj1mzbRpPVQQ0V2WXKLQ40KyfiA3mo-dSGwQY3-I_jh1wlskQAtQXGO8bknc2JN4L4Ypc_e02785NlDIsnNwD07ah_gfWkxcYEFEczG4wUOqQ3ru">
+<!-- Overlay Actions -->
+<div class="absolute inset-0 bg-background/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-gutter-md backdrop-blur-sm">
+<button class="w-10 h-10 rounded-full bg-surface-container-high hover:bg-primary hover:text-on-primary text-on-surface flex items-center justify-center transition-colors shadow-lg">
+<span class="material-symbols-outlined">zoom_in</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-surface-container-high hover:bg-primary hover:text-on-primary text-on-surface flex items-center justify-center transition-colors shadow-lg">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+</div>
+<!-- Extracted Data -->
+<div class="mt-gutter-md grid grid-cols-2 gap-gutter-md bg-slate-900/50 p-gutter-md rounded-lg border border-slate-border/50">
+<div>
+<p class="font-micro-bold text-micro-bold text-on-surface-variant uppercase mb-1">Extracted Name</p>
+<p class="font-body-sm text-body-sm font-bold text-tertiary flex items-center gap-1">
+                                        Mabior Deng <span class="material-symbols-outlined text-[14px]">check</span>
+</p>
+</div>
+<div>
+<p class="font-micro-bold text-micro-bold text-on-surface-variant uppercase mb-1">License No.</p>
+<p class="font-body-sm text-body-sm font-bold">SSD-DL-9921</p>
+</div>
+<div>
+<p class="font-micro-bold text-micro-bold text-on-surface-variant uppercase mb-1">Expiry Date</p>
+<p class="font-body-sm text-body-sm font-bold text-primary flex items-center gap-1">
+                                        12 Oct 2024 <span class="material-symbols-outlined text-[14px]">warning</span>
+</p>
+</div>
+<div>
+<p class="font-micro-bold text-micro-bold text-on-surface-variant uppercase mb-1">Class</p>
+<p class="font-body-sm text-body-sm font-bold">B, C</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Sticky Actions Footer -->
+<div class="p-margin-xl border-t border-slate-border bg-surface-container-lowest sticky bottom-0 z-20 flex gap-gutter-md">
+<button class="flex-1 bg-transparent border border-error text-error hover:bg-error/10 font-label-bold text-label-bold py-gutter-md rounded-lg transition-colors flex items-center justify-center gap-unit">
+<span class="material-symbols-outlined text-[18px]">block</span> Reject
+                    </button>
+<button class="flex-1 bg-safety-emerald text-midnight-bg hover:bg-tertiary-fixed font-label-bold text-label-bold py-gutter-md rounded-lg transition-colors flex items-center justify-center gap-unit shadow-[0_4px_15px_-3px_rgba(52,211,153,0.3)]">
+<span class="material-symbols-outlined text-[18px]">verified</span> Approve
+                    </button>
+</div>
+</aside>
+</div>
+</main>
+</body></html>

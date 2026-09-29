@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GoJuba - Safety Toolkit</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "slate-border": "#334155",
+                        "utility-cyan": "#22D3EE",
+                        "tertiary-fixed": "#68fcbf",
+                        "secondary-container": "#3f465c",
+                        "primary": "#ffc174",
+                        "on-primary": "#472a00",
+                        "surface-container-highest": "#273647",
+                        "on-surface": "#d4e4fa",
+                        "surface-container-low": "#0d1c2d",
+                        "outline": "#a08e7a",
+                        "surface": "#051424",
+                        "outline-variant": "#534434",
+                        "secondary": "#bec6e0",
+                        "on-surface-variant": "#d8c3ad",
+                        "inverse-on-surface": "#233143",
+                        "surface-container-lowest": "#010f1f",
+                        "surface-container": "#122131",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "error": "#ffb4ab",
+                        "on-tertiary": "#003825",
+                        "on-primary-container": "#613b00",
+                        "on-error": "#690005",
+                        "primary-container": "#f59e0b",
+                        "surface-container-high": "#1c2b3c",
+                        "on-tertiary-fixed-variant": "#005137",
+                        "error-container": "#93000a",
+                        "on-primary-fixed": "#2a1700",
+                        "on-secondary-container": "#adb4ce",
+                        "secondary-fixed": "#dae2fd",
+                        "inverse-primary": "#855300",
+                        "utility-indigo": "#818CF8",
+                        "primary-fixed": "#ffddb8",
+                        "primary-fixed-dim": "#ffb95f",
+                        "background": "#051424",
+                        "slate-surface": "#1E293B",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "safety-emerald": "#34D399",
+                        "on-tertiary-fixed": "#002114",
+                        "surface-dim": "#051424",
+                        "white-high-emphasis": "#FFFFFF",
+                        "inverse-surface": "#d4e4fa",
+                        "on-background": "#d4e4fa",
+                        "on-secondary-fixed": "#131b2e",
+                        "on-error-container": "#ffdad6",
+                        "surface-variant": "#273647",
+                        "tertiary-container": "#22c990",
+                        "on-tertiary-container": "#004e35",
+                        "tertiary": "#4de6aa",
+                        "tertiary-fixed-dim": "#45dfa4",
+                        "surface-bright": "#2c3a4c",
+                        "on-secondary": "#283044",
+                        "midnight-bg": "#020617",
+                        "on-primary-fixed-variant": "#653e00",
+                        "surface-tint": "#ffb95f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-lg": "20px",
+                        "unit": "4px",
+                        "margin-xl": "24px",
+                        "gutter-sm": "12px",
+                        "gutter-xs": "10px",
+                        "section-gap": "32px",
+                        "gutter-md": "16px"
+                    },
+                    "fontFamily": {
+                        "label-bold": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "micro-reg": ["Plus Jakarta Sans"],
+                        "subhead-md": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "micro-bold": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "display-xl": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "label-bold": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "800" }],
+                        "micro-reg": ["10px", { "lineHeight": "12px", "fontWeight": "400" }],
+                        "subhead-md": ["18px", { "lineHeight": "24px", "fontWeight": "800" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "micro-bold": ["11px", { "lineHeight": "14px", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["22px", { "lineHeight": "28px", "fontWeight": "800" }],
+                        "display-xl": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "800" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .gold-glow {
+            box-shadow: 0px 10px 15px -3px rgba(245, 158, 11, 0.2);
+        }
+        .emerald-glow {
+            box-shadow: 0px 10px 15px -3px rgba(52, 211, 153, 0.2);
+        }
+        .error-glow {
+            box-shadow: 0px 10px 15px -3px rgba(255, 180, 171, 0.2);
+        }
+        
+        /* Map background overlay effect */
+        .map-overlay {
+            background: linear-gradient(180deg, rgba(2, 6, 23, 0.6) 0%, rgba(2, 6, 23, 0.95) 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-sm min-h-screen flex flex-col relative overflow-hidden">
+<!-- Background Map (Simulated Context) -->
+<div class="absolute inset-0 z-0 opacity-40">
+<div class="bg-cover bg-center w-full h-full" data-alt="A highly detailed top-down view of a modern city map interface showing streets, blocks, and a glowing route line. The map uses a sleek dark mode aesthetic with deep midnight blues and slate tones. The route is highlighted in a vibrant, glowing sunrise gold, contrasting sharply with the dark background. The scene feels technological, precise, and navigational, suitable for a premium mobility app." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCV2OgQ_5dTYwOUaZckSCu7OS9avf3V9uP-gb_2kJo6LlavqNnhouxTBCL_yn9rtlAypanMmubc2u8MqNB7NXEVfouO45YNJTu-mCEEZj8PpLTnse7OWdnjnxo3aUbyn8MS4GsEYwXjqspiUIW8YpNefCLZsbAvBsHyx1lJ42LVFj98a-ZnZN210yNI4RitquBdNNZdLu6AOg8-5urgtF-yod2yjuEBt4_NaMw2ZSCD857KBcanChKH')"></div>
+</div>
+<!-- Dark Gradient Overlay -->
+<div class="absolute inset-0 z-0 map-overlay"></div>
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full bg-surface-dim dark:bg-surface-dim bg-surface-container-high border-b border-outline-variant shadow-md flex justify-between items-center px-margin-xl h-16 z-50">
+<button class="text-primary dark:text-primary active:opacity-80 transition-opacity scale-95 duration-100 flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">close</span>
+</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary dark:text-primary">Safety Toolkit</h1>
+<div class="w-6 h-6"></div> <!-- Spacer for centering -->
+</header>
+<!-- Main Content Canvas (Safety Overlay) -->
+<main class="flex-1 flex flex-col relative z-10 pt-[80px] px-margin-lg pb-[24px] max-w-md mx-auto w-full h-full justify-between">
+<!-- Header Info -->
+<div class="text-center mb-8">
+<div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-surface-container-high border border-slate-border mb-4">
+<span class="material-symbols-outlined text-safety-emerald text-[32px]" style="font-variation-settings: 'FILL' 1;">shield</span>
+</div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-2">We've got you.</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant px-4">If you feel unsafe or need immediate assistance, use the tools below. We are monitoring your trip.</p>
+</div>
+<!-- Toolkit Actions Bento Grid -->
+<div class="flex-1 flex flex-col gap-4">
+<!-- Primary SOS Button - Full Width -->
+<button class="w-full bg-error text-on-error rounded-xl p-6 flex flex-col items-center justify-center gap-3 error-glow hover:bg-error-container hover:text-on-error-container transition-colors duration-200 border border-error/50">
+<span class="material-symbols-outlined text-[40px]" style="font-variation-settings: 'FILL' 1;">emergency</span>
+<span class="font-subhead-md text-subhead-md">Call Emergency Services</span>
+<span class="font-body-sm text-body-sm opacity-90 text-center">Dial 999 directly for police or ambulance.</span>
+</button>
+<!-- Secondary Actions Grid -->
+<div class="grid grid-cols-2 gap-4">
+<!-- Share Trip -->
+<button class="bg-surface-container-high rounded-xl p-4 flex flex-col items-center justify-center gap-3 border border-slate-border hover:border-primary transition-colors duration-200 group h-32">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center group-hover:bg-surface-bright transition-colors">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">share_location</span>
+</div>
+<span class="font-label-bold text-label-bold text-on-surface text-center">Share Trip Details</span>
+</button>
+<!-- Record Audio (Example secondary feature) -->
+<button class="bg-surface-container-high rounded-xl p-4 flex flex-col items-center justify-center gap-3 border border-slate-border hover:border-primary transition-colors duration-200 group h-32">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center group-hover:bg-surface-bright transition-colors">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">mic</span>
+</div>
+<span class="font-label-bold text-label-bold text-on-surface text-center">Record Audio</span>
+</button>
+</div>
+<!-- Report Incident -->
+<button class="w-full bg-surface-container-high rounded-xl p-4 flex items-center justify-between border border-slate-border hover:border-primary transition-colors duration-200">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant" style="font-variation-settings: 'FILL' 1;">report</span>
+</div>
+<div class="flex flex-col text-left">
+<span class="font-subhead-md text-subhead-md text-on-surface">Report an Incident</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Non-emergency safety concerns</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</button>
+<!-- Live Monitoring Status -->
+<div class="mt-4 flex items-center justify-center gap-2 bg-surface-container-low py-3 px-4 rounded-full border border-slate-border">
+<div class="w-2 h-2 rounded-full bg-safety-emerald animate-pulse"></div>
+<span class="font-label-bold text-label-bold text-safety-emerald">Live Safety Monitoring Active</span>
+</div>
+</div>
+</main>
+<!-- Navigation suppressed as this is a transactional/focused overlay -->
+</body></html>

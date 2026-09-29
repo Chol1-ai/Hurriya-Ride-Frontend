@@ -1,0 +1,238 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<title>GoJuba Driver - Active Trip</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                            "utility-indigo": "#818CF8",
+                            "tertiary-fixed-dim": "#45dfa4",
+                            "primary": "#ffc174",
+                            "surface-container-highest": "#273647",
+                            "on-primary-fixed-variant": "#653e00",
+                            "secondary-fixed-dim": "#bec6e0",
+                            "tertiary-container": "#22c990",
+                            "safety-emerald": "#34D399",
+                            "outline": "#a08e7a",
+                            "on-secondary-fixed": "#131b2e",
+                            "on-error-container": "#ffdad6",
+                            "surface-dim": "#051424",
+                            "surface": "#051424",
+                            "primary-container": "#f59e0b",
+                            "utility-cyan": "#22D3EE",
+                            "slate-border": "#334155",
+                            "on-secondary-container": "#adb4ce",
+                            "midnight-bg": "#020617",
+                            "background": "#051424",
+                            "surface-container": "#122131",
+                            "on-tertiary-container": "#004e35",
+                            "surface-bright": "#2c3a4c",
+                            "secondary-container": "#3f465c",
+                            "on-error": "#690005",
+                            "outline-variant": "#534434",
+                            "on-background": "#d4e4fa",
+                            "inverse-surface": "#d4e4fa",
+                            "on-tertiary-fixed-variant": "#005137",
+                            "surface-container-low": "#0d1c2d",
+                            "tertiary-fixed": "#68fcbf",
+                            "on-tertiary-fixed": "#002114",
+                            "inverse-on-surface": "#233143",
+                            "inverse-primary": "#855300",
+                            "on-secondary": "#283044",
+                            "secondary-fixed": "#dae2fd",
+                            "error": "#ffb4ab",
+                            "primary-fixed-dim": "#ffb95f",
+                            "surface-container-high": "#1c2b3c",
+                            "surface-tint": "#ffb95f",
+                            "surface-container-lowest": "#010f1f",
+                            "on-surface-variant": "#d8c3ad",
+                            "error-container": "#93000a",
+                            "secondary": "#bec6e0",
+                            "white-high-emphasis": "#FFFFFF",
+                            "on-primary-container": "#613b00",
+                            "primary-fixed": "#ffddb8",
+                            "on-secondary-fixed-variant": "#3f465c",
+                            "on-primary": "#472a00",
+                            "tertiary": "#4de6aa",
+                            "surface-variant": "#273647",
+                            "on-surface": "#d4e4fa",
+                            "on-primary-fixed": "#2a1700",
+                            "slate-surface": "#1E293B",
+                            "on-tertiary": "#003825"
+                    },
+                    "borderRadius": {
+                            "DEFAULT": "0.25rem",
+                            "lg": "0.5rem",
+                            "xl": "0.75rem",
+                            "full": "9999px"
+                    },
+                    "spacing": {
+                            "margin-xl": "24px",
+                            "section-gap": "32px",
+                            "unit": "4px",
+                            "margin-lg": "20px",
+                            "gutter-md": "16px",
+                            "gutter-xs": "10px",
+                            "gutter-sm": "12px"
+                    },
+                    "fontFamily": {
+                            "display-xl": ["Plus Jakarta Sans"],
+                            "micro-reg": ["Plus Jakarta Sans"],
+                            "headline-lg": ["Plus Jakarta Sans"],
+                            "micro-bold": ["Plus Jakarta Sans"],
+                            "subhead-md": ["Plus Jakarta Sans"],
+                            "body-sm": ["Plus Jakarta Sans"],
+                            "label-bold": ["Plus Jakarta Sans"],
+                            "headline-lg-mobile": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                            "display-xl": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                            "micro-reg": ["10px", { "lineHeight": "12px", "fontWeight": "400" }],
+                            "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "800" }],
+                            "micro-bold": ["11px", { "lineHeight": "14px", "fontWeight": "700" }],
+                            "subhead-md": ["18px", { "lineHeight": "24px", "fontWeight": "800" }],
+                            "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                            "label-bold": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                            "headline-lg-mobile": ["22px", { "lineHeight": "28px", "fontWeight": "800" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Ambient Glows & Specific Styles */
+        .glow-gold { box-shadow: 0px 10px 15px -3px rgba(245, 158, 11, 0.2); }
+        .glow-emerald { box-shadow: 0px 10px 25px -5px rgba(52, 211, 153, 0.4); }
+        .hollow-input { background: #020617; border: 1px solid #334155; }
+        
+        /* Map Overlay Gradient for readability */
+        .map-gradient-overlay {
+            background: linear-gradient(180deg, rgba(5,20,36,0.9) 0%, rgba(5,20,36,0) 25%, rgba(5,20,36,0) 60%, rgba(18,33,49,1) 100%);
+        }
+
+        /* Material Icons setup */
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body-sm text-body-sm h-screen w-full overflow-hidden flex flex-col relative selection:bg-primary selection:text-on-primary">
+<!-- TopAppBar (Adapted for Active Trip context, suppressing standard Nav/BottomNav) -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-xl h-16 bg-surface-dim shadow-md bg-surface-container-high border-b border-outline-variant transition-transform">
+<div class="flex items-center gap-gutter-sm">
+<span class="material-symbols-outlined text-primary scale-95 duration-100 active:opacity-80 transition-opacity" data-icon="navigation" data-weight="fill" style="font-variation-settings: 'FILL' 1;">
+                navigation
+            </span>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary tracking-tight">
+                En Route to Pickup
+            </h1>
+</div>
+<div class="bg-surface-container-highest px-3 py-1 rounded-full flex items-center justify-center">
+<span class="font-micro-bold text-micro-bold text-safety-emerald tracking-wider uppercase">3 min</span>
+</div>
+</header><div class="fixed top-16 left-0 w-full z-40 bg-surface-container-highest border-b border-primary/20 p-gutter-md flex items-center gap-gutter-md shadow-lg">
+<div class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-primary-fixed text-display-xl">turn_left</span>
+</div>
+<div class="flex flex-col">
+<span class="text-primary font-label-bold uppercase tracking-widest">300m</span>
+<h2 class="text-white-high-emphasis font-subhead-md">Turn Left on May Street</h2>
+</div>
+</div>
+<!-- Map Canvas Area -->
+<main class="relative flex-grow w-full z-0 mt-32">
+<!-- The Map Image itself -->
+<img class="absolute inset-0 w-full h-full object-cover z-0" data-alt="A detailed, sleek digital map interface rendered in a premium dark mode aesthetic (slate and midnight blue tones). A bright, luminous emerald green route line clearly marks a path through a dense urban grid. The map conveys a professional, high-contrast style designed for secure mobility platforms in low-light environments." data-location="Juba, South Sudan" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFPxcNynN-k3IwhH_fOcAW7G8EnrGe2FOQrly9WM9DT-lZHro0DNJrj7BIxZeOdJVP_VoyrKaI3Cr2mytKH1BIz2msJZdGNNKpxoQ46OZ-UYyusSrL1Wk2QjN_I12u0Rw2JTVkgUTtukuF4BCHBh6Nd4rT-WDI8jn0iT0EOcWW6fb0GwU0IoQhz1Xcd_n2uIHW-jQXrevu4AiimQflG3XRN0Lj2vqS_f-zCkyJg6sufe9wUdapnINu">
+<!-- Subtle gradient overlays to blend map with UI -->
+<div class="absolute inset-0 w-full h-full map-gradient-overlay z-10 pointer-events-none"></div><div class="absolute bottom-margin-lg left-1/2 -translate-x-1/2 z-20 bg-surface-dim/90 backdrop-blur-md border border-outline-variant px-6 py-3 rounded-full flex items-center gap-gutter-md shadow-xl">
+<div class="flex items-center gap-unit">
+<span class="material-symbols-outlined text-utility-cyan text-[18px]">distance</span>
+<span class="font-subhead-md text-on-background">2.4 km</span>
+</div>
+<div class="w-px h-4 bg-outline-variant"></div>
+<div class="flex items-center gap-unit">
+<span class="material-symbols-outlined text-safety-emerald text-[18px]">schedule</span>
+<span class="font-subhead-md text-on-background">8 min</span>
+</div>
+</div>
+<!-- Floating SOS Button (Contextual Safety) -->
+<button aria-label="Emergency SOS" class="absolute top-margin-lg right-margin-xl z-40 bg-error text-on-error w-14 h-14 rounded-full flex items-center justify-center shadow-lg active:scale-90 transition-transform duration-200 border-2 border-error-container">
+<span class="material-symbols-outlined text-display-xl" data-icon="sos" data-weight="fill" style="font-variation-settings: 'FILL' 1;">
+                sos
+            </span>
+</button>
+</main>
+<!-- Bottom Sheet (Active Trip Controls) -->
+<section class="absolute bottom-0 w-full z-50 bg-surface-container rounded-t-3xl shadow-[0_-15px_40px_rgba(0,0,0,0.6)] border-t border-slate-border flex flex-col pt-3 pb-8 px-margin-xl gap-section-gap transition-transform duration-300 ease-out translate-y-0">
+<!-- Drag Handle Indicator -->
+<div class="w-12 h-1.5 bg-surface-variant rounded-full mx-auto mb-2"></div>
+<div class="flex flex-col gap-margin-lg">
+<!-- Rider Info Card (High contrast, tactile) -->
+<div class="flex items-center justify-between bg-surface-container-high rounded-2xl p-gutter-md border border-outline-variant shadow-inner">
+<div class="flex items-center gap-gutter-md">
+<div class="w-14 h-14 rounded-full overflow-hidden border-2 border-primary-container shrink-0">
+<img class="w-full h-full object-cover" data-alt="A close-up, high-quality headshot portrait of a South Sudanese man in his late 20s. He is subtly illuminated by soft, cinematic neon lighting against a deep, moody background. The visual style is premium and professional, perfectly suited for a secure, trusted mobility platform in a dark-mode user interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_56qI831-maU5GsgJrUd4k0ryvsWT7e98kt-JmXJfNt1qx-sN7L1m6JV-clAP_YXX_G_mjvis2sPGRpw1FAUz2c6uCgRPWmnHyQJg-ryOkuR5b4_GuizRfDR9UZiInoy5mdEdDt_Eruf4U2snmPMrbSC-RCWqY4eSnYpHP-Bcw6orDiw1qfRhaOQGpTZ9teSoLcym3GRPwlsgW7wd-3IHxldZ13Vbha3FjbZhDjEfRq8IKAPXqyaS">
+</div>
+<div class="flex flex-col">
+<span class="font-subhead-md text-subhead-md text-white-high-emphasis">Malou G.</span>
+<div class="flex items-center gap-1 mt-0.5 text-primary">
+<span class="material-symbols-outlined text-[16px]" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">
+                                star
+                            </span>
+<span class="font-label-bold text-label-bold">4.8</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant ml-1">(Rider)</span>
+</div>
+</div>
+</div>
+<!-- Secondary Quick Action inside Rider Card -->
+<button class="w-12 h-12 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center active:bg-surface-bright transition-colors hover:scale-105 duration-200">
+<span class="material-symbols-outlined" data-icon="chat">
+                        chat
+                    </span>
+</button>
+</div>
+<!-- Address Display -->
+<div class="flex items-center gap-gutter-md bg-surface-container-highest rounded-xl p-gutter-md border border-slate-border hollow-input">
+<span class="material-symbols-outlined text-utility-cyan shrink-0" data-icon="location_on" data-weight="fill" style="font-variation-settings: 'FILL' 1;">
+                    location_on
+                </span>
+<div class="flex flex-col overflow-hidden">
+<span class="font-micro-bold text-micro-bold text-on-surface-variant uppercase tracking-wider mb-1">Pickup Location</span>
+<span class="font-subhead-md text-subhead-md text-on-background truncate">Konyo Konyo Market, Gate 2</span>
+</div>
+</div>
+<!-- Primary Actions (Large format, driver-focused) -->
+<div class="flex flex-col gap-gutter-sm mt-2">
+<button class="w-full py-4 rounded-xl border-2 border-primary text-primary font-label-bold text-label-bold flex items-center justify-center gap-unit active:bg-surface-variant transition-colors uppercase tracking-widest">
+<span class="material-symbols-outlined text-[18px]" data-icon="call">
+                        call
+                    </span>
+                    Call Rider
+                </button>
+<button class="w-full py-5 rounded-2xl bg-safety-emerald text-on-tertiary-fixed font-headline-lg-mobile text-headline-lg-mobile text-center flex items-center justify-center gap-gutter-sm glow-emerald active:scale-[0.98] transition-all duration-200 shadow-xl border border-tertiary-fixed-dim">
+<span class="material-symbols-outlined" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">
+                        check_circle
+                    </span>
+                    Arrived at Pickup
+                </button>
+</div>
+</div>
+</section>
+</body></html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Promotions &amp; Rewards</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed": "#ffddb8",
+                        "secondary-container": "#3f465c",
+                        "surface-container-high": "#1c2b3c",
+                        "surface-container-low": "#0d1c2d",
+                        "inverse-surface": "#d4e4fa",
+                        "surface-container-lowest": "#010f1f",
+                        "surface-container-highest": "#273647",
+                        "secondary-fixed": "#dae2fd",
+                        "white-high-emphasis": "#FFFFFF",
+                        "surface": "#051424",
+                        "on-primary-fixed": "#2a1700",
+                        "on-surface": "#d4e4fa",
+                        "inverse-primary": "#855300",
+                        "tertiary-fixed": "#68fcbf",
+                        "secondary": "#bec6e0",
+                        "error": "#ffb4ab",
+                        "safety-emerald": "#34D399",
+                        "on-tertiary-fixed-variant": "#005137",
+                        "tertiary-fixed-dim": "#45dfa4",
+                        "midnight-bg": "#020617",
+                        "on-secondary-fixed": "#131b2e",
+                        "on-background": "#d4e4fa",
+                        "surface-bright": "#2c3a4c",
+                        "slate-surface": "#1E293B",
+                        "tertiary-container": "#22c990",
+                        "on-tertiary": "#003825",
+                        "on-error": "#690005",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "primary-fixed-dim": "#ffb95f",
+                        "outline-variant": "#534434",
+                        "on-primary-fixed-variant": "#653e00",
+                        "error-container": "#93000a",
+                        "primary": "#ffc174",
+                        "on-tertiary-fixed": "#002114",
+                        "on-secondary-container": "#adb4ce",
+                        "surface-variant": "#273647",
+                        "utility-cyan": "#22D3EE",
+                        "on-primary-container": "#613b00",
+                        "on-tertiary-container": "#004e35",
+                        "outline": "#a08e7a",
+                        "utility-indigo": "#818CF8",
+                        "background": "#051424",
+                        "surface-container": "#122131",
+                        "slate-border": "#334155",
+                        "surface-tint": "#ffb95f",
+                        "surface-dim": "#051424",
+                        "on-error-container": "#ffdad6",
+                        "on-surface-variant": "#d8c3ad",
+                        "on-secondary": "#283044",
+                        "inverse-on-surface": "#233143",
+                        "primary-container": "#f59e0b",
+                        "on-primary": "#472a00",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "tertiary": "#4de6aa"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-lg": "20px",
+                        "gutter-sm": "12px",
+                        "section-gap": "32px",
+                        "unit": "4px",
+                        "gutter-md": "16px",
+                        "gutter-xs": "10px",
+                        "margin-xl": "24px"
+                    },
+                    "fontFamily": {
+                        "display-xl": ["Plus Jakarta Sans"],
+                        "label-bold": ["Plus Jakarta Sans"],
+                        "micro-reg": ["Plus Jakarta Sans"],
+                        "subhead-md": ["Plus Jakarta Sans"],
+                        "micro-bold": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "display-xl": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "label-bold": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "micro-reg": ["10px", { "lineHeight": "12px", "fontWeight": "400" }],
+                        "subhead-md": ["18px", { "lineHeight": "24px", "fontWeight": "800" }],
+                        "micro-bold": ["11px", { "lineHeight": "14px", "fontWeight": "700" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["22px", { "lineHeight": "28px", "fontWeight": "800" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "800" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .gold-glow {
+            box-shadow: 0px 10px 15px -3px rgba(245, 158, 11, 0.2);
+        }
+        .premium-card {
+            background: linear-gradient(145deg, #1c2b3c 0%, #0d1c2d 100%);
+            border: 1px solid #334155;
+            transition: all 0.3s ease;
+        }
+        .premium-card:hover {
+            border-color: #ffc174;
+            transform: translateY(-2px);
+        }
+        .hollow-input {
+            background-color: #010f1f;
+            border: 1px solid #334155;
+        }
+        .glass-panel {
+            background: rgba(13, 28, 45, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased min-h-screen flex flex-col font-body-sm pb-24">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface dark:bg-surface shadow-sm bg-surface-container dark:bg-surface-container flex items-center justify-between px-margin-lg h-16 glass-panel border-b-0">
+<button class="text-primary dark:text-primary hover:bg-surface-bright transition-colors active:scale-95 p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">menu</span>
+</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-display-xl text-display-xl text-primary dark:text-primary tracking-tight">Earnings &amp; Rewards</h1>
+<button class="text-primary dark:text-primary hover:bg-surface-bright transition-colors active:scale-95 p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">account_balance_wallet</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 mt-20 px-margin-lg flex flex-col gap-section-gap max-w-3xl mx-auto w-full">
+<!-- Loyalty Points Card (Hero) -->
+<section class="premium-card rounded-xl p-6 relative overflow-hidden flex flex-col items-center justify-center text-center">
+<!-- Decorative Background Element -->
+<div class="absolute -top-24 -right-24 w-48 h-48 bg-primary/20 rounded-full blur-3xl pointer-events-none"></div>
+<span class="material-symbols-outlined text-primary text-5xl mb-4 drop-shadow-md" style="font-variation-settings: 'FILL' 1;">stars</span>
+<p class="font-label-bold text-label-bold text-on-surface-variant uppercase tracking-wider mb-2">Loyalty Balance</p>
+<h2 class="font-display-xl text-display-xl text-white-high-emphasis mb-1">12,450 <span class="text-primary text-2xl">pts</span></h2>
+<p class="font-body-sm text-body-sm text-on-secondary-container mb-6">Gold Tier Member</p>
+<div class="w-full bg-surface-container-lowest rounded-full h-2 mb-2 overflow-hidden border border-slate-border">
+<div class="bg-primary h-2 rounded-full gold-glow" style="width: 75%"></div>
+</div>
+<p class="font-micro-reg text-micro-reg text-on-surface-variant w-full text-left">2,550 pts to Platinum Tier</p>
+<button class="mt-6 bg-primary text-on-primary font-subhead-md text-subhead-md py-3 px-8 rounded-full gold-glow w-full md:w-auto active:scale-95 transition-transform">
+                Redeem Points
+            </button>
+</section>
+<!-- Refer a Friend Card -->
+<section class="premium-card rounded-xl p-6 flex flex-col md:flex-row gap-6 items-center">
+<div class="flex-1">
+<div class="flex items-center gap-3 mb-2">
+<span class="material-symbols-outlined text-safety-emerald" style="font-variation-settings: 'FILL' 1;">group_add</span>
+<h3 class="font-subhead-md text-subhead-md text-white-high-emphasis">Refer a Friend</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">Give your friends 50% off their first ride, and get 5,000 pts when they complete it.</p>
+<div class="flex items-center gap-2">
+<div class="hollow-input flex-1 py-3 px-4 rounded-lg flex items-center justify-between">
+<span class="font-label-bold text-label-bold text-primary tracking-widest">JUBA-RIDE-2024</span>
+</div>
+<button aria-label="Copy Code" class="bg-surface-bright text-primary p-3 rounded-lg border border-slate-border hover:border-primary transition-colors active:scale-95">
+<span class="material-symbols-outlined">content_copy</span>
+</button>
+</div>
+</div>
+<div class="w-24 h-24 rounded-full bg-surface-container flex items-center justify-center border-2 border-primary/30 flex-shrink-0">
+<span class="material-symbols-outlined text-primary text-4xl" style="font-variation-settings: 'FILL' 1;">redeem</span>
+</div>
+</section>
+<!-- Active Promo Codes -->
+<section>
+<h3 class="font-subhead-md text-subhead-md text-white-high-emphasis mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">local_offer</span>
+                Available Offers
+            </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Promo Item 1 -->
+<div class="bg-surface-container dark:bg-surface-container rounded-xl p-4 border border-slate-border flex gap-4 items-start hover:bg-surface-container-highest transition-colors">
+<div class="w-12 h-12 rounded-full bg-safety-emerald/10 text-safety-emerald flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined font-bold" style="font-variation-settings: 'FILL' 1;">percent</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-label-bold text-label-bold text-white-high-emphasis">Weekend Special</h4>
+<span class="bg-safety-emerald/10 text-safety-emerald font-micro-bold text-micro-bold px-2 py-1 rounded-full">Active</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-3">20% off all rides this Saturday and Sunday.</p>
+<button class="text-primary font-label-bold text-label-bold uppercase tracking-wider hover:text-primary-fixed transition-colors">Apply Promo</button>
+</div>
+</div>
+<!-- Promo Item 2 -->
+<div class="bg-surface-container dark:bg-surface-container rounded-xl p-4 border border-slate-border flex gap-4 items-start hover:bg-surface-container-highest transition-colors">
+<div class="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined font-bold" style="font-variation-settings: 'FILL' 1;">flight_takeoff</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-label-bold text-label-bold text-white-high-emphasis">Airport Transfer</h4>
+<span class="bg-surface-variant text-on-surface-variant font-micro-bold text-micro-bold px-2 py-1 rounded-full">Valid 7 Days</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-3">Fixed rate 15,000 SSP to Juba International.</p>
+<button class="text-primary font-label-bold text-label-bold uppercase tracking-wider hover:text-primary-fixed transition-colors">Apply Promo</button>
+</div>
+</div>
+</div>
+</section>
+<div class="h-8"></div> <!-- Bottom Padding for scroll -->
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-gutter-md pb-4 pt-2 bg-surface-container dark:bg-surface-container border-t-0 shadow-[0px_-4px_10px_rgba(0,0,0,0.3)] z-50 md:hidden glass-panel">
+<a class="flex flex-col items-center justify-center text-on-secondary-container hover:text-primary-fixed active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mb-1">payments</span>
+<span class="font-label-bold text-label-bold">Earnings</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-secondary-container hover:text-primary-fixed active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mb-1">account_balance</span>
+<span class="font-label-bold text-label-bold">Cash Out</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary/10 text-primary rounded-xl px-3 py-1 active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">stars</span>
+<span class="font-label-bold text-label-bold">Promos</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-secondary-container hover:text-primary-fixed active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mb-1">person</span>
+<span class="font-label-bold text-label-bold">Account</span>
+</a>
+</nav>
+</body></html>

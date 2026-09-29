@@ -1,0 +1,205 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Trip Completed - Hurriya Ride</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dim": "#051424",
+                        "background": "#051424",
+                        "tertiary-container": "#22c990",
+                        "surface-bright": "#2c3a4c",
+                        "tertiary-fixed-dim": "#45dfa4",
+                        "surface-container-low": "#0d1c2d",
+                        "on-primary-container": "#613b00",
+                        "on-primary-fixed-variant": "#653e00",
+                        "on-secondary-fixed": "#131b2e",
+                        "error-container": "#93000a",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "outline-variant": "#534434",
+                        "safety-emerald": "#34D399",
+                        "white-high-emphasis": "#FFFFFF",
+                        "on-primary": "#472a00",
+                        "surface-container-lowest": "#010f1f",
+                        "tertiary-fixed": "#68fcbf",
+                        "primary": "#ffc174",
+                        "inverse-surface": "#d4e4fa",
+                        "secondary-container": "#3f465c",
+                        "secondary-fixed": "#dae2fd",
+                        "primary-fixed-dim": "#ffb95f",
+                        "secondary": "#bec6e0",
+                        "inverse-primary": "#855300",
+                        "tertiary": "#4de6aa",
+                        "outline": "#a08e7a",
+                        "on-secondary-container": "#adb4ce",
+                        "on-tertiary-fixed": "#002114",
+                        "on-tertiary-container": "#004e35",
+                        "utility-cyan": "#22D3EE",
+                        "inverse-on-surface": "#233143",
+                        "on-tertiary-fixed-variant": "#005137",
+                        "midnight-bg": "#020617",
+                        "on-error-container": "#ffdad6",
+                        "slate-surface": "#1E293B",
+                        "on-tertiary": "#003825",
+                        "on-surface-variant": "#d8c3ad",
+                        "on-background": "#d4e4fa",
+                        "error": "#ffb4ab",
+                        "surface-container": "#122131",
+                        "on-surface": "#d4e4fa",
+                        "surface-tint": "#ffb95f",
+                        "slate-border": "#334155",
+                        "surface-container-highest": "#273647",
+                        "surface": "#051424",
+                        "on-secondary": "#283044",
+                        "utility-indigo": "#818CF8",
+                        "surface-variant": "#273647",
+                        "on-primary-fixed": "#2a1700",
+                        "surface-container-high": "#1c2b3c",
+                        "primary-container": "#f59e0b",
+                        "on-error": "#690005",
+                        "primary-fixed": "#ffddb8",
+                        "on-secondary-fixed-variant": "#3f465c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-xl": "24px",
+                        "unit": "4px",
+                        "gutter-xs": "10px",
+                        "section-gap": "32px",
+                        "gutter-md": "16px",
+                        "gutter-sm": "12px",
+                        "margin-lg": "20px"
+                    },
+                    "fontFamily": {
+                        "subhead-md": ["Plus Jakarta Sans"],
+                        "display-xl": ["Plus Jakarta Sans"],
+                        "label-bold": ["Plus Jakarta Sans"],
+                        "micro-reg": ["Plus Jakarta Sans"],
+                        "micro-bold": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "subhead-md": ["18px", { "lineHeight": "24px", "fontWeight": "800" }],
+                        "display-xl": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "label-bold": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "micro-reg": ["10px", { "lineHeight": "12px", "fontWeight": "400" }],
+                        "micro-bold": ["11px", { "lineHeight": "14px", "fontWeight": "700" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "800" }],
+                        "headline-lg-mobile": ["22px", { "lineHeight": "28px", "fontWeight": "800" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .gold-glow {
+            box-shadow: 0px 10px 15px -3px rgba(245, 158, 11, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-sm min-h-screen flex flex-col">
+<!-- Main Content Area -->
+<main class="flex-grow flex flex-col items-center p-margin-lg pt-12 pb-32">
+<!-- Header -->
+<div class="flex flex-col items-center mb-8">
+<div class="w-16 h-16 rounded-full bg-safety-emerald/20 flex items-center justify-center mb-4 border-2 border-safety-emerald shadow-[0_0_15px_rgba(52,211,153,0.3)]">
+<span class="material-symbols-outlined text-safety-emerald" data-weight="fill" style="font-size: 32px;">check_circle</span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-white-high-emphasis">Trip Completed</h1>
+</div>
+<!-- Total Earnings Card -->
+<div class="w-full max-w-md bg-slate-surface rounded-xl border border-slate-border p-margin-xl shadow-lg mb-6 flex flex-col items-center">
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-2 uppercase tracking-wide">Total Earnings</p>
+<h2 class="font-display-xl text-display-xl text-primary mb-6">SSP 1,850</h2>
+<div class="w-full border-t border-slate-border pt-4">
+<div class="flex justify-between items-center py-2">
+<span class="text-on-surface-variant">Base Fare</span>
+<span class="text-white-high-emphasis font-bold">SSP 1,500</span>
+</div>
+<div class="flex justify-between items-center py-2">
+<span class="text-on-surface-variant">Distance (3.4 km)</span>
+<span class="text-white-high-emphasis font-bold">SSP 200</span>
+</div>
+<div class="flex justify-between items-center py-2">
+<span class="text-on-surface-variant">Duration (12 min)</span>
+<span class="text-white-high-emphasis font-bold">SSP 50</span>
+</div>
+<div class="flex justify-between items-center py-2 mt-2 border-t border-slate-border/50 pt-2">
+<span class="text-on-surface-variant">Juba Safety Fee</span>
+<span class="text-safety-emerald font-bold">SSP 100</span>
+</div>
+</div>
+<div class="w-full bg-surface-dim rounded-lg p-3 mt-4 flex items-center justify-center border border-slate-border">
+<span class="material-symbols-outlined mr-2 text-on-surface-variant">account_balance_wallet</span>
+<span class="font-label-bold text-label-bold text-on-surface-variant">Paid via Hurriya Wallet</span>
+</div>
+</div>
+<!-- Rate Rider Section -->
+<div class="w-full max-w-md bg-slate-surface rounded-xl border border-slate-border p-margin-xl shadow-lg mb-6 flex flex-col items-center">
+<h3 class="font-subhead-md text-subhead-md text-white-high-emphasis mb-4">Rate your Rider</h3>
+<div class="flex items-center space-x-4 mb-6">
+<img class="w-12 h-12 rounded-full object-cover border border-slate-border" data-alt="A close up portrait photo of a young professional African man named Malou G, looking friendly and relaxed. The lighting is soft and natural, emphasizing his warm expression. The aesthetic is clean, modern corporate, set against a subtle, slightly blurred dark background to keep the focus on his face, fitting a premium ride-hailing app driver profile." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPHwAmIapUljtx0lS9CFtoTQ8BhKvz4QlPJ8vecGpKsmxBBkK4jYoowogWBjrQ1ZTi-qeaDZdDzlcd1KOd2LpO57S86-n5k3LisPRoV8r0xd0rz6sYzNeW_PGj1BCdsMpclrLYg6K_wnvUWP2EdMmvQLE0xk3De_jtFxIky8eUR6Sl99BaBHskhmSHcVYDGl33MPm7Skze-R7a_ffJkh2WC2Cm7tZ-h3Sg2UUtzR8atZToNQ8PWzGp">
+<span class="font-subhead-md text-subhead-md text-white-high-emphasis">Malou G.</span>
+</div>
+<div class="flex space-x-2 mb-6" id="star-rating">
+<button class="material-symbols-outlined text-outline-variant hover:text-primary transition-colors text-3xl">star</button>
+<button class="material-symbols-outlined text-outline-variant hover:text-primary transition-colors text-3xl">star</button>
+<button class="material-symbols-outlined text-outline-variant hover:text-primary transition-colors text-3xl">star</button>
+<button class="material-symbols-outlined text-outline-variant hover:text-primary transition-colors text-3xl">star</button>
+<button class="material-symbols-outlined text-outline-variant hover:text-primary transition-colors text-3xl">star</button>
+</div>
+<div class="flex flex-wrap justify-center gap-2">
+<button class="px-4 py-2 rounded-full border border-slate-border text-on-surface-variant font-label-bold text-label-bold hover:border-primary hover:text-primary transition-colors">Polite</button>
+<button class="px-4 py-2 rounded-full border border-slate-border text-on-surface-variant font-label-bold text-label-bold hover:border-primary hover:text-primary transition-colors">Ready at Pickup</button>
+<button class="px-4 py-2 rounded-full border border-slate-border text-on-surface-variant font-label-bold text-label-bold hover:border-primary hover:text-primary transition-colors">Helpful</button>
+</div>
+</div>
+</main>
+<!-- Footer Actions -->
+<footer class="fixed bottom-0 w-full bg-slate-surface border-t border-slate-border p-margin-xl flex flex-col space-y-4 shadow-[0_-10px_20px_rgba(0,0,0,0.2)] pb-8 z-50">
+<button class="w-full bg-primary text-midnight-bg font-subhead-md text-subhead-md py-4 rounded-xl gold-glow hover:opacity-90 transition-opacity active:scale-95 duration-100 flex items-center justify-center">
+            Back to Dashboard
+        </button>
+<button class="w-full border-2 border-slate-border text-white-high-emphasis font-subhead-md text-subhead-md py-3 rounded-xl hover:bg-surface-bright transition-colors active:scale-95 duration-100 flex items-center justify-center">
+            View Detailed Receipt
+        </button>
+<button class="w-full text-primary font-subhead-md text-subhead-md py-2 hover:opacity-80 transition-opacity active:scale-95 duration-100 flex items-center justify-center">View Earnings</button></footer>
+<script>
+        // Simple star rating interaction
+        const stars = document.querySelectorAll('#star-rating button');
+        stars.forEach((star, index) => {
+            star.addEventListener('click', () => {
+                stars.forEach((s, i) => {
+                    if (i <= index) {
+                        s.classList.remove('text-outline-variant');
+                        s.classList.add('text-primary');
+                        s.setAttribute('data-weight', 'fill');
+                        s.style.fontVariationSettings = "'FILL' 1";
+                    } else {
+                        s.classList.add('text-outline-variant');
+                        s.classList.remove('text-primary');
+                        s.removeAttribute('data-weight');
+                        s.style.fontVariationSettings = "'FILL' 0";
+                    }
+                });
+            });
+        });
+    </script>
+
+
+</body></html>

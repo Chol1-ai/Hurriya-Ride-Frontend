@@ -1,0 +1,319 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Trip Booking - Hurriya Ride</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-low": "#0d1c2d",
+                      "on-secondary": "#283044",
+                      "surface-bright": "#2c3a4c",
+                      "surface-dim": "#051424",
+                      "on-primary": "#472a00",
+                      "outline": "#a08e7a",
+                      "on-surface": "#d4e4fa",
+                      "surface-container-highest": "#273647",
+                      "on-background": "#d4e4fa",
+                      "outline-variant": "#534434",
+                      "utility-indigo": "#818CF8",
+                      "surface-variant": "#273647",
+                      "surface": "#051424",
+                      "primary": "#ffc174",
+                      "secondary": "#bec6e0",
+                      "on-primary-fixed": "#2a1700",
+                      "midnight-bg": "#020617",
+                      "surface-container-high": "#1c2b3c",
+                      "primary-fixed": "#ffddb8",
+                      "secondary-fixed-dim": "#bec6e0",
+                      "surface-container": "#122131",
+                      "on-primary-fixed-variant": "#653e00",
+                      "on-tertiary": "#003825",
+                      "slate-surface": "#1E293B",
+                      "on-error-container": "#ffdad6",
+                      "on-secondary-fixed-variant": "#3f465c",
+                      "inverse-surface": "#d4e4fa",
+                      "error": "#ffb4ab",
+                      "on-tertiary-fixed-variant": "#005137",
+                      "tertiary-fixed": "#68fcbf",
+                      "tertiary-container": "#22c990",
+                      "on-tertiary-container": "#004e35",
+                      "white-high-emphasis": "#FFFFFF",
+                      "background": "#051424",
+                      "on-surface-variant": "#d8c3ad",
+                      "on-secondary-container": "#adb4ce",
+                      "safety-emerald": "#34D399",
+                      "secondary-container": "#3f465c",
+                      "primary-fixed-dim": "#ffb95f",
+                      "on-error": "#690005",
+                      "tertiary-fixed-dim": "#45dfa4",
+                      "utility-cyan": "#22D3EE",
+                      "tertiary": "#4de6aa",
+                      "on-tertiary-fixed": "#002114",
+                      "surface-container-lowest": "#010f1f",
+                      "inverse-primary": "#855300",
+                      "error-container": "#93000a",
+                      "primary-container": "#f59e0b",
+                      "surface-tint": "#ffb95f",
+                      "inverse-on-surface": "#233143",
+                      "on-primary-container": "#613b00",
+                      "secondary-fixed": "#dae2fd",
+                      "slate-border": "#334155",
+                      "on-secondary-fixed": "#131b2e"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter-md": "16px",
+                      "section-gap": "32px",
+                      "gutter-sm": "12px",
+                      "margin-lg": "20px",
+                      "unit": "4px",
+                      "margin-xl": "24px",
+                      "gutter-xs": "10px"
+              },
+              "fontFamily": {
+                      "headline-lg-mobile": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "label-bold": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "micro-bold": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "micro-reg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-sm": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "subhead-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "display-xl": [
+                              "Plus Jakarta Sans"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg-mobile": [
+                              "22px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "800"
+                              }
+                      ],
+                      "headline-lg": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "800"
+                              }
+                      ],
+                      "label-bold": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "micro-bold": [
+                              "11px",
+                              {
+                                      "lineHeight": "14px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "micro-reg": [
+                              "10px",
+                              {
+                                      "lineHeight": "12px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "subhead-md": [
+                              "18px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "800"
+                              }
+                      ],
+                      "display-xl": [
+                              "30px",
+                              {
+                                      "lineHeight": "38px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "800"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>.gold-glow {
+    box-shadow: 0 10px 15px -3px rgba(245, 158, 11, 0.2)
+    }
+.hollow-input {
+    background-color: #020617;
+    /* slate-950 equivalent for deep background */
+    border: 1px solid #334155;
+    /* slate-800 equivalent */
+    }
+.hollow-input:focus-within {
+    border-color: #ffc174;
+    /* primary */
+    box-shadow: 0 0 0 1px #ffc174
+    }
+/* Map Background */
+.map-bg {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuD9mLf6ZiG2A8UqNP0l-p2KuNR7cxymYA5dIZbocG2wFHuU3KTPG2ZZefISrqsBjqysgF_V6Rdv0N8JBTVenmmohheYb9u2IAoUzQAUSY_Y5NJKmXNAgL6LyZPGobj45A7X2MaPL-ZFMAEacXVZaDolwordwNTR8ybwflec7syyqZznfZMQt34ejsVKgquh9Hi-WL89ccdZm0xkCFldGvzBKO5n12QGX8Z-3tISzX0g1Uzxgm3Y4Yw3);
+    background-size: cover;
+    background-position: center
+    }</style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-sm relative overflow-hidden">
+<!-- Top Navigation App Bar -->
+<header class="bg-surface/80 dark:bg-surface/80 backdrop-blur-md border-b border-slate-border docked full-width top-0 sticky z-40 flat no shadows flex justify-between items-center w-full px-margin-xl py-gutter-md">
+<div class="flex items-center gap-2">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-2xl" data-icon="arrow_back" data-weight="regular">arrow_back</span>
+</button>
+<h1 class="font-display-xl text-display-xl font-black text-primary dark:text-primary-fixed-dim tracking-tight">Hurriya Ride</h1>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant dark:text-on-surface-variant">
+<button class="hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-200 p-2 rounded-full">
+<span class="material-symbols-outlined" data-icon="notifications" data-weight="regular">notifications</span>
+</button>
+<button class="hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-200 p-2 rounded-full">
+<span class="material-symbols-outlined" data-icon="help" data-weight="regular">help</span>
+</button>
+<button class="hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-200 p-2 rounded-full">
+<img alt="Admin Profile Avatar" class="w-8 h-8 rounded-full object-cover" data-alt="A small, circular avatar image showing a professional driver in uniform against a dark blue background, matching the premium, high-contrast style of a mobility app." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnB8-UDEQQdbFySw8MdhWT6DrvO6--jkOh0V0mUcO8mSLhzGJaQkM0GyxR4yOLzWvBppLV7HGPXYrhiRjAkg-0BLktYkhvBf_n8Fe9-5c-6XNJcifiQsdKQh6EJmSqJagzDT8JTzZZIP8I85OD6JridqBGTbq1CGY_5drsoVaLmts-lkse0axgQtJbnD5nx5-muTT_dgPkZhH9m3DAM6bxW6rKWyiuxPaD-FsMfIk__oj-EZsu3Rm8">
+</button>
+</div>
+</header>
+<!-- Main Content Area: Map Background -->
+<main class="flex-grow relative map-bg w-full h-full z-0" data-alt="A detailed map view of Juba city at night, with stylized dark mode map tiles, subtle glowing road networks, and pins indicating key locations. The style is modern, tactical, and slightly glowing, fitting a premium ride-hailing app." data-location="Juba">
+<!-- Map Gradient Overlay to ensure bottom sheet pops -->
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent pointer-events-none"></div>
+<!-- Bottom Sheet container -->
+<div class="absolute bottom-0 left-0 w-full z-10 p-margin-lg md:p-section-gap flex flex-col gap-gutter-md pointer-events-auto">
+<!-- Booking Details Card -->
+<div class="bg-surface-container-high rounded-xl border border-slate-border p-gutter-md flex flex-col gap-gutter-md shadow-2xl relative overflow-hidden p-margin-lg">
+<!-- Location Inputs -->
+<div class="relative flex flex-col gap-3">
+<!-- Vertical Line connecting dots -->
+<div class="absolute left-[28px] top-8 bottom-8 w-0.5 bg-slate-border z-0"></div>
+<!-- Pickup Input -->
+<div class="relative flex items-center z-10 gap-3">
+<div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 z-10"><span class="material-symbols-outlined text-primary text-lg" data-icon="my_location">my_location</span></div>
+<div class="flex-grow hollow-input rounded-lg flex items-center px-3 py-2 transition-colors">
+<input class="bg-transparent border-none text-on-surface focus:ring-0 w-full font-subhead-md text-subhead-md" placeholder="Pickup location" type="text" value="Konyo Konyo">
+</div>
+</div>
+<!-- Dropoff Input -->
+<div class="relative flex items-center z-10 gap-3">
+<div class="w-8 h-8 rounded-full bg-utility-cyan/10 flex items-center justify-center flex-shrink-0 z-10"><span class="material-symbols-outlined text-utility-cyan text-lg" data-icon="location_on">location_on</span></div>
+<div class="flex-grow hollow-input rounded-lg flex items-center px-3 py-2 transition-colors">
+<input class="bg-transparent border-none text-on-surface focus:ring-0 w-full font-subhead-md text-subhead-md" placeholder="Destination" type="text" value="Juba Airport">
+</div>
+</div>
+</div>
+</div>
+<!-- Vehicle Selection Card -->
+<div class="bg-surface-container-high rounded-xl border border-slate-border p-gutter-md shadow-2xl">
+<h3 class="font-label-bold text-label-bold text-on-surface-variant uppercase tracking-wider mb-gutter-sm">Select Vehicle</h3>
+<div class="grid grid-cols-3 gap-gutter-sm">
+<!-- Boda -->
+<button class="bg-surface-container border border-slate-border hover:border-primary rounded-lg p-3 flex flex-col items-center gap-2 transition-all group focus:border-primary focus:bg-surface-container-low">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant group-hover:text-primary transition-colors" data-icon="two_wheeler" data-weight="regular">two_wheeler</span>
+<div class="text-center">
+<div class="font-subhead-md text-subhead-md text-on-surface">Boda</div>
+<div class="font-micro-reg text-micro-reg text-on-surface-variant">2 mins</div>
+<div class="font-label-bold text-label-bold text-primary mt-1">2,500 SSP</div>
+</div>
+</button>
+<!-- Tuktuk (Active state) -->
+<button class="bg-surface-container-low border-2 border-primary rounded-lg p-3 flex flex-col items-center gap-2 transition-all group relative ring-4 ring-primary/20">
+<div class="absolute top-0 right-0 bg-primary text-on-primary font-micro-bold text-micro-bold px-1.5 py-0.5 rounded-bl-lg rounded-tr-md">FAST</div>
+<span class="material-symbols-outlined text-4xl text-primary" data-icon="local_taxi" data-weight="fill" style="font-variation-settings: 'FILL' 1;">local_taxi</span>
+<div class="text-center">
+<div class="font-subhead-md text-subhead-md text-on-surface">Tuktuk</div>
+<div class="font-micro-reg text-micro-reg text-on-surface-variant">4 mins</div>
+<div class="font-label-bold text-label-bold text-primary mt-1">3,800 SSP</div>
+</div>
+</button>
+<!-- Car -->
+<button class="bg-surface-container border border-slate-border hover:border-primary rounded-lg p-3 flex flex-col items-center gap-2 transition-all group focus:border-primary focus:bg-surface-container-low">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant group-hover:text-primary transition-colors" data-icon="directions_car" data-weight="regular">directions_car</span>
+<div class="text-center">
+<div class="font-subhead-md text-subhead-md text-on-surface">Car</div>
+<div class="font-micro-reg text-micro-reg text-on-surface-variant">6 mins</div>
+<div class="font-label-bold text-label-bold text-primary mt-1">6,500 SSP</div>
+</div>
+</button>
+</div>
+</div>
+<!-- Confirm Button -->
+<button class="w-full bg-primary text-on-primary-fixed font-subhead-md text-subhead-md font-extrabold py-4 rounded-xl gold-glow hover:bg-primary-fixed transition-colors flex items-center justify-center gap-2 mt-2 active:scale-95">
+                Confirm Booking
+                <span class="material-symbols-outlined" data-icon="arrow_forward" data-weight="bold">arrow_forward</span>
+</button>
+</div>
+</main>
+<script>
+        // Simple script to handle vehicle selection visual feedback
+        const vehicleButtons = document.querySelectorAll('.grid > button');
+        vehicleButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Reset all to inactive state
+                vehicleButtons.forEach(b => {
+                    b.className = "bg-surface-container border border-slate-border hover:border-primary rounded-lg p-3 flex flex-col items-center gap-2 transition-all group focus:border-primary focus:bg-surface-container-low";
+                    const icon = b.querySelector('.material-symbols-outlined');
+                    icon.classList.remove('text-primary');
+                    icon.classList.add('text-on-surface-variant', 'group-hover:text-primary');
+                    // Remove fast badge if exists
+                    const badge = b.querySelector('.absolute');
+                    if(badge) badge.remove();
+                });
+                
+                // Set clicked to active state
+                btn.className = "bg-surface-container-low border-2 border-primary rounded-lg p-3 flex flex-col items-center gap-2 transition-all group relative";
+                const icon = btn.querySelector('.material-symbols-outlined');
+                icon.classList.remove('text-on-surface-variant', 'group-hover:text-primary');
+                icon.classList.add('text-primary');
+            });
+        });
+    </script>
+
+
+</body></html>

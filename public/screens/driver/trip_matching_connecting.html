@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <title>Hurriya Ride - Finding Your Ride</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&amp;display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet">
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "utility-indigo": "#818CF8",
+                        "tertiary-container": "#22c990",
+                        "tertiary-fixed": "#68fcbf",
+                        "on-error": "#690005",
+                        "on-error-container": "#ffdad6",
+                        "outline": "#a08e7a",
+                        "surface-bright": "#2c3a4c",
+                        "primary-container": "#f59e0b",
+                        "white-high-emphasis": "#FFFFFF",
+                        "surface-container-low": "#0d1c2d",
+                        "tertiary-fixed-dim": "#45dfa4",
+                        "on-primary-container": "#613b00",
+                        "secondary-fixed": "#dae2fd",
+                        "on-tertiary-fixed-variant": "#005137",
+                        "error": "#ffb4ab",
+                        "surface-container-lowest": "#010f1f",
+                        "primary-fixed": "#ffddb8",
+                        "surface-tint": "#ffb95f",
+                        "slate-surface": "#1E293B",
+                        "inverse-surface": "#d4e4fa",
+                        "surface-container": "#122131",
+                        "inverse-primary": "#855300",
+                        "on-primary": "#472a00",
+                        "surface-container-highest": "#273647",
+                        "on-surface": "#d4e4fa",
+                        "utility-cyan": "#22D3EE",
+                        "on-tertiary": "#003825",
+                        "secondary": "#bec6e0",
+                        "on-primary-fixed": "#2a1700",
+                        "inverse-on-surface": "#233143",
+                        "primary-fixed-dim": "#ffb95f",
+                        "on-secondary-fixed": "#131b2e",
+                        "on-tertiary-container": "#004e35",
+                        "surface-variant": "#273647",
+                        "surface-container-high": "#1c2b3c",
+                        "on-tertiary-fixed": "#002114",
+                        "on-surface-variant": "#d8c3ad",
+                        "on-background": "#d4e4fa",
+                        "background": "#051424",
+                        "error-container": "#93000a",
+                        "on-secondary-container": "#adb4ce",
+                        "tertiary": "#4de6aa",
+                        "on-primary-fixed-variant": "#653e00",
+                        "midnight-bg": "#020617",
+                        "outline-variant": "#534434",
+                        "secondary-container": "#3f465c",
+                        "on-secondary": "#283044",
+                        "surface": "#051424",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "surface-dim": "#051424",
+                        "safety-emerald": "#34D399",
+                        "slate-border": "#334155",
+                        "primary": "#ffc174"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "gutter-sm": "12px",
+                        "margin-lg": "20px",
+                        "gutter-md": "16px",
+                        "gutter-xs": "10px",
+                        "section-gap": "32px",
+                        "margin-xl": "24px"
+                    },
+                    "fontFamily": {
+                        "display-xl": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "subhead-md": ["Plus Jakarta Sans"],
+                        "micro-reg": ["Plus Jakarta Sans"],
+                        "micro-bold": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "label-bold": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "display-xl": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["22px", { "lineHeight": "28px", "fontWeight": "800" }],
+                        "subhead-md": ["18px", { "lineHeight": "24px", "fontWeight": "800" }],
+                        "micro-reg": ["10px", { "lineHeight": "12px", "fontWeight": "400" }],
+                        "micro-bold": ["11px", { "lineHeight": "14px", "fontWeight": "700" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "800" }],
+                        "label-bold": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .pulse-ring {
+            animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        }
+
+        .pulse-ring-2 {
+            animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+            animation-delay: 0.5s;
+        }
+
+        .pulse-ring-3 {
+            animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+            animation-delay: 1s;
+        }
+
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(0.8);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: scale(3);
+                opacity: 0;
+            }
+        }
+
+        .map-bg {
+            background-color: #020617;
+            background-image: radial-gradient(circle at center, rgba(245, 158, 11, 0.05) 0%, transparent 70%);
+        }
+
+        /* Subtle gold glow for primary actions */
+        .gold-glow {
+            box-shadow: 0px 10px 15px -3px rgba(245, 158, 11, 0.2);
+        }
+    </style>
+</head>
+
+<body class="bg-midnight-bg text-on-background min-h-screen flex flex-col font-body-sm relative overflow-hidden">
+    <!-- Top Navigation Shell (Suppressed for Transactional/Matching intent, but keeping app bar structure) -->
+    <header class="fixed top-0 w-full z-50 bg-transparent">
+        <div class="flex items-center justify-between px-margin-lg h-16 w-full max-w-7xl mx-auto">
+            <!-- No leading avatar/back button during matching to prevent accidental exit -->
+            <div class="flex-1"></div>
+            <div
+                class="font-headline-lg-mobile text-headline-lg-mobile font-extrabold text-primary-container dark:text-primary-fixed">
+                Hurriya Ride
+            </div>
+            <div class="flex-1 flex justify-end">
+                <span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim"
+                    style="font-variation-settings: 'FILL' 1;">
+                    shield
+                </span>
+            </div>
+        </div>
+    </header>
+    <!-- Main Content Area: Map / Radar Background -->
+    <main class="flex-1 relative flex flex-col items-center justify-center pt-16 pb-32 map-bg">
+        <!-- Radar Animation Container -->
+        <div class="relative flex items-center justify-center w-64 h-64 mb-12">
+            <!-- Expanding Rings -->
+            <div class="absolute inset-0 rounded-full border-2 border-primary-container/30 pulse-ring"></div>
+            <div class="absolute inset-0 rounded-full border-2 border-primary-container/20 pulse-ring-2"></div>
+            <div class="absolute inset-0 rounded-full border-2 border-primary-container/10 pulse-ring-3"></div>
+            <!-- Central Pin -->
+            <div
+                class="relative z-10 w-20 h-20 bg-slate-900 rounded-full flex items-center justify-center shadow-lg border border-slate-800 gold-glow">
+                <div class="w-16 h-16 bg-primary-container rounded-full flex items-center justify-center">
+                    <span class="material-symbols-outlined text-on-primary-container text-3xl"
+                        style="font-variation-settings: 'FILL' 1;">
+                        my_location
+                    </span>
+                </div>
+            </div>
+        </div>
+        <!-- Status Information Container -->
+        <div class="w-full max-w-sm px-margin-lg z-20 text-center flex flex-col items-center space-y-6">
+            <div class="space-y-2">
+                <h2 class="font-display-xl text-display-xl text-white-high-emphasis">Finding your ride</h2>
+                <p class="font-body-sm text-body-sm text-on-surface-variant flex items-center justify-center gap-2">
+                    <span class="material-symbols-outlined text-sm">radar</span>
+                    Searching nearby drivers...
+                </p>
+            </div>
+            <!-- Details Card (Glassmorphism) -->
+            <div
+                class="w-full bg-slate-surface/80 backdrop-blur-md rounded-xl border border-slate-border p-4 flex flex-col gap-3">
+                <div class="flex items-center justify-between">
+                    <span class="font-body-sm text-body-sm text-secondary">Pickup</span>
+                    <span class="font-subhead-md text-subhead-md text-white-high-emphasis text-right">Juba International
+                        Airport</span>
+                </div>
+                <div class="h-px w-full bg-slate-border/50"></div>
+                <div class="flex items-center justify-between">
+                    <span class="font-body-sm text-body-sm text-secondary">Service</span>
+                    <span class="font-subhead-md text-subhead-md text-primary-container">Premium Plus</span>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Bottom Action Bar (Contextual for Matching) -->
+    <div
+        class="fixed bottom-0 w-full z-50 p-margin-lg bg-surface/90 backdrop-blur-lg border-t border-slate-border pb-safe">
+        <div class="max-w-md mx-auto flex gap-4">
+            <button
+                class="flex-1 py-4 px-6 rounded-xl border border-slate-800 bg-surface-container-highest text-white-high-emphasis font-subhead-md text-subhead-md active:scale-95 transition-transform flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined">close</span>
+                Cancel Request
+            </button>
+        </div>
+    </div>
+</body>
+
+</html>

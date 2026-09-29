@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Hurriya Admin - Bill Payments</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800;900&amp;display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet">
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary": "#283044",
+                        "secondary-fixed": "#dae2fd",
+                        "on-background": "#d4e4fa",
+                        "surface-container-lowest": "#010f1f",
+                        "on-tertiary": "#003825",
+                        "inverse-surface": "#d4e4fa",
+                        "surface-container-low": "#0d1c2d",
+                        "outline": "#a08e7a",
+                        "slate-border": "#334155",
+                        "inverse-primary": "#855300",
+                        "surface-container": "#122131",
+                        "primary-container": "#f59e0b",
+                        "utility-indigo": "#818CF8",
+                        "tertiary-fixed": "#68fcbf",
+                        "background": "#051424",
+                        "tertiary-container": "#22c990",
+                        "surface-bright": "#2c3a4c",
+                        "on-error-container": "#ffdad6",
+                        "white-high-emphasis": "#FFFFFF",
+                        "on-error": "#690005",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "tertiary-fixed-dim": "#45dfa4",
+                        "outline-variant": "#534434",
+                        "on-tertiary-container": "#004e35",
+                        "on-primary": "#472a00",
+                        "secondary-container": "#3f465c",
+                        "surface-tint": "#ffb95f",
+                        "on-surface": "#d4e4fa",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "on-primary-container": "#613b00",
+                        "safety-emerald": "#34D399",
+                        "error": "#ffb4ab",
+                        "utility-cyan": "#22D3EE",
+                        "on-primary-fixed": "#2a1700",
+                        "surface-dim": "#051424",
+                        "midnight-bg": "#020617",
+                        "secondary": "#bec6e0",
+                        "on-tertiary-fixed": "#002114",
+                        "surface-container-highest": "#273647",
+                        "tertiary": "#4de6aa",
+                        "inverse-on-surface": "#233143",
+                        "surface": "#051424",
+                        "on-secondary-fixed": "#131b2e",
+                        "on-primary-fixed-variant": "#653e00",
+                        "primary-fixed": "#ffddb8",
+                        "on-tertiary-fixed-variant": "#005137",
+                        "surface-container-high": "#1c2b3c",
+                        "on-surface-variant": "#d8c3ad",
+                        "slate-surface": "#1E293B",
+                        "surface-variant": "#273647",
+                        "on-secondary-container": "#adb4ce",
+                        "primary-fixed-dim": "#ffb95f",
+                        "primary": "#ffc174",
+                        "error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-xl": "24px",
+                        "gutter-md": "16px",
+                        "unit": "4px",
+                        "gutter-xs": "10px",
+                        "section-gap": "32px",
+                        "margin-lg": "20px",
+                        "gutter-sm": "12px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "micro-reg": ["Plus Jakarta Sans"],
+                        "label-bold": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "micro-bold": ["Plus Jakarta Sans"],
+                        "subhead-md": ["Plus Jakarta Sans"],
+                        "display-xl": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["22px", { "lineHeight": "28px", "fontWeight": "800" }],
+                        "micro-reg": ["10px", { "lineHeight": "12px", "fontWeight": "400" }],
+                        "label-bold": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "800" }],
+                        "micro-bold": ["11px", { "lineHeight": "14px", "fontWeight": "700" }],
+                        "subhead-md": ["18px", { "lineHeight": "24px", "fontWeight": "800" }],
+                        "display-xl": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "800" }]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .ambient-glow {
+            box-shadow: 0px 10px 15px -3px rgba(245, 158, 11, 0.2);
+        }
+
+        .glass-panel {
+            background: rgba(13, 28, 45, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(51, 65, 85, 0.5);
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background text-on-surface min-h-screen flex flex-col md:flex-row overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+    <!-- Desktop Sidebar -->
+    <nav
+        class="hidden md:flex flex-col h-screen w-64 left-0 sticky z-50 bg-surface-container-low dark:bg-surface-container-lowest border-r border-slate-border py-margin-xl">
+        <div class="px-margin-xl mb-section-gap flex items-center gap-gutter-md">
+            <div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-on-primary-container"
+                    style="font-variation-settings: 'FILL' 1;">local_taxi</span>
+            </div>
+            <div>
+                <h1 class="font-headline-lg text-headline-lg font-extrabold text-primary dark:text-primary-fixed-dim">
+                    Hurriya Admin</h1>
+                <p class="font-label-bold text-label-bold text-on-surface-variant">Juba Operations</p>
+            </div>
+        </div>
+        <div class="flex-1 flex flex-col gap-unit px-gutter-md">
+            <!-- Command Center -->
+            <a class="flex items-center gap-gutter-sm px-gutter-md py-gutter-sm rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:hover:bg-surface-container transition-all duration-200"
+                href="#">
+                <span class="material-symbols-outlined">dashboard</span>
+                <span class="font-label-bold text-label-bold">Command Center</span>
+            </a>
+            <!-- Revenue (Active for Billing) -->
+            <a class="flex items-center gap-gutter-sm px-gutter-md py-gutter-sm rounded-lg text-primary dark:text-primary-fixed-dim font-bold border-r-2 border-primary bg-surface-container-high dark:bg-surface-container translate-x-1 transition-transform duration-200"
+                href="#">
+                <span class="material-symbols-outlined"
+                    style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+                <span class="font-label-bold text-label-bold">Revenue</span>
+            </a>
+            <!-- Fleet -->
+            <a class="flex items-center gap-gutter-sm px-gutter-md py-gutter-sm rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:hover:bg-surface-container transition-all duration-200"
+                href="#">
+                <span class="material-symbols-outlined">local_taxi</span>
+                <span class="font-label-bold text-label-bold">Fleet</span>
+            </a>
+            <!-- Verification -->
+            <a class="flex items-center gap-gutter-sm px-gutter-md py-gutter-sm rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:hover:bg-surface-container transition-all duration-200"
+                href="#">
+                <span class="material-symbols-outlined">verified_user</span>
+                <span class="font-label-bold text-label-bold">Verification</span>
+            </a>
+        </div>
+        <div class="mt-auto flex flex-col gap-unit px-gutter-md pt-margin-xl">
+            <a class="flex items-center gap-gutter-sm px-gutter-md py-gutter-sm rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:hover:bg-surface-container transition-all duration-200"
+                href="#">
+                <span class="material-symbols-outlined">support_agent</span>
+                <span class="font-label-bold text-label-bold">Support</span>
+            </a>
+            <a class="flex items-center gap-gutter-sm px-gutter-md py-gutter-sm rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:hover:bg-surface-container transition-all duration-200"
+                href="#">
+                <span class="material-symbols-outlined">logout</span>
+                <span class="font-label-bold text-label-bold">Logout</span>
+            </a>
+        </div>
+    </nav>
+    <!-- Main Content Area -->
+    <div class="flex-1 flex flex-col min-h-screen">
+        <!-- Top App Bar -->
+        <header
+            class="flex justify-between items-center w-full px-margin-xl py-gutter-md bg-surface/80 dark:bg-surface/80 backdrop-blur-md border-b border-slate-border docked full-width top-0 sticky z-40">
+            <div class="flex items-center gap-gutter-md md:hidden">
+                <span class="material-symbols-outlined text-primary text-2xl">menu</span>
+                <span
+                    class="font-display-xl text-display-xl font-black text-primary dark:text-primary-fixed-dim tracking-tight">Hurriya
+                    Ride</span>
+            </div>
+            <div
+                class="hidden md:flex items-center bg-surface-container-lowest border border-slate-border rounded-xl px-gutter-md py-unit focus-within:border-primary transition-colors duration-200 w-96">
+                <span class="material-symbols-outlined text-on-surface-variant mr-gutter-xs">search</span>
+                <input
+                    class="bg-transparent border-none text-body-sm font-body-sm text-on-surface focus:ring-0 w-full placeholder-on-surface-variant/50"
+                    placeholder="Search bills, transactions..." type="text">
+            </div>
+            <div class="flex items-center gap-gutter-md">
+                <button
+                    class="p-2 rounded-full hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-200 text-on-surface-variant">
+                    <span class="material-symbols-outlined">notifications</span>
+                </button>
+                <button
+                    class="p-2 rounded-full hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-200 text-on-surface-variant">
+                    <span class="material-symbols-outlined">help</span>
+                </button>
+                <button
+                    class="p-2 rounded-full hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-200 text-on-surface-variant">
+                    <span class="material-symbols-outlined">settings</span>
+                </button>
+                <img alt="Admin Profile Avatar" class="w-10 h-10 rounded-full border-2 border-primary object-cover"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDXAgl1JSmYxey3HrK3uMIC4OAQCw4OLjorteK6rgOKR1Wc9X1fssYVhxJF53MzjtGG9AkNQNzRbeOPCraMRougbQKZ47bX96RlaIsHpvCFbLEKA4X1EjOMYs2y6Lf63V3YatMsr4_dt2ozgLrwMN3RV1NoOz-Pr62RztkE-oMB0GMmhoSwbU9c6xzsLYBKqhyX_PaFyLxE83gI3U2L52nJK1t8BDzSKqev-RTE7kS1CekO8HezC_Z">
+            </div>
+        </header>
+        <!-- Canvas -->
+        <main class="flex-1 p-margin-lg md:p-section-gap overflow-y-auto">
+            <!-- Page Header -->
+            <div class="mb-section-gap flex flex-col md:flex-row md:items-end justify-between gap-gutter-md">
+                <div>
+                    <h2 class="font-display-xl text-display-xl font-black text-on-surface mb-unit">Bill Payments</h2>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant">Manage utility and operational
+                        expenses.</p>
+                </div>
+                <button
+                    class="bg-primary-container text-on-primary-container font-label-bold text-label-bold px-margin-lg py-gutter-sm rounded-lg flex items-center justify-center gap-gutter-xs ambient-glow hover:bg-primary transition-colors duration-200">
+                    <span class="material-symbols-outlined text-sm">add</span>
+                    New Payment
+                </button>
+            </div>
+            <!-- Dashboard Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter-md">
+                <!-- Summary Cards (Top Row) -->
+                <div
+                    class="md:col-span-4 bg-slate-900 rounded-xl p-gutter-md border border-slate-border flex flex-col relative overflow-hidden group hover:border-primary transition-colors duration-300">
+                    <div
+                        class="absolute -right-6 -top-6 w-24 h-24 bg-error/10 rounded-full blur-xl group-hover:bg-error/20 transition-colors duration-500">
+                    </div>
+                    <div class="flex justify-between items-start mb-gutter-md z-10">
+                        <span
+                            class="font-label-bold text-label-bold text-on-surface-variant uppercase tracking-wider">Total
+                            Due</span>
+                        <div class="bg-error/10 text-error px-2 py-1 rounded-full flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[14px]">warning</span>
+                            <span class="font-micro-bold text-micro-bold">Urgent</span>
+                        </div>
+                    </div>
+                    <div class="mt-auto z-10">
+                        <h3 class="font-display-xl text-display-xl font-black text-on-surface">$4,250<span
+                                class="text-subhead-md font-subhead-md text-on-surface-variant">.00</span></h3>
+                        <p class="font-micro-reg text-micro-reg text-on-surface-variant mt-1">Across 3 pending bills</p>
+                    </div>
+                </div>
+                <div
+                    class="md:col-span-4 bg-slate-900 rounded-xl p-gutter-md border border-slate-border flex flex-col relative overflow-hidden group hover:border-primary transition-colors duration-300">
+                    <div
+                        class="absolute -right-6 -top-6 w-24 h-24 bg-safety-emerald/10 rounded-full blur-xl group-hover:bg-safety-emerald/20 transition-colors duration-500">
+                    </div>
+                    <div class="flex justify-between items-start mb-gutter-md z-10">
+                        <span
+                            class="font-label-bold text-label-bold text-on-surface-variant uppercase tracking-wider">Paid
+                            This Month</span>
+                        <div
+                            class="bg-safety-emerald/10 text-safety-emerald px-2 py-1 rounded-full flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[14px]">check_circle</span>
+                            <span class="font-micro-bold text-micro-bold">On Track</span>
+                        </div>
+                    </div>
+                    <div class="mt-auto z-10">
+                        <h3 class="font-display-xl text-display-xl font-black text-on-surface">$12,840<span
+                                class="text-subhead-md font-subhead-md text-on-surface-variant">.50</span></h3>
+                        <p class="font-micro-reg text-micro-reg text-on-surface-variant mt-1">vs $11,200 last month</p>
+                    </div>
+                </div>
+                <div
+                    class="md:col-span-4 bg-slate-900 rounded-xl p-gutter-md border border-slate-border flex items-center justify-center relative overflow-hidden group cursor-pointer hover:border-primary transition-colors duration-300">
+                    <div class="text-center z-10">
+                        <div
+                            class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center mx-auto mb-gutter-sm group-hover:scale-110 transition-transform duration-300">
+                            <span class="material-symbols-outlined text-primary">auto_awesome</span>
+                        </div>
+                        <h4 class="font-subhead-md text-subhead-md text-on-surface">Auto-Pay Settings</h4>
+                        <p class="font-micro-reg text-micro-reg text-on-surface-variant mt-1">Manage recurring bills</p>
+                    </div>
+                </div>
+                <!-- Payment Categories (Bento) -->
+                <div class="md:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-gutter-md mt-margin-xl">
+                    <!-- Electricity -->
+                    <div
+                        class="bg-slate-900 rounded-xl p-gutter-md border border-slate-border flex flex-col hover:border-primary transition-colors duration-200 cursor-pointer group">
+                        <div class="flex justify-between items-center mb-section-gap">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-primary-container/20 flex items-center justify-center border border-primary/30">
+                                <span class="material-symbols-outlined text-primary"
+                                    style="font-variation-settings: 'FILL' 1;">electric_bolt</span>
+                            </div>
+                            <span class="font-label-bold text-label-bold text-on-surface-variant">NEC</span>
+                        </div>
+                        <div>
+                            <h4
+                                class="font-subhead-md text-subhead-md text-on-surface mb-unit group-hover:text-primary transition-colors duration-200">
+                                Electricity</h4>
+                            <div class="flex justify-between items-end">
+                                <p class="font-body-sm text-body-sm text-error">Due: $1,200</p>
+                                <p class="font-micro-reg text-micro-reg text-on-surface-variant">in 2 days</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Water -->
+                    <div
+                        class="bg-slate-900 rounded-xl p-gutter-md border border-slate-border flex flex-col hover:border-utility-cyan transition-colors duration-200 cursor-pointer group">
+                        <div class="flex justify-between items-center mb-section-gap">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-utility-cyan/20 flex items-center justify-center border border-utility-cyan/30">
+                                <span class="material-symbols-outlined text-utility-cyan"
+                                    style="font-variation-settings: 'FILL' 1;">water_drop</span>
+                            </div>
+                            <span
+                                class="bg-safety-emerald/10 text-safety-emerald px-2 py-1 rounded-full font-micro-bold text-micro-bold">Paid</span>
+                        </div>
+                        <div>
+                            <h4
+                                class="font-subhead-md text-subhead-md text-on-surface mb-unit group-hover:text-utility-cyan transition-colors duration-200">
+                                Water</h4>
+                            <div class="flex justify-between items-end">
+                                <p class="font-body-sm text-body-sm text-on-surface-variant">Last paid: $450</p>
+                                <p class="font-micro-reg text-micro-reg text-on-surface-variant">Oct 12</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Internet -->
+                    <div
+                        class="bg-slate-900 rounded-xl p-gutter-md border border-slate-border flex flex-col hover:border-utility-indigo transition-colors duration-200 cursor-pointer group">
+                        <div class="flex justify-between items-center mb-section-gap">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-utility-indigo/20 flex items-center justify-center border border-utility-indigo/30">
+                                <span class="material-symbols-outlined text-utility-indigo"
+                                    style="font-variation-settings: 'FILL' 1;">wifi</span>
+                            </div>
+                            <span class="font-label-bold text-label-bold text-on-surface-variant">Zain</span>
+                        </div>
+                        <div>
+                            <h4
+                                class="font-subhead-md text-subhead-md text-on-surface mb-unit group-hover:text-utility-indigo transition-colors duration-200">
+                                Internet</h4>
+                            <div class="flex justify-between items-end">
+                                <p class="font-body-sm text-body-sm text-on-surface">Auto-pay active</p>
+                                <p class="font-micro-reg text-micro-reg text-on-surface-variant">$800 / mo</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Mobile Airtime -->
+                    <div
+                        class="bg-slate-900 rounded-xl p-gutter-md border border-slate-border flex flex-col hover:border-tertiary-container transition-colors duration-200 cursor-pointer group">
+                        <div class="flex justify-between items-center mb-section-gap">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-tertiary-container/20 flex items-center justify-center border border-tertiary-container/30">
+                                <span class="material-symbols-outlined text-tertiary-container"
+                                    style="font-variation-settings: 'FILL' 1;">phone_iphone</span>
+                            </div>
+                            <span class="font-label-bold text-label-bold text-on-surface-variant">MTN / Zain</span>
+                        </div>
+                        <div>
+                            <h4
+                                class="font-subhead-md text-subhead-md text-on-surface mb-unit group-hover:text-tertiary-container transition-colors duration-200">
+                                Mobile Airtime</h4>
+                            <div class="flex justify-between items-end">
+                                <p class="font-body-sm text-body-sm text-on-surface-variant">Driver top-ups</p>
+                                <p class="font-micro-reg text-micro-reg text-on-surface-variant">View history</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Recent Transactions List -->
+                <div class="md:col-span-4 mt-margin-xl">
+                    <h3 class="font-subhead-md text-subhead-md font-extrabold text-on-surface mb-gutter-md px-2">Recent
+                        Payments</h3>
+                    <div class="bg-slate-900 rounded-xl border border-slate-border overflow-hidden">
+                        <!-- List Item -->
+                        <div
+                            class="flex items-center justify-between p-gutter-md border-b border-slate-border/50 hover:bg-slate-800/50 transition-colors cursor-pointer">
+                            <div class="flex items-center gap-gutter-sm">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-utility-indigo/10 flex items-center justify-center shrink-0">
+                                    <span class="material-symbols-outlined text-utility-indigo text-[20px]">wifi</span>
+                                </div>
+                                <div>
+                                    <h5 class="font-label-bold text-label-bold text-on-surface">Zain HQ Internet</h5>
+                                    <p class="font-micro-reg text-micro-reg text-on-surface-variant">Oct 15, 2023</p>
+                                </div>
+                            </div>
+                            <span class="font-label-bold text-label-bold text-on-surface">-$800.00</span>
+                        </div>
+                        <!-- List Item -->
+                        <div
+                            class="flex items-center justify-between p-gutter-md border-b border-slate-border/50 hover:bg-slate-800/50 transition-colors cursor-pointer bg-slate-950/50">
+                            <div class="flex items-center gap-gutter-sm">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-utility-cyan/10 flex items-center justify-center shrink-0">
+                                    <span
+                                        class="material-symbols-outlined text-utility-cyan text-[20px]">water_drop</span>
+                                </div>
+                                <div>
+                                    <h5 class="font-label-bold text-label-bold text-on-surface">City Water Supply</h5>
+                                    <p class="font-micro-reg text-micro-reg text-on-surface-variant">Oct 12, 2023</p>
+                                </div>
+                            </div>
+                            <span class="font-label-bold text-label-bold text-on-surface">-$450.00</span>
+                        </div>
+                        <!-- List Item -->
+                        <div
+                            class="flex items-center justify-between p-gutter-md hover:bg-slate-800/50 transition-colors cursor-pointer">
+                            <div class="flex items-center gap-gutter-sm">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-tertiary-container/10 flex items-center justify-center shrink-0">
+                                    <span
+                                        class="material-symbols-outlined text-tertiary-container text-[20px]">phone_iphone</span>
+                                </div>
+                                <div>
+                                    <h5 class="font-label-bold text-label-bold text-on-surface">Bulk Airtime (MTN)</h5>
+                                    <p class="font-micro-reg text-micro-reg text-on-surface-variant">Oct 10, 2023</p>
+                                </div>
+                            </div>
+                            <span class="font-label-bold text-label-bold text-on-surface">-$1,250.00</span>
+                        </div>
+                    </div>
+                    <button
+                        class="w-full mt-gutter-md py-gutter-sm text-center font-label-bold text-label-bold text-primary hover:text-primary-container transition-colors border border-slate-border rounded-lg bg-surface-container-low hover:bg-surface-container">
+                        View All Transactions
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

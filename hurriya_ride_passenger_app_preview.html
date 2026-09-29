@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hurriya Ride - Passenger Mobile App Experience</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<!-- Tailwind CSS -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            gold: '#F59E0B',
+                            dark: '#0F172A',
+                            card: '#1E293B',
+                            border: '#334155'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Vue 3 -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-950 text-slate-100 min-h-screen flex items-center justify-center p-4">
+
+    <div id="app"
+        class="w-full max-w-sm bg-slate-900 rounded-[40px] border-[8px] border-slate-800 shadow-2xl overflow-hidden flex flex-col h-[780px] relative">
+
+        <!-- Phone Status Bar -->
+        <div class="bg-slate-900 px-6 py-3 flex justify-between items-center text-xs text-slate-400 select-none z-30">
+            <span class="font-bold text-white">9:41</span>
+            <div class="w-20 h-4 bg-slate-950 rounded-full mx-auto absolute left-1/2 transform -translate-x-1/2 top-2">
+            </div>
+            <div class="flex space-x-2 items-center">
+                <i class="fa-solid fa-signal text-[10px]"></i>
+                <i class="fa-solid fa-wifi text-[10px]"></i>
+                <i class="fa-solid fa-battery-full text-amber-400 text-xs"></i>
+            </div>
+        </div>
+
+        <div class="flex-1 flex flex-col relative overflow-y-auto">
+
+            <!-- SCREEN A: WELCOME / LANDING SPLASH -->
+            <div v-if="screen === 'welcome'"
+                class="flex-1 flex flex-col justify-between p-6 text-center bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950">
+                <div class="pt-8">
+                    <div
+                        class="w-20 h-20 bg-amber-500 rounded-3xl mx-auto flex items-center justify-center text-slate-950 text-3xl font-extrabold shadow-lg shadow-amber-500/20 mb-6">
+                        <i class="fa-solid fa-bolt-lightning"></i>
+                    </div>
+                    <span
+                        class="bg-amber-500/10 text-amber-400 text-xs font-bold px-3 py-1 rounded-full border border-amber-500/20">Juba's
+                        Premier Mobility</span>
+                    <h1 class="text-3xl font-extrabold text-white mt-4">Hurriya Ride</h1>
+                    <p class="text-sm text-slate-400 mt-2">Freedom of movement across Juba. Safe, reliable Bodas,
+                        Tuktuks, and Cars at your fingertips.</p>
+                </div>
+
+                <div class="space-y-3 pb-8">
+                    <button @click="screen = 'auth'"
+                        class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold py-4 rounded-2xl shadow-lg shadow-amber-500/20 transition text-sm">
+                        Get Started (Phone Number)
+                    </button>
+                    <p class="text-[11px] text-slate-500">By continuing, you agree to Hurriya Ride's Juba Terms & Safety
+                        Policies.</p>
+                </div>
+            </div>
+
+            <!-- SCREEN B: AUTHENTICATION -->
+            <div v-if="screen === 'auth'" class="flex-1 flex flex-col justify-between p-6">
+                <div>
+                    <button @click="screen = 'welcome'"
+                        class="text-slate-400 hover:text-white text-sm mb-6 flex items-center space-x-2">
+                        <i class="fa-solid fa-arrow-left"></i> <span>Back</span>
+                    </button>
+                    <h2 class="text-2xl font-extrabold text-white">Enter your mobile number</h2>
+                    <p class="text-xs text-slate-400 mt-1">We'll send an SMS verification code to link your account.</p>
+
+                    <div class="mt-6 space-y-4">
+                        <div class="flex space-x-2">
+                            <div
+                                class="bg-slate-950 border border-slate-800 rounded-2xl px-4 py-3 text-sm text-slate-300 font-semibold flex items-center">
+                                🇸🇸 +211
+                            </div>
+                            <input type="text" v-model="phoneNumber" placeholder="922 XXX XXX"
+                                class="flex-1 bg-slate-950 border border-slate-800 rounded-2xl px-4 py-3 text-sm text-white focus:outline-none focus:border-amber-500 font-mono">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pb-6">
+                    <button @click="screen = 'home'"
+                        class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold py-4 rounded-2xl transition shadow-lg shadow-amber-500/20 text-sm">
+                        Continue & Verify
+                    </button>
+                </div>
+            </div>
+
+            <!-- SCREEN C: SAFE-BODA STYLE SUPER APP HOME -->
+            <div v-if="screen === 'home'" class="flex-1 flex flex-col p-5 space-y-5">
+                <!-- User Greeting & Wallet Card -->
+                <div class="flex justify-between items-center">
+                    <div>
+                        <p class="text-xs text-slate-400">Good Morning,</p>
+                        <h3 class="text-lg font-extrabold text-white">Chol Emmanuel</h3>
+                    </div>
+                    <div
+                        class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-amber-400 font-bold text-sm">
+                        CE
+                    </div>
+                </div>
+
+                <!-- Wallet Card (Inspired by SafeBoda) -->
+                <div
+                    class="bg-gradient-to-r from-amber-600 to-amber-500 rounded-2xl p-4 text-slate-950 shadow-lg relative overflow-hidden">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs font-bold uppercase tracking-wider text-slate-900/80">Hurriya Wallet</span>
+                        <span class="text-xs font-mono font-extrabold bg-slate-950/10 px-2 py-0.5 rounded">SSP •
+                            Active</span>
+                    </div>
+                    <h2 class="text-2xl font-black">12,500 <span class="text-xs font-semibold">SSP</span></h2>
+                    <div class="mt-4 flex space-x-2">
+                        <button
+                            class="flex-1 bg-slate-950 text-white font-bold py-2 rounded-xl text-xs hover:bg-slate-900 transition">
+                            Deposit Money
+                        </button>
+                        <button
+                            class="flex-1 bg-white/20 text-slate-950 font-bold py-2 rounded-xl text-xs hover:bg-white/30 transition">
+                            Wallet Options
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Services Grid -->
+                <div>
+                    <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Our Services</p>
+                    <div class="grid grid-cols-3 gap-2.5">
+                        <div @click="selectService('Car')"
+                            class="bg-slate-950/80 hover:bg-slate-950 border border-slate-800 p-3 rounded-2xl text-center cursor-pointer transition flex flex-col items-center justify-center">
+                            <div
+                                class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-lg mb-1.5">
+                                <i class="fa-solid fa-car"></i>
+                            </div>
+                            <span class="text-[11px] font-bold text-slate-200">Hurriya Car</span>
+                        </div>
+                        <div @click="selectService('Tuktuk')"
+                            class="bg-slate-950/80 hover:bg-slate-950 border border-slate-800 p-3 rounded-2xl text-center cursor-pointer transition flex flex-col items-center justify-center">
+                            <div
+                                class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-lg mb-1.5">
+                                <i class="fa-solid fa-rickshaw"></i>
+                            </div>
+                            <span class="text-[11px] font-bold text-slate-200">Hurriya Tuktuk</span>
+                        </div>
+                        <div @click="selectService('Boda')"
+                            class="bg-slate-950/80 hover:bg-slate-950 border border-slate-800 p-3 rounded-2xl text-center cursor-pointer transition flex flex-col items-center justify-center">
+                            <div
+                                class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-lg mb-1.5">
+                                <i class="fa-solid fa-motorcycle"></i>
+                            </div>
+                            <span class="text-[11px] font-bold text-slate-200">Hurriya Boda</span>
+                        </div>
+                        <div @click="screen = 'booking'"
+                            class="bg-slate-950/80 hover:bg-slate-950 border border-slate-800 p-3 rounded-2xl text-center cursor-pointer transition flex flex-col items-center justify-center">
+                            <div
+                                class="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-lg mb-1.5">
+                                <i class="fa-solid fa-box-open"></i>
+                            </div>
+                            <span class="text-[11px] font-bold text-slate-200">Deliveries</span>
+                        </div>
+                        <div @click="screen = 'booking'"
+                            class="bg-slate-950/80 hover:bg-slate-950 border border-slate-800 p-3 rounded-2xl text-center cursor-pointer transition flex flex-col items-center justify-center">
+                            <div
+                                class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-lg mb-1.5">
+                                <i class="fa-solid fa-calendar-days"></i>
+                            </div>
+                            <span class="text-[11px] font-bold text-slate-200">Scheduled</span>
+                        </div>
+                        <div @click="screen = 'booking'"
+                            class="bg-slate-950/80 hover:bg-slate-950 border border-slate-800 p-3 rounded-2xl text-center cursor-pointer transition flex flex-col items-center justify-center">
+                            <div
+                                class="w-10 h-10 rounded-xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-lg mb-1.5">
+                                <i class="fa-solid fa-mobile-screen"></i>
+                            </div>
+                            <span class="text-[11px] font-bold text-slate-200">Pay Bills</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Promo Banner -->
+                <div
+                    class="bg-gradient-to-r from-slate-950 to-slate-900 border border-slate-800 p-4 rounded-2xl flex items-center space-x-3">
+                    <div
+                        class="w-12 h-12 rounded-xl bg-amber-500 text-slate-950 flex items-center justify-center text-xl font-bold flex-shrink-0">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs font-bold text-white">Juba Safety Pledge</p>
+                        <p class="text-[10px] text-slate-400 mt-0.5">All drivers verified with National ID and helmet
+                            compliance.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SCREEN D: RIDER BOOKING & TIER SELECTION -->
+            <div v-if="screen === 'booking'" class="flex-1 flex flex-col justify-between p-5">
+                <div>
+                    <!-- Header -->
+                    <div class="flex items-center space-x-3 mb-4">
+                        <button @click="screen = 'home'" class="text-slate-400 hover:text-white text-sm">
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </button>
+                        <h3 class="text-base font-bold text-white">Book Your Trip in Juba</h3>
+                    </div>
+
+                    <!-- Destination inputs -->
+                    <div class="bg-slate-950 p-3.5 rounded-2xl border border-slate-800 space-y-3 mb-4">
+                        <div class="flex items-center space-x-3">
+                            <i class="fa-solid fa-circle-dot text-amber-400 text-xs w-4 text-center"></i>
+                            <select v-model="pickup"
+                                class="bg-transparent text-xs text-white focus:outline-none w-full font-medium">
+                                <option>Konyo Konyo Market</option>
+                                <option>Custom Market</option>
+                                <option>Munuki Block C</option>
+                                <option>Juba Airport</option>
+                            </select>
+                        </div>
+                        <div class="border-t border-slate-900 pt-3 flex items-center space-x-3">
+                            <i class="fa-solid fa-location-dot text-cyan-400 text-xs w-4 text-center"></i>
+                            <select v-model="dropoff"
+                                class="bg-transparent text-xs text-white focus:outline-none w-full font-medium">
+                                <option>Jebel Shopping Center</option>
+                                <option>University of Juba</option>
+                                <option>Nile Commercial Bank</option>
+                                <option>Tongpete Residential</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Vehicle Tier Selection including Tuktuk -->
+                    <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2.5">Select Fleet Category
+                    </p>
+                    <div class="grid grid-cols-2 gap-2.5 mb-4">
+                        <div @click="selectedVehicle = 'Boda'"
+                            :class="selectedVehicle === 'Boda' ? 'border-amber-500 bg-amber-500/10 text-white' : 'border-slate-800 bg-slate-950 text-slate-400'"
+                            class="p-3 rounded-xl border cursor-pointer transition">
+                            <i class="fa-solid fa-motorcycle text-lg text-amber-400 mb-1"></i>
+                            <p class="font-bold text-xs">Hurriya Boda</p>
+                            <span class="text-[10px] text-slate-500">Fast • 2,500 SSP</span>
+                        </div>
+                        <div @click="selectedVehicle = 'Tuktuk'"
+                            :class="selectedVehicle === 'Tuktuk' ? 'border-amber-500 bg-amber-500/10 text-white' : 'border-slate-800 bg-slate-950 text-slate-400'"
+                            class="p-3 rounded-xl border cursor-pointer transition">
+                            <i class="fa-solid fa-rickshaw text-lg text-amber-400 mb-1"></i>
+                            <p class="font-bold text-xs">Hurriya Tuktuk</p>
+                            <span class="text-[10px] text-slate-500">Cozy • 3,800 SSP</span>
+                        </div>
+                        <div @click="selectedVehicle = 'Car'"
+                            :class="selectedVehicle === 'Car' ? 'border-amber-500 bg-amber-500/10 text-white' : 'border-slate-800 bg-slate-950 text-slate-400'"
+                            class="p-3 rounded-xl border cursor-pointer transition">
+                            <i class="fa-solid fa-car text-lg text-amber-400 mb-1"></i>
+                            <p class="font-bold text-xs">Hurriya Car</p>
+                            <span class="text-[10px] text-slate-500">AC • 6,500 SSP</span>
+                        </div>
+                        <div @click="selectedVehicle = 'XL'"
+                            :class="selectedVehicle === 'XL' ? 'border-amber-500 bg-amber-500/10 text-white' : 'border-slate-800 bg-slate-950 text-slate-400'"
+                            class="p-3 rounded-xl border cursor-pointer transition">
+                            <i class="fa-solid fa-truck-pickup text-lg text-amber-400 mb-1"></i>
+                            <p class="font-bold text-xs">Hurriya XL (SUV)</p>
+                            <span class="text-[10px] text-slate-500">Family • 10,000 SSP</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pb-2">
+                    <button @click="screen = 'matching'"
+                        class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold py-3.5 rounded-2xl transition shadow-lg shadow-amber-500/20 text-sm">
+                        Request {{ selectedVehicle }} Now
+                    </button>
+                </div>
+            </div>
+
+            <!-- SCREEN E: MATCHING -->
+            <div v-if="screen === 'matching'" class="flex-1 flex flex-col justify-between p-6 text-center">
+                <div class="pt-8">
+                    <div
+                        class="w-24 h-24 bg-amber-500/10 border border-amber-500/30 rounded-full mx-auto flex items-center justify-center text-amber-400 text-3xl mb-6 relative">
+                        <div class="absolute inset-0 rounded-full border border-amber-500 animate-ping opacity-30">
+                        </div>
+                        <i class="fa-solid fa-radar animate-spin"></i>
+                    </div>
+                    <h3 class="text-xl font-extrabold text-white">Connecting with Juba Fleet</h3>
+                    <p class="text-xs text-slate-400 mt-2">Finding the nearest verified {{ selectedVehicle }} partner...
+                    </p>
+                </div>
+
+                <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 text-left mb-6">
+                    <div class="flex items-center space-x-3">
+                        <div
+                            class="w-10 h-10 rounded-full bg-amber-500 text-slate-950 font-bold flex items-center justify-center">
+                            EW
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-white">Emmanuel Wani</p>
+                            <p class="text-[10px] text-emerald-400">★ 4.9 • SS-JUBA-091</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pb-4">
+                    <button @click="screen = 'home'"
+                        class="w-full bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold py-3.5 rounded-2xl transition text-xs">
+                        Cancel & Return Home
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Phone Home Indicator Bar -->
+        <div class="bg-slate-900 py-2 flex justify-center">
+            <div class="w-32 h-1 bg-slate-700 rounded-full"></div>
+        </div>
+    </div>
+
+    <script>
+        const { createApp, ref } = Vue
+        createApp({
+            setup() {
+                const screen = ref('welcome')
+                const phoneNumber = ref('')
+                const pickup = ref('Konyo Konyo Market')
+                const dropoff = ref('Jebel Shopping Center')
+                const selectedVehicle = ref('Tuktuk')
+
+                const selectService = (type) => {
+                    if (type === 'Boda') selectedVehicle.value = 'Boda'
+                    else if (type === 'Tuktuk') selectedVehicle.value = 'Tuktuk'
+                    else if (type === 'Car') selectedVehicle.value = 'Car'
+                    screen.value = 'booking'
+                }
+
+                return {
+                    screen,
+                    phoneNumber,
+                    pickup,
+                    dropoff,
+                    selectedVehicle,
+                    selectService
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+
+</html>

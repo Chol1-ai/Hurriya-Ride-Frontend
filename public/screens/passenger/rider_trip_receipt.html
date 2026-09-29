@@ -1,0 +1,241 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Trip Receipt - Hurriya Ride</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#1c2b3c",
+                        "primary-container": "#f59e0b",
+                        "on-secondary-fixed": "#131b2e",
+                        "outline": "#a08e7a",
+                        "primary-fixed": "#ffddb8",
+                        "tertiary-fixed": "#68fcbf",
+                        "safety-emerald": "#34D399",
+                        "on-background": "#d4e4fa",
+                        "on-secondary": "#283044",
+                        "inverse-primary": "#855300",
+                        "slate-surface": "#1E293B",
+                        "secondary-fixed": "#dae2fd",
+                        "inverse-on-surface": "#233143",
+                        "surface-container": "#122131",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "utility-cyan": "#22D3EE",
+                        "outline-variant": "#534434",
+                        "midnight-bg": "#020617",
+                        "on-primary-fixed-variant": "#653e00",
+                        "surface-dim": "#051424",
+                        "surface": "#051424",
+                        "inverse-surface": "#d4e4fa",
+                        "error-container": "#93000a",
+                        "secondary-container": "#3f465c",
+                        "surface-variant": "#273647",
+                        "error": "#ffb4ab",
+                        "surface-bright": "#2c3a4c",
+                        "on-surface-variant": "#d8c3ad",
+                        "on-primary-fixed": "#2a1700",
+                        "tertiary-container": "#22c990",
+                        "tertiary-fixed-dim": "#45dfa4",
+                        "white-high-emphasis": "#FFFFFF",
+                        "on-tertiary-fixed-variant": "#005137",
+                        "on-primary": "#472a00",
+                        "background": "#051424",
+                        "surface-tint": "#ffb95f",
+                        "on-tertiary-container": "#004e35",
+                        "secondary": "#bec6e0",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-highest": "#273647",
+                        "slate-border": "#334155",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed": "#002114",
+                        "surface-container-low": "#0d1c2d",
+                        "surface-container-lowest": "#010f1f",
+                        "primary-fixed-dim": "#ffb95f",
+                        "on-tertiary": "#003825",
+                        "on-primary-container": "#613b00",
+                        "tertiary": "#4de6aa",
+                        "on-secondary-container": "#adb4ce",
+                        "utility-indigo": "#818CF8",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "primary": "#ffc174",
+                        "on-surface": "#d4e4fa"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "margin-xl": "24px",
+                        "margin-lg": "20px",
+                        "section-gap": "32px",
+                        "gutter-xs": "10px",
+                        "gutter-md": "16px",
+                        "gutter-sm": "12px"
+                    },
+                    "fontFamily": {
+                        "subhead-md": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "micro-bold": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "display-xl": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "micro-reg": ["Plus Jakarta Sans"],
+                        "label-bold": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "subhead-md": ["18px", { "lineHeight": "24px", "fontWeight": "800" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "800" }],
+                        "micro-bold": ["11px", { "lineHeight": "14px", "fontWeight": "700" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "display-xl": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "headline-lg-mobile": ["22px", { "lineHeight": "28px", "fontWeight": "800" }],
+                        "micro-reg": ["10px", { "lineHeight": "12px", "fontWeight": "400" }],
+                        "label-bold": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface dark:bg-surface-dim shadow-md md:hidden">
+<div class="flex items-center justify-between px-margin-lg h-16 w-full max-w-7xl mx-auto">
+<button aria-label="Go Back" class="text-on-surface-variant hover:opacity-80 transition-opacity active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-extrabold text-primary-container dark:text-primary-fixed">Hurriya Ride</h1>
+<div class="text-on-surface-variant w-6"></div> <!-- Spacer -->
+</div>
+</header>
+<main class="pt-24 px-margin-lg md:px-margin-xl max-w-lg mx-auto">
+<!-- Receipt Header -->
+<div class="text-center mb-section-gap">
+<div class="inline-flex items-center justify-center w-16 h-16 bg-primary-container/10 rounded-full mb-4">
+<span class="material-symbols-outlined text-primary-container text-4xl" data-icon="check_circle">check_circle</span>
+</div>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-2">Thank you for riding with us!</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">October 24, 2023 • 14:30 PM</p>
+</div>
+<!-- Total Amount Card -->
+<div class="bg-surface-container border border-slate-border rounded-xl p-6 mb-section-gap shadow-[0px_10px_15px_-3px_rgba(245,158,11,0.05)] relative overflow-hidden">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-primary-container/5 rounded-full blur-xl"></div>
+<div class="text-center">
+<p class="font-label-bold text-label-bold text-on-surface-variant mb-1 uppercase tracking-wider">Total Amount</p>
+<h3 class="font-display-xl text-display-xl text-primary-fixed">SSP 4,500</h3>
+</div>
+<div class="mt-6 pt-4 border-t border-slate-border flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="account_balance_wallet">account_balance_wallet</span>
+<div>
+<p class="font-body-sm text-body-sm text-on-surface">Hurriya Wallet</p>
+<p class="font-micro-reg text-micro-reg text-on-surface-variant">Paid Successfully</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Trip Details Map & Route -->
+<div class="bg-surface-container border border-slate-border rounded-xl overflow-hidden mb-section-gap">
+<div class="w-full h-40 bg-surface-dim relative">
+<img alt="Map" class="w-full h-full object-cover opacity-80" data-alt="A detailed overhead satellite view map of Juba, South Sudan, stylized in a sleek, dark mode aesthetic. The map features deep navy and slate-blue tones, with streets highlighted in subtle cyan and glowing sunrise gold for the active route. The lighting simulates a premium, neon-lit navigation interface, clean and highly detailed, conveying a sense of modern urban mobility in a premium rugged style." data-location="Juba, South Sudan" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNO2pH7_MHCCCPWbh0q55KQz-47ednG7PU3kywVZsuH0VBkExan-r4xPeT_hp1CkIrGLAPhzGFGteahvrrTtBQCkFa7P2Fxz38VSJMYgemZ4X3XQvAuH1ZGkUh_7iL6p5fAadZpmv-iYdqIYBHp04eJ6REOPAEMx-nahaF8JGHpj1gcIxNuvKVfPeHpCkX5mQv8VBe28jd4j6w0SoVlCAlEe3gu4FtD8nsg0aO9k8efrC6x5OqJPeY">
+<!-- Route Overlay (Abstract representation) -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none" preserveAspectRatio="none" viewBox="0 0 100 100">
+<path class="drop-shadow-[0_0_8px_rgba(245,158,11,0.8)]" d="M 20 80 Q 40 40 80 20" fill="none" stroke="#f59e0b" stroke-linecap="round" stroke-width="2"></path>
+<circle cx="20" cy="80" fill="#f59e0b" r="3"></circle>
+<circle cx="80" cy="20" fill="#34D399" r="3"></circle>
+</svg>
+</div>
+<div class="p-6">
+<div class="flex gap-4">
+<div class="flex flex-col items-center pt-1">
+<div class="w-3 h-3 rounded-full bg-primary-container"></div>
+<div class="w-0.5 h-10 bg-slate-border my-1"></div>
+<div class="w-3 h-3 rounded-full bg-safety-emerald"></div>
+</div>
+<div class="flex-1 space-y-4">
+<div>
+<p class="font-body-sm text-body-sm text-on-surface">Juba International Airport</p>
+<p class="font-micro-reg text-micro-reg text-on-surface-variant">14:05 PM</p>
+</div>
+<div>
+<p class="font-body-sm text-body-sm text-on-surface">Pyramid Continental Hotel</p>
+<p class="font-micro-reg text-micro-reg text-on-surface-variant">14:30 PM</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Cost Breakdown -->
+<div class="mb-section-gap">
+<h4 class="font-subhead-md text-subhead-md text-on-surface mb-4">Fare Breakdown</h4>
+<div class="space-y-3 font-body-sm text-body-sm">
+<div class="flex justify-between items-center text-on-surface-variant">
+<span>Base Fare</span>
+<span>SSP 1,500</span>
+</div>
+<div class="flex justify-between items-center text-on-surface-variant">
+<span>Distance (4.2 km)</span>
+<span>SSP 2,000</span>
+</div>
+<div class="flex justify-between items-center text-on-surface-variant">
+<span>Time (25 min)</span>
+<span>SSP 800</span>
+</div>
+<div class="flex justify-between items-center text-on-surface-variant">
+<span>Wait Time (2 min)</span>
+<span>SSP 200</span>
+</div>
+<div class="h-px w-full bg-slate-border my-3"></div>
+<div class="flex justify-between items-center text-on-surface font-bold">
+<span>Subtotal</span>
+<span>SSP 4,500</span>
+</div>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex flex-col gap-4">
+<button class="w-full py-4 rounded-xl font-subhead-md text-subhead-md bg-primary-container text-on-primary-container shadow-[0px_10px_15px_-3px_rgba(245,158,11,0.2)] hover:opacity-90 active:scale-95 transition-all">
+                Download PDF
+            </button>
+<button class="w-full py-4 rounded-xl font-subhead-md text-subhead-md border border-slate-border text-on-surface hover:bg-surface-variant transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg" data-icon="report_problem">report_problem</span>
+                Report an Issue
+            </button>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) - Hidden as this is a transactional/detail screen per intent rules, but included if explicitly required by structural shell mandate. Since this is a detail screen, it should technically be suppressed based on semantic mapping rules, but I will include it to satisfy the strict shared component JSON mapping if 'History' is considered the parent intent. Adjusting to 'History' active. -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 rounded-t-xl border-t border-slate-border dark:border-outline-variant bg-surface-container shadow-[0px_-4px_10px_rgba(0,0,0,0.1)]">
+<div class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 px-4 pb-safe bg-surface-container">
+<!-- Ride -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-secondary-fixed-dim hover:text-primary transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="directions_car">directions_car</span>
+<span class="font-label-bold text-label-bold">Ride</span>
+</a>
+<!-- History (Active) -->
+<a class="flex flex-col items-center justify-center bg-primary-container/10 dark:bg-primary-container/20 text-primary-container dark:text-primary-fixed rounded-full px-4 py-1 hover:text-primary transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="history" style="font-variation-settings: 'FILL' 1;">history</span>
+<span class="font-label-bold text-label-bold">History</span>
+</a>
+<!-- Safety -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-secondary-fixed-dim hover:text-primary transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="verified_user">verified_user</span>
+<span class="font-label-bold text-label-bold">Safety</span>
+</a>
+<!-- Account -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-secondary-fixed-dim hover:text-primary transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="person">person</span>
+<span class="font-label-bold text-label-bold">Account</span>
+</a>
+</div>
+</nav>
+</body></html>

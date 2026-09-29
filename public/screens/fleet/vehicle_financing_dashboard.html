@@ -1,0 +1,290 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Vehicle Financing Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#22c990",
+                        "primary-fixed-dim": "#ffb95f",
+                        "surface-container-highest": "#273647",
+                        "error": "#ffb4ab",
+                        "on-tertiary-fixed-variant": "#005137",
+                        "tertiary-fixed-dim": "#45dfa4",
+                        "on-secondary": "#283044",
+                        "on-primary-container": "#613b00",
+                        "on-background": "#d4e4fa",
+                        "secondary-fixed": "#dae2fd",
+                        "inverse-on-surface": "#233143",
+                        "surface-container-lowest": "#010f1f",
+                        "inverse-surface": "#d4e4fa",
+                        "slate-surface": "#1E293B",
+                        "on-tertiary-container": "#004e35",
+                        "white-high-emphasis": "#FFFFFF",
+                        "on-secondary-container": "#adb4ce",
+                        "on-error": "#690005",
+                        "on-surface": "#d4e4fa",
+                        "background": "#051424",
+                        "outline-variant": "#534434",
+                        "on-primary-fixed": "#2a1700",
+                        "surface": "#051424",
+                        "error-container": "#93000a",
+                        "outline": "#a08e7a",
+                        "on-primary-fixed-variant": "#653e00",
+                        "tertiary-fixed": "#68fcbf",
+                        "primary": "#ffc174",
+                        "surface-container-low": "#0d1c2d",
+                        "on-tertiary": "#003825",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "primary-fixed": "#ffddb8",
+                        "surface-container-high": "#1c2b3c",
+                        "slate-border": "#334155",
+                        "surface-dim": "#051424",
+                        "secondary-container": "#3f465c",
+                        "midnight-bg": "#020617",
+                        "secondary": "#bec6e0",
+                        "surface-bright": "#2c3a4c",
+                        "utility-cyan": "#22D3EE",
+                        "utility-indigo": "#818CF8",
+                        "tertiary": "#4de6aa",
+                        "surface-container": "#122131",
+                        "on-secondary-fixed": "#131b2e",
+                        "primary-container": "#f59e0b",
+                        "inverse-primary": "#855300",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "on-surface-variant": "#d8c3ad",
+                        "on-tertiary-fixed": "#002114",
+                        "safety-emerald": "#34D399",
+                        "on-error-container": "#ffdad6",
+                        "surface-tint": "#ffb95f",
+                        "surface-variant": "#273647",
+                        "on-primary": "#472a00"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter-xs": "10px",
+                        "unit": "4px",
+                        "section-gap": "32px",
+                        "gutter-md": "16px",
+                        "gutter-sm": "12px",
+                        "margin-xl": "24px",
+                        "margin-lg": "20px"
+                    },
+                    "fontFamily": {
+                        "micro-reg": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "label-bold": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "subhead-md": ["Plus Jakarta Sans"],
+                        "micro-bold": ["Plus Jakarta Sans"],
+                        "display-xl": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "micro-reg": ["10px", { "lineHeight": "12px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["22px", { "lineHeight": "28px", "fontWeight": "800" }],
+                        "label-bold": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "800" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "subhead-md": ["18px", { "lineHeight": "24px", "fontWeight": "800" }],
+                        "micro-bold": ["11px", { "lineHeight": "14px", "fontWeight": "700" }],
+                        "display-xl": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "800" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .circular-chart {
+            display: block;
+            margin: 10px auto;
+            max-width: 80%;
+            max-height: 250px;
+        }
+        .circle-bg {
+            fill: none;
+            stroke: #1E293B; /* slate-800 */
+            stroke-width: 3.8;
+        }
+        .circle {
+            fill: none;
+            stroke-width: 2.8;
+            stroke-linecap: round;
+            animation: progress 1s ease-out forwards;
+        }
+        @keyframes progress {
+            0% {
+                stroke-dasharray: 0 100;
+            }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-sm antialiased pb-24 md:pb-0 md:pl-72 flex min-h-screen">
+<!-- Mobile TopAppBar -->
+<header class="md:hidden flex justify-between items-center px-margin-lg py-4 w-full bg-surface/80 backdrop-blur-xl sticky top-0 z-40">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full object-cover border-2 border-primary" data-alt="A professional headshot of an African driver wearing a neat dark blue uniform shirt, set against a dark, sleek dashboard background with subtle amber lighting accents. The lighting is dramatic and premium." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgbDKFJBQhP1tXKKM8orau8wF-xfhr8TdpNLEPeRzCYSeYETe1sOBYxGQu3aUOPsBFAm7Zrywp_-UdrFnOlek5PD1w3HOgf1MK-yfPx1EnyR1cqIHnRwCIfQAblqd_wwOZe5FV1qwUF1VIoP-PSXvg9atCBAcVeRE1ZoNZTWDm43dufqUuBekEexe6bQGoV2dWvQwewTEXtjvRvHjSsawKk5vp9tykCRIGBCwo_z9zDl9j3aOu7m5j">
+<h1 class="text-headline-lg-mobile font-headline-lg-mobile font-extrabold text-primary">Hurriya Driver Hub</h1>
+</div>
+<button class="active:scale-95 duration-150 p-2 rounded-full hover:bg-surface-container-high transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">notifications</span>
+</button>
+</header>
+<!-- Desktop NavigationDrawer -->
+<nav class="hidden md:flex flex-col h-full fixed left-0 top-0 w-72 bg-surface-container-low border-r border-slate-border shadow-lg z-50">
+<div class="p-gutter-md border-b border-slate-border/50">
+<h1 class="font-headline-lg text-headline-lg text-primary mb-6">Hurriya Driver Hub</h1>
+<div class="flex items-center gap-3">
+<img class="w-12 h-12 rounded-full object-cover border-2 border-primary shadow-[0_0_10px_rgba(245,158,11,0.3)]" data-alt="A professional headshot of an African driver wearing a neat dark blue uniform shirt, set against a dark, sleek dashboard background with subtle amber lighting accents. The lighting is dramatic and premium." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1EtqpwQ7JBzHwXqQyB97RszbpOYxCj3fcfbj5-UpxxzPmZ54I4X6x4Y-wQu5XnzgaeW-Lr4w5rs_vW2TG96Uvn8f1KYholauHtbhoh7hGywWQ3YHPcxC7A7-ioxycKdGETeAVNTRHG1S7CHPgS8OS6GdvBnFv8Bquyy2jG18nzQC4xbYjpIQE925hfaWeJxGmTEBsYhAfmQ2chiNRzHW9yuh7j7ifuMaYk11LbnEev0Dl8PHLBIM-">
+<div>
+<h2 class="font-subhead-md text-subhead-md text-on-surface">Captain Ahmed</h2>
+<p class="font-micro-bold text-micro-bold text-primary">Gold Tier Driver</p>
+<p class="font-micro-reg text-micro-reg text-on-surface-variant">Verified Profile</p>
+</div>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto py-4">
+<ul class="space-y-2 px-3">
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all duration-200" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="font-subhead-md text-subhead-md">Training Portal</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container text-primary-fixed-dim rounded-lg font-bold transition-all duration-200" href="#">
+<span class="material-symbols-outlined">directions_car</span>
+<span class="font-subhead-md text-subhead-md">Financing</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all duration-200" href="#">
+<span class="material-symbols-outlined">confirmation_number</span>
+<span class="font-subhead-md text-subhead-md">Commuter Pass</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all duration-200" href="#">
+<span class="material-symbols-outlined">insights</span>
+<span class="font-subhead-md text-subhead-md">Performance</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all duration-200" href="#">
+<span class="material-symbols-outlined">contact_support</span>
+<span class="font-subhead-md text-subhead-md">Support</span>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-1 w-full max-w-7xl mx-auto p-margin-lg md:p-margin-xl">
+<div class="mb-section-gap">
+<h2 class="font-display-xl text-display-xl text-on-surface mb-2">Vehicle Financing</h2>
+<p class="text-on-surface-variant font-body-sm">Manage your Lease-to-Own progress.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-section-gap">
+<!-- Payoff Progress Card -->
+<div class="bg-slate-900 border border-slate-800 rounded-xl p-6 md:col-span-2 shadow-lg relative overflow-hidden flex flex-col justify-between">
+<div class="absolute -right-10 -top-10 w-48 h-48 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+<div class="flex justify-between items-start mb-6 z-10">
+<div>
+<h3 class="font-subhead-md text-subhead-md text-on-surface mb-1">Ownership Progress</h3>
+<p class="text-on-surface-variant text-sm">2023 Toyota Corolla L</p>
+</div>
+<span class="px-3 py-1 bg-tertiary-container/10 text-tertiary-fixed-dim rounded-full font-micro-bold text-micro-bold border border-tertiary-container/20 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">verified</span> Active
+                    </span>
+</div>
+<div class="flex flex-col md:flex-row items-center justify-around z-10 gap-8">
+<!-- Circular Progress -->
+<div class="relative w-48 h-48">
+<svg class="circular-chart text-primary w-full h-full" viewBox="0 0 36 36">
+<path class="circle-bg" d="M18 2.0845
+                                a 15.9155 15.9155 0 0 1 0 31.831
+                                a 15.9155 15.9155 0 0 1 0 -31.831"></path>
+<path class="circle" d="M18 2.0845
+                                a 15.9155 15.9155 0 0 1 0 31.831
+                                a 15.9155 15.9155 0 0 1 0 -31.831" stroke="currentColor" stroke-dasharray="65, 100"></path>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="font-display-xl text-display-xl text-on-surface">65%</span>
+<span class="text-on-surface-variant font-micro-bold text-micro-bold">PAID OFF</span>
+</div>
+</div>
+<!-- Stats -->
+<div class="space-y-6 flex-1 min-w-[200px]">
+<div>
+<p class="text-on-surface-variant font-micro-bold text-micro-bold uppercase tracking-wider mb-1">Total Paid</p>
+<p class="font-headline-lg text-headline-lg text-safety-emerald">$12,450.00</p>
+</div>
+<div>
+<p class="text-on-surface-variant font-micro-bold text-micro-bold uppercase tracking-wider mb-1">Remaining Balance</p>
+<p class="font-headline-lg text-headline-lg text-on-surface">$6,700.00</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Next Payment Card -->
+<div class="bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-lg flex flex-col justify-between hover:border-primary/50 transition-colors duration-300">
+<div>
+<div class="flex items-center gap-2 text-primary mb-4">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">calendar_clock</span>
+<h3 class="font-subhead-md text-subhead-md">Next Payment</h3>
+</div>
+<p class="font-display-xl text-display-xl text-on-surface mb-1">$250.00</p>
+<p class="text-on-surface-variant font-body-sm mb-6">Due on Oct 15, 2023</p>
+<div class="bg-slate-950 border border-slate-800 rounded-lg p-4 mb-6">
+<p class="text-center font-micro-bold text-micro-bold text-on-surface-variant mb-2">COUNTDOWN</p>
+<div class="flex justify-center gap-4 text-center">
+<div>
+<span class="block font-headline-lg text-headline-lg text-primary">04</span>
+<span class="text-xs text-on-surface-variant">Days</span>
+</div>
+<span class="font-headline-lg text-headline-lg text-slate-700">:</span>
+<div>
+<span class="block font-headline-lg text-headline-lg text-primary">12</span>
+<span class="text-xs text-on-surface-variant">Hrs</span>
+</div>
+</div>
+</div>
+</div>
+<button class="w-full py-3 bg-primary text-on-primary font-label-bold text-label-bold rounded-lg shadow-[0_10px_15px_-3px_rgba(245,158,11,0.2)] hover:bg-primary-fixed transition-colors active:scale-95">
+                    MAKE PAYMENT
+                </button>
+</div>
+</div>
+</main>
+<!-- Mobile BottomNavBar -->
+<nav class="md:hidden fixed bottom-0 w-full h-16 flex justify-around items-center px-4 pb-safe bg-surface-container z-50 border-t-0 shadow-[0px_-4px_10px_rgba(0,0,0,0.3)]">
+<a class="flex flex-col items-center justify-center text-on-surface-variant opacity-60 hover:bg-surface-bright/20 scale-110 transition-transform duration-300" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-bold text-label-bold mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container/10 text-primary-fixed-dim rounded-xl px-3 py-1 hover:bg-surface-bright/20 scale-110 transition-transform duration-300" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">payments</span>
+<span class="font-label-bold text-label-bold mt-1">Lease</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant opacity-60 hover:bg-surface-bright/20 scale-110 transition-transform duration-300" href="#">
+<span class="material-symbols-outlined">verified</span>
+<span class="font-label-bold text-label-bold mt-1">Certify</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant opacity-60 hover:bg-surface-bright/20 scale-110 transition-transform duration-300" href="#">
+<span class="material-symbols-outlined">style</span>
+<span class="font-label-bold text-label-bold mt-1">Passes</span>
+</a>
+</nav>
+</body></html>

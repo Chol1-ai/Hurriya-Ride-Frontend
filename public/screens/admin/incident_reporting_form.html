@@ -1,0 +1,193 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>GoJuba Driver - Incident Report</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "slate-border": "#334155",
+                        "utility-cyan": "#22D3EE",
+                        "tertiary-fixed": "#68fcbf",
+                        "secondary-container": "#3f465c",
+                        "primary": "#ffc174",
+                        "on-primary": "#472a00",
+                        "surface-container-highest": "#273647",
+                        "on-surface": "#d4e4fa",
+                        "surface-container-low": "#0d1c2d",
+                        "outline": "#a08e7a",
+                        "surface": "#051424",
+                        "outline-variant": "#534434",
+                        "secondary": "#bec6e0",
+                        "on-surface-variant": "#d8c3ad",
+                        "inverse-on-surface": "#233143",
+                        "surface-container-lowest": "#010f1f",
+                        "surface-container": "#122131",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "error": "#ffb4ab",
+                        "on-tertiary": "#003825",
+                        "on-primary-container": "#613b00",
+                        "on-error": "#690005",
+                        "primary-container": "#f59e0b",
+                        "surface-container-high": "#1c2b3c",
+                        "on-tertiary-fixed-variant": "#005137",
+                        "error-container": "#93000a",
+                        "on-primary-fixed": "#2a1700",
+                        "on-secondary-container": "#adb4ce",
+                        "secondary-fixed": "#dae2fd",
+                        "inverse-primary": "#855300",
+                        "utility-indigo": "#818CF8",
+                        "primary-fixed": "#ffddb8",
+                        "primary-fixed-dim": "#ffb95f",
+                        "background": "#051424",
+                        "slate-surface": "#1E293B",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "safety-emerald": "#34D399",
+                        "on-tertiary-fixed": "#002114",
+                        "surface-dim": "#051424",
+                        "white-high-emphasis": "#FFFFFF",
+                        "inverse-surface": "#d4e4fa",
+                        "on-background": "#d4e4fa",
+                        "on-secondary-fixed": "#131b2e",
+                        "on-error-container": "#ffdad6",
+                        "surface-variant": "#273647",
+                        "tertiary-container": "#22c990",
+                        "on-tertiary-container": "#004e35",
+                        "tertiary": "#4de6aa",
+                        "tertiary-fixed-dim": "#45dfa4",
+                        "surface-bright": "#2c3a4c",
+                        "on-secondary": "#283044",
+                        "midnight-bg": "#020617",
+                        "on-primary-fixed-variant": "#653e00",
+                        "surface-tint": "#ffb95f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-lg": "20px",
+                        "unit": "4px",
+                        "margin-xl": "24px",
+                        "gutter-sm": "12px",
+                        "gutter-xs": "10px",
+                        "section-gap": "32px",
+                        "gutter-md": "16px"
+                    },
+                    "fontFamily": {
+                        "label-bold": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "micro-reg": ["Plus Jakarta Sans"],
+                        "subhead-md": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "micro-bold": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "display-xl": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "label-bold": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "800" }],
+                        "micro-reg": ["10px", { "lineHeight": "12px", "fontWeight": "400" }],
+                        "subhead-md": ["18px", { "lineHeight": "24px", "fontWeight": "800" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "micro-bold": ["11px", { "lineHeight": "14px", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["22px", { "lineHeight": "28px", "fontWeight": "800" }],
+                        "display-xl": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "800" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-sm antialiased pb-[100px] pt-[80px]">
+<!-- TopAppBar (Transactional - Hidden Nav Shell) -->
+<header class="fixed top-0 w-full bg-surface-dim border-b border-outline-variant shadow-md flex justify-between items-center px-margin-xl h-16 z-50">
+<button aria-label="Close form" class="text-primary active:opacity-80 transition-opacity scale-95 duration-100 p-2 -ml-2">
+<span class="material-symbols-outlined">close</span>
+</button>
+<div class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Incident Report</div>
+<div class="w-10"></div> <!-- Spacer for center alignment -->
+</header>
+<main class="px-margin-xl py-margin-xl space-y-section-gap max-w-2xl mx-auto">
+<!-- Context Header -->
+<div class="text-center space-y-2">
+<h1 class="font-display-xl text-display-xl text-primary">Report an Incident</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Please provide details about the event. This report goes directly to Hurriya Support for immediate review.</p>
+</div>
+<form class="space-y-section-gap">
+<!-- Incident Type Selection -->
+<fieldset class="space-y-4">
+<legend class="font-subhead-md text-subhead-md text-on-surface mb-4">Type of Incident</legend>
+<div class="grid grid-cols-2 gap-gutter-sm">
+<label class="cursor-pointer relative">
+<input class="peer sr-only" name="incident_type" type="radio" value="mechanical">
+<div class="flex flex-col items-center justify-center p-4 bg-surface-container rounded-xl border border-outline-variant peer-checked:border-primary peer-checked:bg-secondary-container transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant peer-checked:text-primary mb-2 text-3xl" data-icon="car_repair">car_repair</span>
+<span class="font-label-bold text-label-bold text-on-surface peer-checked:text-primary">Mechanical</span>
+</div>
+</label>
+<label class="cursor-pointer relative">
+<input class="peer sr-only" name="incident_type" type="radio" value="harassment">
+<div class="flex flex-col items-center justify-center p-4 bg-surface-container rounded-xl border border-outline-variant peer-checked:border-error peer-checked:bg-error-container transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant peer-checked:text-error mb-2 text-3xl" data-icon="report_problem">report_problem</span>
+<span class="font-label-bold text-label-bold text-on-surface peer-checked:text-error">Harassment</span>
+</div>
+</label>
+<label class="cursor-pointer relative">
+<input class="peer sr-only" name="incident_type" type="radio" value="medical">
+<div class="flex flex-col items-center justify-center p-4 bg-surface-container rounded-xl border border-outline-variant peer-checked:border-safety-emerald peer-checked:bg-safety-emerald/20 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant peer-checked:text-safety-emerald mb-2 text-3xl" data-icon="medical_services">medical_services</span>
+<span class="font-label-bold text-label-bold text-on-surface peer-checked:text-safety-emerald">Medical</span>
+</div>
+</label>
+<label class="cursor-pointer relative">
+<input class="peer sr-only" name="incident_type" type="radio" value="accident">
+<div class="flex flex-col items-center justify-center p-4 bg-surface-container rounded-xl border border-outline-variant peer-checked:border-primary peer-checked:bg-secondary-container transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant peer-checked:text-primary mb-2 text-3xl" data-icon="car_crash">car_crash</span>
+<span class="font-label-bold text-label-bold text-on-surface peer-checked:text-primary">Accident</span>
+</div>
+</label>
+</div>
+</fieldset>
+<!-- Description -->
+<div class="space-y-4">
+<label class="font-subhead-md text-subhead-md text-on-surface block" for="description">What happened?</label>
+<div class="relative rounded-xl bg-midnight-bg border border-slate-border focus-within:border-primary focus-within:ring-1 focus-within:ring-primary transition-all shadow-inner">
+<textarea class="w-full bg-transparent border-none text-on-surface placeholder-on-surface-variant/50 focus:ring-0 p-4 font-body-sm text-body-sm rounded-xl resize-none" id="description" name="description" placeholder="Provide as much detail as possible..." rows="5"></textarea>
+</div>
+</div>
+<!-- Photo Upload -->
+<div class="space-y-4">
+<label class="font-subhead-md text-subhead-md text-on-surface block">Upload Photos (Optional)</label>
+<div class="border-2 border-dashed border-outline-variant rounded-xl p-8 flex flex-col items-center justify-center text-center bg-surface-container-low hover:bg-surface-container transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant mb-2" data-icon="add_a_photo">add_a_photo</span>
+<span class="font-label-bold text-label-bold text-on-surface">Tap to upload photos</span>
+<span class="font-micro-reg text-micro-reg text-on-surface-variant mt-1">Max 4 photos, 5MB each</span>
+</div>
+<!-- Image Preview Area (Hidden by default) -->
+<div class="grid grid-cols-4 gap-2 hidden">
+<!-- Preview placeholders would go here -->
+</div>
+</div>
+<!-- Submit Action -->
+<div class="pt-4">
+<button class="w-full bg-primary text-on-primary font-headline-lg-mobile text-headline-lg-mobile py-4 rounded-xl shadow-[0px_10px_15px_-3px_rgba(245,158,11,0.2)] active:opacity-80 active:scale-95 transition-all duration-200" type="button">
+                    Submit Report
+                </button>
+</div>
+</form>
+</main>
+</body></html>

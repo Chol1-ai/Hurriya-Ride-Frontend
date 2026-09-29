@@ -1,0 +1,11 @@
+.dashboard-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 16px; }
+.metric-card { grid-column: span 3; padding: 20px; background: var(--surface-low); border: 1px solid var(--outline); border-radius: 12px; }
+.preview-frame { width: 100%; min-height: 620px; border: 1px solid var(--outline); border-radius: 12px; background: var(--surface-lowest); }
+.preview-panel { overflow: hidden; background: var(--surface-low); border: 1px solid var(--outline); border-radius: 12px; box-shadow: 0 20px 50px rgba(0,0,0,.2); }
+.preview-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 20px; }
+.preview-heading h2 { margin: 0; font-size: 18px; }
+.open-link { color: var(--primary-soft); font-size: 12px; font-weight: 700; white-space: nowrap; }
+.open-link:hover { color: var(--primary); }
+.preview-panel .preview-frame { display: block; width: 100%; min-height: 720px; border: 0; border-top: 1px solid var(--outline); border-radius: 0; }
+@media (max-width: 900px) { .metric-card { grid-column: span 6; } }
+@media (max-width: 640px) { .dashboard-grid { display: block; } .metric-card { margin-bottom: 12px; } .preview-frame { min-height: 720px; } }

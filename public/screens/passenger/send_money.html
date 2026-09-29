@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Hurriya Wallet - Send Money</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&amp;display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet">
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary": "#283044",
+                        "secondary-fixed": "#dae2fd",
+                        "on-background": "#d4e4fa",
+                        "surface-container-lowest": "#010f1f",
+                        "on-tertiary": "#003825",
+                        "inverse-surface": "#d4e4fa",
+                        "surface-container-low": "#0d1c2d",
+                        "outline": "#a08e7a",
+                        "slate-border": "#334155",
+                        "inverse-primary": "#855300",
+                        "surface-container": "#122131",
+                        "primary-container": "#f59e0b",
+                        "utility-indigo": "#818CF8",
+                        "tertiary-fixed": "#68fcbf",
+                        "background": "#051424",
+                        "tertiary-container": "#22c990",
+                        "surface-bright": "#2c3a4c",
+                        "on-error-container": "#ffdad6",
+                        "white-high-emphasis": "#FFFFFF",
+                        "on-error": "#690005",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "tertiary-fixed-dim": "#45dfa4",
+                        "outline-variant": "#534434",
+                        "on-tertiary-container": "#004e35",
+                        "on-primary": "#472a00",
+                        "secondary-container": "#3f465c",
+                        "surface-tint": "#ffb95f",
+                        "on-surface": "#d4e4fa",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "on-primary-container": "#613b00",
+                        "safety-emerald": "#34D399",
+                        "error": "#ffb4ab",
+                        "utility-cyan": "#22D3EE",
+                        "on-primary-fixed": "#2a1700",
+                        "surface-dim": "#051424",
+                        "midnight-bg": "#020617",
+                        "secondary": "#bec6e0",
+                        "on-tertiary-fixed": "#002114",
+                        "surface-container-highest": "#273647",
+                        "tertiary": "#4de6aa",
+                        "inverse-on-surface": "#233143",
+                        "surface": "#051424",
+                        "on-secondary-fixed": "#131b2e",
+                        "on-primary-fixed-variant": "#653e00",
+                        "primary-fixed": "#ffddb8",
+                        "on-tertiary-fixed-variant": "#005137",
+                        "surface-container-high": "#1c2b3c",
+                        "on-surface-variant": "#d8c3ad",
+                        "slate-surface": "#1E293B",
+                        "surface-variant": "#273647",
+                        "on-secondary-container": "#adb4ce",
+                        "primary-fixed-dim": "#ffb95f",
+                        "primary": "#ffc174",
+                        "error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-xl": "24px",
+                        "gutter-md": "16px",
+                        "unit": "4px",
+                        "gutter-xs": "10px",
+                        "section-gap": "32px",
+                        "margin-lg": "20px",
+                        "gutter-sm": "12px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "micro-reg": ["Plus Jakarta Sans"],
+                        "label-bold": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "micro-bold": ["Plus Jakarta Sans"],
+                        "subhead-md": ["Plus Jakarta Sans"],
+                        "display-xl": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["22px", { "lineHeight": "28px", "fontWeight": "800" }],
+                        "micro-reg": ["10px", { "lineHeight": "12px", "fontWeight": "400" }],
+                        "label-bold": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "800" }],
+                        "micro-bold": ["11px", { "lineHeight": "14px", "fontWeight": "700" }],
+                        "subhead-md": ["18px", { "lineHeight": "24px", "fontWeight": "800" }],
+                        "display-xl": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "800" }]
+                    },
+                    "boxShadow": {
+                        "gold-glow": "0px 10px 15px -3px rgba(245, 158, 11, 0.2)"
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #020617;
+        }
+
+        /* midnight-bg fallback */
+        .glass-card {
+            background-color: rgba(13, 28, 45, 0.7);
+            /* surface-container-low */
+            backdrop-filter: blur(12px);
+            border: 1px solid #334155;
+            /* slate-border */
+        }
+
+        .hollow-input {
+            background-color: #051424;
+            /* background/surface */
+            border: 1px solid #334155;
+            transition: all 0.2s ease;
+        }
+
+        .hollow-input:focus-within {
+            border-color: #ffc174;
+            /* primary */
+            box-shadow: 0 0 0 1px #ffc174;
+        }
+    </style>
+</head>
+
+<body class="bg-midnight-bg text-on-surface font-body-sm min-h-screen flex flex-col items-center justify-center p-4">
+    <!-- Mobile Container (Max Width 420px for realistic app feel) -->
+    <div
+        class="w-full max-w-[420px] bg-surface rounded-xl overflow-hidden relative shadow-2xl flex flex-col h-[850px] max-h-[90vh]">
+        <!-- Header: Transactional, No Shell Nav -->
+        <header
+            class="flex items-center justify-between px-margin-xl py-margin-xl border-b border-slate-border bg-surface-container-low/80 backdrop-blur-md sticky top-0 z-10">
+            <button class="p-2 -ml-2 text-on-surface-variant hover:text-on-surface transition-colors">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">arrow_back</span>
+            </button>
+            <h1 class="font-subhead-md text-subhead-md text-primary-fixed">Send Money</h1>
+            <div class="w-8"></div> <!-- Spacer for center alignment -->
+        </header>
+        <!-- Scrollable Content -->
+        <main class="flex-1 overflow-y-auto p-margin-xl flex flex-col gap-section-gap">
+            <!-- Recipient Selection -->
+            <section class="flex flex-col gap-gutter-sm">
+                <h2 class="font-label-bold text-label-bold text-on-surface-variant uppercase tracking-wider">To</h2>
+                <div class="hollow-input rounded-lg flex items-center px-4 py-3">
+                    <span class="material-symbols-outlined text-on-surface-variant mr-3"
+                        style="font-variation-settings: 'FILL' 0;">search</span>
+                    <input
+                        class="bg-transparent border-none focus:ring-0 w-full text-on-surface font-body-sm p-0 placeholder:text-on-surface-variant/50"
+                        placeholder="Phone number or name" type="tel">
+                    <button class="p-1 text-primary hover:text-primary-fixed transition-colors">
+                        <span class="material-symbols-outlined"
+                            style="font-variation-settings: 'FILL' 0;">contacts</span>
+                    </button>
+                </div>
+                <!-- Recent Contacts -->
+                <div class="flex overflow-x-auto gap-4 pb-2 snap-x mt-2 scrollbar-hide">
+                    <!-- Contact 1 -->
+                    <div class="flex flex-col items-center gap-2 snap-start min-w-[72px] cursor-pointer group">
+                        <div
+                            class="w-14 h-14 rounded-full bg-surface-container-highest overflow-hidden border border-slate-border group-hover:border-primary transition-colors relative">
+                            <img class="w-full h-full object-cover"
+                                data-alt="A professional headshot of a South Sudanese man in a modern urban setting. High contrast, warm lighting, cinematic depth of field, premium dark mode aesthetic."
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPQhI-b5ZbVN5a-EiXagvUz81fH-CuNVh1ULCJoZ9JCAjwBjyV_TsByNKR2r9c9eEAjIZ53rFP3vJnrDy0Io9Pk_pUAlHJHyf51mVxgiLEF43sSAse137DMHOzPWVR6Lnymf-qoKRP9OjMW3UQU15UDkoKxW1AhdeVB5gnN0SZ2S63n4elfUfs5Z0eoh1eqGigy3p6zKasZlWQb6bJ4N9V7P4El-mIrrZYmbJCM8X0F88nDPlurGBG">
+                        </div>
+                        <span
+                            class="font-micro-reg text-micro-reg text-center truncate w-full group-hover:text-primary transition-colors">Deng
+                            K.</span>
+                    </div>
+                    <!-- Contact 2 -->
+                    <div class="flex flex-col items-center gap-2 snap-start min-w-[72px] cursor-pointer group">
+                        <div
+                            class="w-14 h-14 rounded-full bg-surface-container-highest overflow-hidden border border-slate-border group-hover:border-primary transition-colors relative flex items-center justify-center">
+                            <span class="font-subhead-md text-subhead-md text-tertiary">M</span>
+                        </div>
+                        <span
+                            class="font-micro-reg text-micro-reg text-center truncate w-full group-hover:text-primary transition-colors">Mary
+                            A.</span>
+                    </div>
+                    <!-- Contact 3 -->
+                    <div class="flex flex-col items-center gap-2 snap-start min-w-[72px] cursor-pointer group">
+                        <div
+                            class="w-14 h-14 rounded-full bg-surface-container-highest overflow-hidden border border-slate-border group-hover:border-primary transition-colors relative">
+                            <img class="w-full h-full object-cover"
+                                data-alt="A bright, clear photo of a local market vendor smiling slightly. Warm golden hour lighting, slight background blur, rich colors fitting a premium mobility app dark mode aesthetic."
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-rJjPkbcKUhufHqYmY64Mmd91uR_qeFC8JumconZTF4xtizPZbO2z586ecd-3Kc9M-usF4dv5ZeKShybgLEVUWLshQxoV0VpzK1JGxDBNaAtG_qWStH-ksejdASX_4Ba87lzcS5tauysbcuZdOZUcjD3gejgOooMH--EphJZFgBg7pzSdhMfra1-M75pkSq1ZVzlJLXzxexNrKB6WyU5kfYVfbAMRLbQMJQoBrGGfftpkrxcqVAaC">
+                        </div>
+                        <span
+                            class="font-micro-reg text-micro-reg text-center truncate w-full group-hover:text-primary transition-colors">John
+                            B.</span>
+                    </div>
+                </div>
+            </section>
+            <!-- Amount Entry (Display) -->
+            <section class="flex flex-col items-center justify-center py-6">
+                <span class="font-label-bold text-label-bold text-on-surface-variant mb-2">Amount (SSP)</span>
+                <div class="flex items-end gap-1">
+                    <span class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface-variant pb-1">£</span>
+                    <span class="font-display-xl text-display-xl text-white-high-emphasis tracking-tight"
+                        id="amount-display">0</span>
+                    <span
+                        class="font-display-xl text-display-xl text-on-surface-variant tracking-tight cursor-blink animate-pulse">|</span>
+                </div>
+                <div
+                    class="mt-4 bg-surface-container-high text-on-surface-variant font-micro-reg text-micro-reg py-1 px-3 rounded-full flex items-center gap-2">
+                    <span class="material-symbols-outlined text-[14px]">account_balance_wallet</span>
+                    Balance: 45,000 SSP
+                </div>
+            </section>
+            <!-- Reason / Note -->
+            <section>
+                <div class="hollow-input rounded-lg flex items-start px-4 py-3 min-h-[80px]">
+                    <span class="material-symbols-outlined text-on-surface-variant mr-3 mt-1"
+                        style="font-variation-settings: 'FILL' 0;">edit_note</span>
+                    <textarea
+                        class="bg-transparent border-none focus:ring-0 w-full text-on-surface font-body-sm p-0 placeholder:text-on-surface-variant/50 resize-none"
+                        placeholder="What's this for? (Optional)" rows="2"></textarea>
+                </div>
+            </section>
+        </main>
+        <!-- Fixed Bottom Area: Keypad & CTA -->
+        <div class="bg-surface-container-low rounded-t-xl pt-4 pb-6 px-margin-xl border-t border-slate-border">
+            <!-- Custom Keypad -->
+            <div class="grid grid-cols-3 gap-2 mb-6" id="keypad">
+                <!-- Row 1 -->
+                <button
+                    class="key-btn py-3 font-subhead-md text-subhead-md text-on-surface bg-surface-container hover:bg-surface-container-high rounded-lg transition-colors active:scale-95">1</button>
+                <button
+                    class="key-btn py-3 font-subhead-md text-subhead-md text-on-surface bg-surface-container hover:bg-surface-container-high rounded-lg transition-colors active:scale-95">2</button>
+                <button
+                    class="key-btn py-3 font-subhead-md text-subhead-md text-on-surface bg-surface-container hover:bg-surface-container-high rounded-lg transition-colors active:scale-95">3</button>
+                <!-- Row 2 -->
+                <button
+                    class="key-btn py-3 font-subhead-md text-subhead-md text-on-surface bg-surface-container hover:bg-surface-container-high rounded-lg transition-colors active:scale-95">4</button>
+                <button
+                    class="key-btn py-3 font-subhead-md text-subhead-md text-on-surface bg-surface-container hover:bg-surface-container-high rounded-lg transition-colors active:scale-95">5</button>
+                <button
+                    class="key-btn py-3 font-subhead-md text-subhead-md text-on-surface bg-surface-container hover:bg-surface-container-high rounded-lg transition-colors active:scale-95">6</button>
+                <!-- Row 3 -->
+                <button
+                    class="key-btn py-3 font-subhead-md text-subhead-md text-on-surface bg-surface-container hover:bg-surface-container-high rounded-lg transition-colors active:scale-95">7</button>
+                <button
+                    class="key-btn py-3 font-subhead-md text-subhead-md text-on-surface bg-surface-container hover:bg-surface-container-high rounded-lg transition-colors active:scale-95">8</button>
+                <button
+                    class="key-btn py-3 font-subhead-md text-subhead-md text-on-surface bg-surface-container hover:bg-surface-container-high rounded-lg transition-colors active:scale-95">9</button>
+                <!-- Row 4 -->
+                <button
+                    class="py-3 font-subhead-md text-subhead-md text-on-surface-variant bg-transparent flex items-center justify-center"
+                    disabled="">.</button>
+                <button
+                    class="key-btn py-3 font-subhead-md text-subhead-md text-on-surface bg-surface-container hover:bg-surface-container-high rounded-lg transition-colors active:scale-95">0</button>
+                <button
+                    class="py-3 font-subhead-md text-subhead-md text-on-surface flex items-center justify-center bg-surface-container hover:bg-surface-container-high rounded-lg transition-colors active:scale-95"
+                    id="btn-delete">
+                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">backspace</span>
+                </button>
+            </div>
+            <!-- Primary CTA -->
+            <button
+                class="w-full bg-primary-container text-midnight-bg font-subhead-md text-subhead-md py-4 rounded-full shadow-gold-glow flex items-center justify-center gap-2 hover:bg-primary transition-all active:scale-95 disabled:opacity-50 disabled:shadow-none disabled:cursor-not-allowed"
+                disabled="" id="btn-confirm">
+                <span>Confirm Transfer</span>
+                <span class="material-symbols-outlined text-[20px]"
+                    style="font-variation-settings: 'FILL' 1;">send</span>
+            </button>
+        </div>
+    </div>
+    <script>
+        const amountDisplay = document.getElementById('amount-display');
+        const keys = document.querySelectorAll('.key-btn');
+        const btnDelete = document.getElementById('btn-delete');
+        const btnConfirm = document.getElementById('btn-confirm');
+        let currentAmount = '0';
+
+        function updateDisplay() {
+            // Format with commas
+            const formatted = Number(currentAmount).toLocaleString('en-US');
+            amountDisplay.textContent = formatted;
+
+            // Enable/disable confirm button based on amount
+            if (Number(currentAmount) > 0) {
+                btnConfirm.removeAttribute('disabled');
+            } else {
+                btnConfirm.setAttribute('disabled', 'true');
+            }
+        }
+
+        keys.forEach(key => {
+            key.addEventListener('click', (e) => {
+                const val = e.target.textContent;
+                if (currentAmount === '0') {
+                    currentAmount = val;
+                } else if (currentAmount.length < 8) { // Max 8 digits
+                    currentAmount += val;
+                }
+                updateDisplay();
+            });
+        });
+
+        btnDelete.addEventListener('click', () => {
+            if (currentAmount.length > 1) {
+                currentAmount = currentAmount.slice(0, -1);
+            } else {
+                currentAmount = '0';
+            }
+            updateDisplay();
+        });
+    </script>
+</body>
+
+</html>

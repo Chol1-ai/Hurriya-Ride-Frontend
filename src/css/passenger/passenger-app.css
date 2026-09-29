@@ -1,0 +1,3 @@
+.passenger-shell { --accent: var(--primary); }
+.passenger-shell .role-accent { color: var(--accent); }
+.phone-preview { max-width: 430px; margin: 0 auto; }

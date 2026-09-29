@@ -1,0 +1,246 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Hurriya Admin - SOS Alert</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800;900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .pulse-red {
+            animation: pulseRed 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulseRed {
+            0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(147, 0, 10, 0.7); }
+            50% { opacity: .8; box-shadow: 0 0 0 20px rgba(147, 0, 10, 0); }
+        }
+        .audio-wave {
+            animation: wave 1s ease-in-out infinite alternate;
+        }
+        .audio-wave:nth-child(2) { animation-delay: 0.2s; }
+        .audio-wave:nth-child(3) { animation-delay: 0.4s; }
+        .audio-wave:nth-child(4) { animation-delay: 0.6s; }
+        .audio-wave:nth-child(5) { animation-delay: 0.8s; }
+        @keyframes wave {
+            0% { transform: scaleY(0.2); }
+            100% { transform: scaleY(1); }
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "slate-border": "#334155",
+                        "utility-cyan": "#22D3EE",
+                        "tertiary-fixed": "#68fcbf",
+                        "secondary-container": "#3f465c",
+                        "primary": "#ffc174",
+                        "on-primary": "#472a00",
+                        "surface-container-highest": "#273647",
+                        "on-surface": "#d4e4fa",
+                        "surface-container-low": "#0d1c2d",
+                        "outline": "#a08e7a",
+                        "surface": "#051424",
+                        "outline-variant": "#534434",
+                        "secondary": "#bec6e0",
+                        "on-surface-variant": "#d8c3ad",
+                        "inverse-on-surface": "#233143",
+                        "surface-container-lowest": "#010f1f",
+                        "surface-container": "#122131",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "error": "#ffb4ab",
+                        "on-tertiary": "#003825",
+                        "on-primary-container": "#613b00",
+                        "on-error": "#690005",
+                        "primary-container": "#f59e0b",
+                        "surface-container-high": "#1c2b3c",
+                        "on-tertiary-fixed-variant": "#005137",
+                        "error-container": "#93000a",
+                        "on-primary-fixed": "#2a1700",
+                        "on-secondary-container": "#adb4ce",
+                        "secondary-fixed": "#dae2fd",
+                        "inverse-primary": "#855300",
+                        "utility-indigo": "#818CF8",
+                        "primary-fixed": "#ffddb8",
+                        "primary-fixed-dim": "#ffb95f",
+                        "background": "#051424",
+                        "slate-surface": "#1E293B",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "safety-emerald": "#34D399",
+                        "on-tertiary-fixed": "#002114",
+                        "surface-dim": "#051424",
+                        "white-high-emphasis": "#FFFFFF",
+                        "inverse-surface": "#d4e4fa",
+                        "on-background": "#d4e4fa",
+                        "on-secondary-fixed": "#131b2e",
+                        "on-error-container": "#ffdad6",
+                        "surface-variant": "#273647",
+                        "tertiary-container": "#22c990",
+                        "on-tertiary-container": "#004e35",
+                        "tertiary": "#4de6aa",
+                        "tertiary-fixed-dim": "#45dfa4",
+                        "surface-bright": "#2c3a4c",
+                        "on-secondary": "#283044",
+                        "midnight-bg": "#020617",
+                        "on-primary-fixed-variant": "#653e00",
+                        "surface-tint": "#ffb95f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-lg": "20px",
+                        "unit": "4px",
+                        "margin-xl": "24px",
+                        "gutter-sm": "12px",
+                        "gutter-xs": "10px",
+                        "section-gap": "32px",
+                        "gutter-md": "16px"
+                    },
+                    "fontFamily": {
+                        "label-bold": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "micro-reg": ["Plus Jakarta Sans"],
+                        "subhead-md": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "micro-bold": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "display-xl": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "label-bold": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "800" }],
+                        "micro-reg": ["10px", { "lineHeight": "12px", "fontWeight": "400" }],
+                        "subhead-md": ["18px", { "lineHeight": "24px", "fontWeight": "800" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "micro-bold": ["11px", { "lineHeight": "14px", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["22px", { "lineHeight": "28px", "fontWeight": "800" }],
+                        "display-xl": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "800" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-midnight-bg text-on-surface font-body-sm antialiased h-screen w-screen overflow-hidden flex">
+<!-- Active SOS Overlay -->
+<div class="fixed inset-0 z-50 bg-midnight-bg/90 backdrop-blur-xl flex flex-col p-margin-xl border-4 border-error-container">
+<!-- Header -->
+<header class="flex justify-between items-center bg-error-container/20 p-gutter-md rounded-lg border border-error-container mb-section-gap">
+<div class="flex items-center gap-gutter-md">
+<div class="bg-error text-on-error p-unit rounded-full pulse-red flex items-center justify-center">
+<span class="material-symbols-outlined text-display-xl" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<div>
+<h1 class="font-display-xl text-display-xl text-error tracking-tight">ACTIVE SOS ALERT</h1>
+<p class="font-subhead-md text-subhead-md text-error/80">Triggered 2m 14s ago</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-label-bold text-label-bold text-on-surface-variant uppercase">Incident ID</p>
+<p class="font-headline-lg text-headline-lg text-on-surface">#SOS-JUBA-8492</p>
+</div>
+</header>
+<!-- Main Content Grid -->
+<div class="flex-1 grid grid-cols-12 gap-gutter-md overflow-hidden">
+<!-- Left Col: Details & Audio -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-gutter-md h-full">
+<!-- Driver & Rider Info -->
+<div class="bg-surface-container-high rounded-xl p-gutter-md border border-slate-border">
+<h2 class="font-subhead-md text-subhead-md text-on-surface mb-gutter-sm border-b border-slate-border pb-unit">Involved Parties</h2>
+<div class="space-y-gutter-sm">
+<!-- Driver -->
+<div class="flex items-center gap-gutter-sm bg-surface-container rounded-lg p-unit">
+<img class="w-12 h-12 rounded-full object-cover border border-primary" data-alt="A portrait of a professional driver looking focused, set against a dark urban background with subtle gold lighting accents. The style is modern corporate, emphasizing safety and reliability. High contrast, sharp focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPNpClp6lczfEC51rI4Fzc55F2QGnzuXD9VeEpNjobZ3nZiB_GsFwZL8TGSHBeHz4-L8Tu5tsYJ0HOc1N82B9xmOD-xUsLyPTm_ZZZekyj2OOFfNIVMMYMR8BjKqZY3LnkOVa92NZwVJkBtS6c0bQGmhZryQyGq5MB9BEBSXYgwZlUMV2GQXEDyHFML_hlEf2HrItEvwzutk3fgGSY_ZTlph2VQdGti8NAkT3F8-43MZ1aLZTC-_8d">
+<div>
+<p class="font-label-bold text-label-bold text-primary">DRIVER</p>
+<p class="font-subhead-md text-subhead-md text-on-surface">Samuel Deng</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">ID: D-4829 • +211 92 123 4567</p>
+</div>
+</div>
+<!-- Vehicle -->
+<div class="flex items-center gap-gutter-sm bg-surface-container rounded-lg p-unit">
+<div class="w-12 h-12 rounded-full bg-slate-surface flex items-center justify-center border border-slate-border text-on-surface-variant">
+<span class="material-symbols-outlined">local_taxi</span>
+</div>
+<div>
+<p class="font-label-bold text-label-bold text-utility-cyan">VEHICLE</p>
+<p class="font-subhead-md text-subhead-md text-on-surface">Toyota Corolla (2018)</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Plate: SSD 123A • White</p>
+</div>
+</div>
+<!-- Rider -->
+<div class="flex items-center gap-gutter-sm bg-surface-container rounded-lg p-unit">
+<div class="w-12 h-12 rounded-full bg-slate-surface flex items-center justify-center border border-slate-border text-on-surface-variant">
+<span class="material-symbols-outlined">person</span>
+</div>
+<div>
+<p class="font-label-bold text-label-bold text-utility-indigo">RIDER</p>
+<p class="font-subhead-md text-subhead-md text-on-surface">Grace K.</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">+211 91 987 6543</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Live Audio Stream -->
+<div class="bg-surface-container-high rounded-xl p-gutter-md border border-error-container flex-1 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-gutter-sm border-b border-slate-border pb-unit">
+<h2 class="font-subhead-md text-subhead-md text-on-surface flex items-center gap-unit">
+<span class="material-symbols-outlined text-error">mic</span> Live Audio Feed
+                            </h2>
+<span class="font-label-bold text-label-bold text-error bg-error/10 px-2 py-1 rounded-full uppercase flex items-center gap-1">
+<div class="w-2 h-2 rounded-full bg-error pulse-red"></div> Active
+                            </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-gutter-sm">Stream opened automatically upon SOS trigger.</p>
+</div>
+<!-- Audio Visualizer Mock -->
+<div class="bg-surface-container-lowest rounded-lg p-gutter-md flex items-end justify-center h-24 gap-1 border border-slate-border overflow-hidden">
+<div class="w-2 bg-primary rounded-t-full audio-wave h-4"></div>
+<div class="w-2 bg-primary rounded-t-full audio-wave h-8"></div>
+<div class="w-2 bg-primary rounded-t-full audio-wave h-16"></div>
+<div class="w-2 bg-primary rounded-t-full audio-wave h-12"></div>
+<div class="w-2 bg-primary rounded-t-full audio-wave h-6"></div>
+<div class="w-2 bg-primary rounded-t-full audio-wave h-20"></div>
+<div class="w-2 bg-primary rounded-t-full audio-wave h-14"></div>
+<div class="w-2 bg-primary rounded-t-full audio-wave h-8"></div>
+<div class="w-2 bg-primary rounded-t-full audio-wave h-12"></div>
+<div class="w-2 bg-primary rounded-t-full audio-wave h-18"></div>
+</div>
+</div>
+</div>
+<!-- Right Col: Map & Actions -->
+<div class="col-span-12 lg:col-span-8 flex flex-col gap-gutter-md h-full">
+<!-- Map Container -->
+<div class="bg-surface-container-high rounded-xl border border-slate-border flex-1 relative overflow-hidden group">
+<img class="w-full h-full object-cover" data-alt="A dark-mode satellite map of Juba, South Sudan, centered on a major intersection. The map features subtle deep blue and slate tones, with roads highlighted slightly. A prominent, glowing red SOS marker indicates an active incident location. Professional, tactical aesthetic." data-location="Juba" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmwIJZabdywNpYaWy4AfaJJIYrWrQYMu2Jm_NOwioaatMr4M90PMkbWrUkJby1dmMLL-X1saZm74b2_2nxbmjHUx9DR-dsmMvcCN1K0M4mWH0EFu4ilnrANd_Vw-DtqVOcMctYDHVTfLr0KblKUH6VRJP2pgqwaw87mWRLkSjJTo4EqlZq8Ygmx9NVpQLv-b1stUHUJffuFxeIesINyAlrVvtPxe-7ZA6e0jN__3RD6I_pjT4VVjn4">
+<!-- Map Overlay UI -->
+<div class="absolute top-gutter-md left-gutter-md bg-surface-container/90 backdrop-blur-md p-gutter-sm rounded-lg border border-slate-border">
+<p class="font-label-bold text-label-bold text-on-surface-variant uppercase">Current Location</p>
+<p class="font-subhead-md text-subhead-md text-on-surface">Customs Roundabout, Juba</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Speed: 0 km/h (Stationary)</p>
+</div>
+</div>
+<!-- Action Bar -->
+<div class="bg-surface-container-highest rounded-xl p-gutter-md border-t-4 border-error-container flex flex-wrap gap-gutter-md justify-end items-center">
+<button class="bg-surface-container border border-slate-border text-on-surface font-label-bold text-label-bold uppercase px-margin-xl py-gutter-sm rounded-lg hover:bg-surface-container-high transition-colors flex items-center gap-unit">
+<span class="material-symbols-outlined">call</span> Contact Driver
+                    </button>
+<button class="bg-error-container text-on-error-container font-headline-lg text-headline-lg px-margin-xl py-gutter-sm rounded-lg hover:bg-error transition-colors flex items-center gap-unit shadow-[0_0_20px_-5px_rgba(147,0,10,0.5)]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">local_police</span> Dispatch Police
+                    </button>
+<div class="w-full h-px bg-slate-border my-2 hidden lg:block"></div>
+<button class="bg-transparent border-2 border-outline-variant text-on-surface-variant font-label-bold text-label-bold uppercase px-margin-xl py-gutter-sm rounded-lg hover:bg-surface-container hover:text-on-surface transition-colors">
+                        Resolve Alert (False Alarm)
+                    </button>
+</div>
+</div>
+</div>
+</div>
+</body></html>

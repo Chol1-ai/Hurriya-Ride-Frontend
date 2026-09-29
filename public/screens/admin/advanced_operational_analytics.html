@@ -1,0 +1,451 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Admin Dashboard - Operational Intelligence</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "slate-surface": "#1E293B",
+                        "inverse-surface": "#d4e4fa",
+                        "on-primary": "#472a00",
+                        "outline": "#a08e7a",
+                        "secondary-fixed": "#dae2fd",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "surface-container-lowest": "#010f1f",
+                        "tertiary-fixed-dim": "#45dfa4",
+                        "surface-tint": "#ffb95f",
+                        "on-primary-fixed": "#2a1700",
+                        "background": "#051424",
+                        "on-primary-fixed-variant": "#653e00",
+                        "surface-container-highest": "#273647",
+                        "surface-container-low": "#0d1c2d",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "error-container": "#93000a",
+                        "on-background": "#d4e4fa",
+                        "secondary-container": "#3f465c",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary-container": "#004e35",
+                        "safety-emerald": "#34D399",
+                        "on-primary-container": "#613b00",
+                        "inverse-primary": "#855300",
+                        "on-secondary": "#283044",
+                        "surface-bright": "#2c3a4c",
+                        "primary": "#ffc174",
+                        "primary-fixed": "#ffddb8",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed": "#002114",
+                        "surface-dim": "#051424",
+                        "on-secondary-fixed": "#131b2e",
+                        "on-tertiary": "#003825",
+                        "primary-container": "#f59e0b",
+                        "surface-container": "#122131",
+                        "on-secondary-container": "#adb4ce",
+                        "inverse-on-surface": "#233143",
+                        "primary-fixed-dim": "#ffb95f",
+                        "midnight-bg": "#020617",
+                        "utility-indigo": "#818CF8",
+                        "slate-border": "#334155",
+                        "tertiary": "#4de6aa",
+                        "surface-variant": "#273647",
+                        "on-surface-variant": "#d8c3ad",
+                        "utility-cyan": "#22D3EE",
+                        "tertiary-container": "#22c990",
+                        "tertiary-fixed": "#68fcbf",
+                        "surface": "#051424",
+                        "secondary": "#bec6e0",
+                        "on-surface": "#d4e4fa",
+                        "outline-variant": "#534434",
+                        "white-high-emphasis": "#FFFFFF",
+                        "on-tertiary-fixed-variant": "#005137",
+                        "error": "#ffb4ab",
+                        "surface-container-high": "#1c2b3c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-gap": "32px",
+                        "margin-lg": "20px",
+                        "margin-xl": "24px",
+                        "unit": "4px",
+                        "gutter-xs": "10px",
+                        "gutter-md": "16px",
+                        "gutter-sm": "12px"
+                    },
+                    "fontFamily": {
+                        "micro-bold": ["Plus Jakarta Sans"],
+                        "label-bold": ["Plus Jakarta Sans"],
+                        "micro-reg": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "display-xl": ["Plus Jakarta Sans"],
+                        "subhead-md": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "micro-bold": ["11px", { "lineHeight": "14px", "fontWeight": "700" }],
+                        "label-bold": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "micro-reg": ["10px", { "lineHeight": "12px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["22px", { "lineHeight": "28px", "fontWeight": "800" }],
+                        "display-xl": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "subhead-md": ["18px", { "lineHeight": "24px", "fontWeight": "800" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "800" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-filled {
+            font-variation-settings: 'FILL' 1;
+        }
+        
+        .glow-gold {
+            box-shadow: 0px 10px 15px -3px rgba(245, 158, 11, 0.2);
+        }
+        
+        /* Custom scrollbar for data tables */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(13, 28, 45, 0.5); /* surface-container-low */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(83, 68, 52, 0.5); /* outline-variant */
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(160, 142, 122, 0.8); /* outline */
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-sm min-h-screen flex selection:bg-primary-container selection:text-on-primary-container">
+<!-- NavigationDrawer (Hidden on Mobile, Visible on md) -->
+<nav class="hidden md:flex flex-col h-full w-72 fixed left-0 top-0 z-40 bg-surface-container-lowest border-r border-outline-variant shadow-xl py-margin-xl space-y-unit overflow-y-auto">
+<!-- Header Profile -->
+<div class="px-margin-xl mb-section-gap flex items-center space-x-gutter-sm">
+<div class="relative w-12 h-12 rounded-full overflow-hidden border-2 border-primary-container shrink-0">
+<img alt="Admin User" class="w-full h-full object-cover" data-alt="A professional headshot of an African logistics manager in a high-tech control room setting. Cinematic lighting, intense focus, wearing a dark navy corporate polo shirt. The background is slightly blurred showing digital screens with graphs. High resolution, photorealistic corporate style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOJOQXNkaSqyQmiabM-OvQ6x6Kq1ysEymB9lGCCQBoGDhZfPS-q-GzvLmjSihmi9UbMr0DPVCE31WHckZstki2g1vUBLzAXzKUs-Si9NdIe9ZT-bbUt-TjlAy6VyTwyahvnTVjkS7qyRnUoQpvDALngtejxrGOI027mI9rG1AcqLCY9Zdd2y74JcQ9AVRifJuJcHI9eKNXd6SZMXASDZiZc3-FgyMqah69RhaJbu8PO2SvbUCNn-Qo">
+</div>
+<div class="flex-1 min-w-0">
+<h2 class="font-headline-lg text-headline-lg text-primary-container truncate">Operations Control</h2>
+<p class="font-micro-reg text-micro-reg text-on-surface-variant truncate">Juba Central Hub</p>
+<p class="font-micro-bold text-micro-bold text-secondary-fixed-dim mt-1">Admin v2.1</p>
+</div>
+</div>
+<!-- Nav Items -->
+<div class="flex-1 px-gutter-sm space-y-1">
+<!-- Dashboard (Active) -->
+<a class="flex items-center px-gutter-md py-3 bg-primary-container text-on-primary-container rounded-lg font-bold transition-all duration-200 cursor-pointer active:opacity-70 group" href="#">
+<span class="material-symbols-outlined mr-gutter-md icon-filled" data-icon="dashboard">dashboard</span>
+<span class="font-subhead-md text-subhead-md">Dashboard</span>
+</a>
+<a class="flex items-center px-gutter-md py-3 text-on-surface-variant hover:bg-surface-variant hover:text-on-surface rounded-lg transition-all duration-200 cursor-pointer active:opacity-70 group" href="#">
+<span class="material-symbols-outlined mr-gutter-md group-hover:icon-filled" data-icon="local_taxi">local_taxi</span>
+<span class="font-subhead-md text-subhead-md">Fleet Monitor</span>
+</a>
+<a class="flex items-center px-gutter-md py-3 text-on-surface-variant hover:bg-surface-variant hover:text-on-surface rounded-lg transition-all duration-200 cursor-pointer active:opacity-70 group" href="#">
+<span class="material-symbols-outlined mr-gutter-md group-hover:icon-filled" data-icon="fact_check">fact_check</span>
+<span class="font-subhead-md text-subhead-md">Compliance</span>
+</a>
+<a class="flex items-center px-gutter-md py-3 text-on-surface-variant hover:bg-surface-variant hover:text-on-surface rounded-lg transition-all duration-200 cursor-pointer active:opacity-70 group" href="#">
+<span class="material-symbols-outlined mr-gutter-md group-hover:icon-filled" data-icon="hub">hub</span>
+<span class="font-subhead-md text-subhead-md">Real-time Tracking</span>
+</a>
+<a class="flex items-center px-gutter-md py-3 text-on-surface-variant hover:bg-surface-variant hover:text-on-surface rounded-lg transition-all duration-200 cursor-pointer active:opacity-70 group" href="#">
+<span class="material-symbols-outlined mr-gutter-md group-hover:icon-filled" data-icon="payments">payments</span>
+<span class="font-subhead-md text-subhead-md">Revenue</span>
+</a>
+<a class="flex items-center px-gutter-md py-3 text-on-surface-variant hover:bg-surface-variant hover:text-on-surface rounded-lg transition-all duration-200 cursor-pointer active:opacity-70 group" href="#">
+<span class="material-symbols-outlined mr-gutter-md group-hover:icon-filled" data-icon="settings">settings</span>
+<span class="font-subhead-md text-subhead-md">Settings</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-72 min-h-screen flex flex-col relative z-10 w-full overflow-x-hidden">
+<!-- TopAppBar (Mobile only for Nav, but acts as page header on Desktop) -->
+<header class="fixed top-0 md:static w-full z-30 bg-surface-dim shadow-sm flex items-center justify-between px-margin-lg h-16 max-w-7xl mx-auto">
+<div class="flex items-center md:hidden">
+<button class="p-2 text-on-surface-variant hover:opacity-80 active:scale-95 transition-all">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="font-display-xl text-display-xl font-extrabold text-primary-fixed ml-2">Hurriya Ride</h1>
+</div>
+<!-- Desktop Header Title -->
+<div class="hidden md:block">
+<h1 class="font-display-xl text-display-xl font-extrabold text-primary-fixed">Overview Hub</h1>
+<p class="font-micro-reg text-micro-reg text-secondary-fixed-dim">Real-time Juba Operations</p>
+</div>
+<div class="flex items-center space-x-4">
+<!-- Global Search / Action -->
+<div class="relative hidden sm:block">
+<input class="bg-surface-container-lowest border border-outline-variant text-on-surface font-body-sm rounded-lg pl-10 pr-4 py-2 focus:outline-none focus:ring-1 focus:ring-primary-container focus:border-primary-container w-64 transition-all placeholder:text-on-surface-variant/50" placeholder="Search driver or plate..." type="text">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+</div>
+<button class="p-2 text-primary-fixed-dim hover:opacity-80 active:scale-95 transition-transform relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-1 right-1 w-2.5 h-2.5 bg-error rounded-full border-2 border-surface-dim"></span>
+</button>
+</div>
+</header>
+<!-- Canvas / Dashboard Content -->
+<div class="p-margin-lg md:p-margin-xl mt-16 md:mt-0 space-y-section-gap max-w-[1600px] mx-auto w-full pb-32 md:pb-margin-xl">
+<!-- Quick Stats Bento Row -->
+<section class="grid grid-cols-2 lg:grid-cols-4 gap-gutter-sm md:gap-gutter-md">
+<!-- Stat Card 1 -->
+<div class="bg-surface-container-high rounded-xl p-4 border border-outline-variant/30 flex flex-col justify-between hover:border-primary-container/50 transition-colors">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-bold text-label-bold text-secondary-fixed-dim">ACTIVE TRIPS</span>
+<div class="bg-safety-emerald/10 px-2 py-0.5 rounded-full flex items-center">
+<span class="w-1.5 h-1.5 rounded-full bg-safety-emerald mr-1 animate-pulse"></span>
+<span class="font-micro-bold text-micro-bold text-safety-emerald">Live</span>
+</div>
+</div>
+<div class="flex items-baseline space-x-2">
+<h3 class="font-display-xl text-display-xl text-white-high-emphasis">1,248</h3>
+<span class="font-micro-bold text-micro-bold text-safety-emerald flex items-center"><span class="material-symbols-outlined text-[14px]">arrow_upward</span> 12%</span>
+</div>
+</div>
+<!-- Stat Card 2 -->
+<div class="bg-surface-container-high rounded-xl p-4 border border-outline-variant/30 flex flex-col justify-between hover:border-primary-container/50 transition-colors">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-bold text-label-bold text-secondary-fixed-dim">TODAY'S REVENUE</span>
+</div>
+<div class="flex items-baseline space-x-2">
+<h3 class="font-display-xl text-display-xl text-primary-fixed">SSP 4.2M</h3>
+<span class="font-micro-bold text-micro-bold text-safety-emerald flex items-center"><span class="material-symbols-outlined text-[14px]">arrow_upward</span> 8%</span>
+</div>
+</div>
+<!-- Stat Card 3 -->
+<div class="bg-surface-container-high rounded-xl p-4 border border-outline-variant/30 flex flex-col justify-between hover:border-primary-container/50 transition-colors">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-bold text-label-bold text-secondary-fixed-dim">COMPLETION RATE</span>
+</div>
+<div class="flex items-baseline space-x-2">
+<h3 class="font-display-xl text-display-xl text-white-high-emphasis">92.4%</h3>
+<span class="font-micro-bold text-micro-bold text-error flex items-center"><span class="material-symbols-outlined text-[14px]">arrow_downward</span> 1.2%</span>
+</div>
+</div>
+<!-- Stat Card 4 -->
+<div class="bg-surface-container-high rounded-xl p-4 border border-outline-variant/30 flex flex-col justify-between hover:border-primary-container/50 transition-colors">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-bold text-label-bold text-secondary-fixed-dim">FLEET UTILIZATION</span>
+</div>
+<div class="flex items-baseline space-x-2">
+<h3 class="font-display-xl text-display-xl text-white-high-emphasis">78%</h3>
+<span class="font-micro-bold text-micro-bold text-on-surface-variant flex items-center"><span class="material-symbols-outlined text-[14px]">remove</span> 0%</span>
+</div>
+</div>
+</section>
+<!-- Main Data Grid (Map & Charts) -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-gutter-sm md:gap-gutter-md">
+<!-- Demand Heatmap (Spans 2 cols on lg) -->
+<div class="lg:col-span-2 bg-surface-container-high rounded-xl border border-outline-variant/30 flex flex-col overflow-hidden h-[450px]">
+<div class="p-4 border-b border-outline-variant/20 flex justify-between items-center bg-surface-container/50 backdrop-blur-md z-10">
+<h3 class="font-subhead-md text-subhead-md text-white-high-emphasis">Live Demand Heatmap</h3>
+<div class="flex space-x-2">
+<button class="px-3 py-1 bg-surface-container-lowest border border-outline-variant text-on-surface-variant text-micro-bold rounded-lg hover:text-white-high-emphasis transition-colors">Juba Center</button>
+<button class="px-3 py-1 bg-primary-container/20 border border-primary-container text-primary-fixed text-micro-bold rounded-lg glow-gold">Full City</button>
+</div>
+</div>
+<!-- Map Canvas / Image Placeholder -->
+<div class="flex-1 relative bg-midnight-bg w-full h-full">
+<img class="w-full h-full object-cover opacity-80 mix-blend-screen" data-alt="A stylized, highly detailed dark-mode digital map of Juba, South Sudan. The map is viewed from a top-down angled perspective (isometric). It features intense, glowing thermal heatmap overlays in vibrant Sunrise Gold, Emerald Green, and Utility Cyan to represent varying levels of traffic density and ride demand. The background terrain is deep Midnight Blue with subtle slate-colored road networks. Cyberpunk/tactical dashboard aesthetic." data-location="Juba" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdIfyKkazzdc-PiqqqptuJpRy-Oy07WJK5vRjg7KBpn9hMWt1-VChJ5TDCxH8-ned2Ka41UGCQrg6jxMxPigsDl8Em08IQI4cftCswhlELldzd5gWCWxU2NIEnLx-dKhtWWv6Ywes7AcMIXo7g6XI8I5lfQByurZGD7MH_f1sOLIqi0AkmsU7ONJvKJsUfKINPbASr7jL2FU56XBnIkmn7oZIo5LaLTWVmnn0qifC9dXyE3YIaVF7M">
+<!-- Floating Map Controls -->
+<div class="absolute bottom-4 right-4 flex flex-col space-y-2">
+<button class="w-10 h-10 bg-surface-container-highest/80 backdrop-blur rounded-lg flex justify-center items-center text-on-surface border border-outline-variant/50 hover:bg-surface-bright transition-colors">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+<button class="w-10 h-10 bg-surface-container-highest/80 backdrop-blur rounded-lg flex justify-center items-center text-on-surface border border-outline-variant/50 hover:bg-surface-bright transition-colors">
+<span class="material-symbols-outlined text-sm">remove</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Fleet Health Monitor -->
+<div class="bg-surface-container-high rounded-xl border border-outline-variant/30 flex flex-col h-[450px]">
+<div class="p-4 border-b border-outline-variant/20 flex justify-between items-center">
+<h3 class="font-subhead-md text-subhead-md text-white-high-emphasis">Fleet Health Monitor</h3>
+<span class="material-symbols-outlined text-on-surface-variant">monitoring</span>
+</div>
+<div class="p-4 flex-1 flex flex-col space-y-6 overflow-y-auto">
+<!-- Fleet Breakdown -->
+<div>
+<div class="flex justify-between font-label-bold text-label-bold mb-2">
+<span class="text-secondary-fixed-dim">Total Registered</span>
+<span class="text-white-high-emphasis">3,450 Units</span>
+</div>
+<!-- Bar chart representation -->
+<div class="flex h-3 rounded-full overflow-hidden w-full bg-surface-container-lowest">
+<div class="bg-safety-emerald w-[65%]" title="Active"></div>
+<div class="bg-primary-container w-[25%]" title="Offline"></div>
+<div class="bg-error w-[10%]" title="Maintenance"></div>
+</div>
+<div class="flex justify-between mt-3">
+<div class="flex items-center">
+<div class="w-2 h-2 rounded-full bg-safety-emerald mr-2"></div>
+<span class="font-micro-reg text-micro-reg text-on-surface-variant">Active (65%)</span>
+</div>
+<div class="flex items-center">
+<div class="w-2 h-2 rounded-full bg-primary-container mr-2"></div>
+<span class="font-micro-reg text-micro-reg text-on-surface-variant">Offline (25%)</span>
+</div>
+<div class="flex items-center">
+<div class="w-2 h-2 rounded-full bg-error mr-2"></div>
+<span class="font-micro-reg text-micro-reg text-on-surface-variant">Maintenance (10%)</span>
+</div>
+</div>
+</div>
+<hr class="border-outline-variant/20">
+<!-- Issues List -->
+<div class="flex-1">
+<h4 class="font-label-bold text-label-bold text-secondary-fixed-dim mb-3">CRITICAL ALERTS</h4>
+<ul class="space-y-3">
+<li class="bg-surface-container-lowest p-3 rounded-lg border border-error/30 flex items-start space-x-3">
+<span class="material-symbols-outlined text-error mt-0.5" style="font-size: 18px;">warning</span>
+<div>
+<p class="font-body-sm text-body-sm text-white-high-emphasis font-bold">5 Boda Bodas offline</p>
+<p class="font-micro-reg text-micro-reg text-on-surface-variant">Zone 4 (Customs Market) - Check connectivity.</p>
+</div>
+</li>
+<li class="bg-surface-container-lowest p-3 rounded-lg border border-primary-container/30 flex items-start space-x-3">
+<span class="material-symbols-outlined text-primary-container mt-0.5" style="font-size: 18px;">build</span>
+<div>
+<p class="font-body-sm text-body-sm text-white-high-emphasis font-bold">Maintenance Overdue</p>
+<p class="font-micro-reg text-micro-reg text-on-surface-variant">12 Tuktuks pending routine oil changes.</p>
+</div>
+</li>
+<li class="bg-surface-container-lowest p-3 rounded-lg border border-outline-variant/30 flex items-start space-x-3">
+<span class="material-symbols-outlined text-on-surface-variant mt-0.5" style="font-size: 18px;">info</span>
+<div>
+<p class="font-body-sm text-body-sm text-white-high-emphasis font-bold">Driver Document Expiring</p>
+<p class="font-micro-reg text-micro-reg text-on-surface-variant">45 licenses expire next week.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- Charts Row -->
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-gutter-sm md:gap-gutter-md">
+<!-- Revenue Growth Chart -->
+<div class="bg-surface-container-high rounded-xl border border-outline-variant/30 p-4 flex flex-col h-80">
+<div class="flex justify-between items-center mb-4">
+<div>
+<h3 class="font-subhead-md text-subhead-md text-white-high-emphasis">WoW Revenue Growth</h3>
+<p class="font-micro-reg text-micro-reg text-on-surface-variant">Current vs Previous Week</p>
+</div>
+<div class="flex space-x-2">
+<span class="flex items-center text-micro-reg font-micro-reg"><span class="w-3 h-3 bg-primary-container rounded-sm mr-1"></span> Current</span>
+<span class="flex items-center text-micro-reg font-micro-reg text-on-surface-variant"><span class="w-3 h-3 bg-surface-container-lowest border border-outline-variant rounded-sm mr-1"></span> Previous</span>
+</div>
+</div>
+<!-- Abstract representation of a line chart using flex/divs since we can't use real chart libs -->
+<div class="flex-1 relative flex items-end justify-between pt-10 pb-4 border-b border-l border-outline-variant/30 px-2">
+<!-- Y-Axis Labels -->
+<div class="absolute left-[-35px] top-0 h-full flex flex-col justify-between text-micro-reg text-on-surface-variant py-4 pr-1 text-right w-8">
+<span>4M</span>
+<span>3M</span>
+<span>2M</span>
+<span>1M</span>
+<span>0</span>
+</div>
+<!-- Grid Lines -->
+<div class="absolute inset-0 border-b border-outline-variant/10 top-1/4"></div>
+<div class="absolute inset-0 border-b border-outline-variant/10 top-2/4"></div>
+<div class="absolute inset-0 border-b border-outline-variant/10 top-3/4"></div>
+<!-- Data Points (Mock Line Chart via absolute positioning for aesthetic) -->
+<!-- Previous Week (Dim) -->
+<svg class="absolute inset-0 h-full w-full pointer-events-none" preserveAspectRatio="none" viewBox="0 0 100 100">
+<polyline fill="none" points="0,80 15,75 30,85 45,60 60,70 75,50 90,65 100,55" stroke="#334155" stroke-dasharray="4,4" stroke-width="2"></polyline>
+<!-- Current Week (Gold) -->
+<polyline fill="none" points="0,70 15,60 30,55 45,40 60,30 75,20 90,25 100,10" stroke="#f59e0b" stroke-width="3"></polyline>
+</svg>
+<!-- X-Axis Labels -->
+<div class="absolute bottom-[-25px] w-full flex justify-between text-micro-reg text-on-surface-variant px-2">
+<span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+</div>
+</div>
+</div>
+<!-- Trip Categories Breakdown -->
+<div class="bg-surface-container-high rounded-xl border border-outline-variant/30 p-4 flex flex-col h-80">
+<div class="flex justify-between items-center mb-4">
+<h3 class="font-subhead-md text-subhead-md text-white-high-emphasis">Trip Categories</h3>
+<button class="text-on-surface-variant hover:text-white-high-emphasis"><span class="material-symbols-outlined">more_horiz</span></button>
+</div>
+<div class="flex-1 flex items-center justify-center relative">
+<!-- Abstract Donut Chart Representation -->
+<div class="w-40 h-40 rounded-full border-[16px] border-surface-container-lowest relative flex items-center justify-center">
+<!-- Conic gradient trick for donut chart segments -->
+<div class="absolute inset-[-16px] rounded-full" style="background: conic-gradient(#f59e0b 0% 55%, #34D399 55% 85%, #22D3EE 85% 100%); mask: radial-gradient(transparent 55%, black 56%); -webkit-mask: radial-gradient(transparent 55%, black 56%);"></div>
+<div class="text-center z-10">
+<span class="block font-display-xl text-display-xl text-white-high-emphasis leading-none">12k</span>
+<span class="block font-micro-reg text-micro-reg text-on-surface-variant">Trips Today</span>
+</div>
+</div>
+</div>
+<!-- Legend -->
+<div class="mt-4 flex justify-between px-4">
+<div class="flex flex-col items-center">
+<div class="flex items-center mb-1"><span class="w-3 h-3 bg-primary-container rounded-sm mr-2 glow-gold"></span><span class="font-label-bold text-label-bold">Boda Boda</span></div>
+<span class="font-body-sm text-body-sm text-secondary-fixed-dim">55% (6.6k)</span>
+</div>
+<div class="flex flex-col items-center">
+<div class="flex items-center mb-1"><span class="w-3 h-3 bg-safety-emerald rounded-sm mr-2"></span><span class="font-label-bold text-label-bold">Tuktuk</span></div>
+<span class="font-body-sm text-body-sm text-secondary-fixed-dim">30% (3.6k)</span>
+</div>
+<div class="flex flex-col items-center">
+<div class="flex items-center mb-1"><span class="w-3 h-3 bg-utility-cyan rounded-sm mr-2"></span><span class="font-label-bold text-label-bold">Car (XL)</span></div>
+<span class="font-body-sm text-body-sm text-secondary-fixed-dim">15% (1.8k)</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- BottomNavBar (Visible on Mobile only, hidden on md) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 rounded-t-xl border-t border-outline-variant bg-surface-container shadow-[0px_-4px_10px_rgba(0,0,0,0.1)]">
+<div class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 px-4 pb-safe bg-surface-container">
+<!-- Default to something semantic or first if unclear. In an admin view on mobile, 'Dashboard' or similar isn't in this specific JSON nav list, but let's assume 'Account' or 'Ride' based on JSON provided -->
+<!-- Note: The prompt asks for Admin Dashboard, but the BottomNavBar JSON provided is tailored for Passenger app (Ride, History, Safety, Account). 
+                 Conflict resolution: Execute JSON structural styles, but semantic mapping for Admin on Passenger nav is tricky. I will highlight 'Account' to represent the Admin user profile context, or suppress it. The instructions say:
+                 "You are only permitted to render the BottomNavBar or SideNav if the current screen represents a top-level destination... If designing a user settings page, Profile is active." 
+                 Since this is an Admin Dashboard (Top-level), and the BottomNav provided has [Ride, History, Safety, Account], none perfectly match "Dashboard". I will highlight Ride as the primary operational function. -->
+<!-- Ride (Active Intent - Monitoring Rides) -->
+<a class="flex flex-col items-center justify-center bg-primary-container/20 text-primary-fixed rounded-full px-4 py-1 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined icon-filled mb-1 text-[24px]" data-icon="directions_car">directions_car</span>
+<span class="font-label-bold text-label-bold">Ride</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary-fixed-dim hover:text-primary transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined mb-1 text-[24px]" data-icon="history">history</span>
+<span class="font-label-bold text-label-bold">History</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary-fixed-dim hover:text-primary transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined mb-1 text-[24px]" data-icon="verified_user">verified_user</span>
+<span class="font-label-bold text-label-bold">Safety</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary-fixed-dim hover:text-primary transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined mb-1 text-[24px]" data-icon="person">person</span>
+<span class="font-label-bold text-label-bold">Account</span>
+</a>
+</div>
+</nav>
+</body></html>

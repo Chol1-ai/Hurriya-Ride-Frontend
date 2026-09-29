@@ -1,0 +1,427 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Corporate Mobility Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "slate-surface": "#1E293B",
+                        "inverse-surface": "#d4e4fa",
+                        "on-primary": "#472a00",
+                        "outline": "#a08e7a",
+                        "secondary-fixed": "#dae2fd",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "surface-container-lowest": "#010f1f",
+                        "tertiary-fixed-dim": "#45dfa4",
+                        "surface-tint": "#ffb95f",
+                        "on-primary-fixed": "#2a1700",
+                        "background": "#051424",
+                        "on-primary-fixed-variant": "#653e00",
+                        "surface-container-highest": "#273647",
+                        "surface-container-low": "#0d1c2d",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "error-container": "#93000a",
+                        "on-background": "#d4e4fa",
+                        "secondary-container": "#3f465c",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary-container": "#004e35",
+                        "safety-emerald": "#34D399",
+                        "on-primary-container": "#613b00",
+                        "inverse-primary": "#855300",
+                        "on-secondary": "#283044",
+                        "surface-bright": "#2c3a4c",
+                        "primary": "#ffc174",
+                        "primary-fixed": "#ffddb8",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed": "#002114",
+                        "surface-dim": "#051424",
+                        "on-secondary-fixed": "#131b2e",
+                        "on-tertiary": "#003825",
+                        "primary-container": "#f59e0b",
+                        "surface-container": "#122131",
+                        "on-secondary-container": "#adb4ce",
+                        "inverse-on-surface": "#233143",
+                        "primary-fixed-dim": "#ffb95f",
+                        "midnight-bg": "#020617",
+                        "utility-indigo": "#818CF8",
+                        "slate-border": "#334155",
+                        "tertiary": "#4de6aa",
+                        "surface-variant": "#273647",
+                        "on-surface-variant": "#d8c3ad",
+                        "utility-cyan": "#22D3EE",
+                        "tertiary-container": "#22c990",
+                        "tertiary-fixed": "#68fcbf",
+                        "surface": "#051424",
+                        "secondary": "#bec6e0",
+                        "on-surface": "#d4e4fa",
+                        "outline-variant": "#534434",
+                        "white-high-emphasis": "#FFFFFF",
+                        "on-tertiary-fixed-variant": "#005137",
+                        "error": "#ffb4ab",
+                        "surface-container-high": "#1c2b3c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-gap": "32px",
+                        "margin-lg": "20px",
+                        "margin-xl": "24px",
+                        "unit": "4px",
+                        "gutter-xs": "10px",
+                        "gutter-md": "16px",
+                        "gutter-sm": "12px"
+                    },
+                    "fontFamily": {
+                        "micro-bold": ["Plus Jakarta Sans"],
+                        "label-bold": ["Plus Jakarta Sans"],
+                        "micro-reg": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "display-xl": ["Plus Jakarta Sans"],
+                        "subhead-md": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "micro-bold": ["11px", { "lineHeight": "14px", "fontWeight": "700" }],
+                        "label-bold": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "micro-reg": ["10px", { "lineHeight": "12px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["22px", { "lineHeight": "28px", "fontWeight": "800" }],
+                        "display-xl": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "subhead-md": ["18px", { "lineHeight": "24px", "fontWeight": "800" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "800" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                },
+            }
+        }
+    </script>
+<style>
+        body { background-color: #020617; color: #d4e4fa; font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass-panel { background: rgba(30, 41, 59, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(51, 65, 85, 0.5); }
+        .glow-gold { box-shadow: 0px 10px 15px -3px rgba(245, 158, 11, 0.2); }
+        .hollow-input { background-color: #020617; border: 1px solid #1E293B; }
+        /* Custom scrollbar for tables */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #051424; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+    </style>
+</head>
+<body class="bg-midnight-bg flex h-screen overflow-hidden text-on-surface selection:bg-primary-container selection:text-on-primary-container">
+<!-- Navigation Drawer (Desktop/Tablet) -->
+<aside class="hidden lg:flex flex-col h-full w-72 fixed left-0 top-0 z-40 bg-surface-container-low border-r border-slate-border py-margin-xl space-y-unit shadow-xl">
+<div class="px-margin-xl mb-section-gap flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-subhead-md text-subhead-md">HR</div>
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary-container leading-none">Hurriya Ride</h2>
+<p class="font-micro-reg text-micro-reg text-on-surface-variant mt-1">Corporate Mobility</p>
+</div>
+</div>
+<div class="px-margin-xl mb-6">
+<div class="flex items-center gap-3 bg-surface-variant/30 p-3 rounded-lg border border-slate-border/50">
+<img class="w-10 h-10 rounded-full object-cover border border-slate-border" data-alt="A professional headshot of a corporate administrator in a modern office environment. Deep midnight blue and subtle gold lighting. Minimalist style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMvFlEN0KdJMmxbiuYSxBOeLEcUcVGA3yhZucFb14oxdXnK1pXq_LsKsNszmTXERgPBClKoqgOUXiiNll7EqnCw8B20k0PuB-bMcXPhTiwydgTZ4yykZokuqw3MkpK-RVi7bTFibf_INs2qbrPy8dlG24d0CvUcC0KUhs7JUZvAwfqDaBjOkwDnHLXSNZbf4PwTA0mE8yFc9974ThubC6BJrznljI3gBeqzmmpty52CzcKhNSogo6h">
+<div>
+<h3 class="font-subhead-md text-subhead-md text-primary">Operations Control</h3>
+<p class="font-micro-reg text-micro-reg text-secondary-fixed-dim">Juba Central Hub</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-3 space-y-1 overflow-y-auto">
+<!-- Dashboard Active -->
+<a class="flex items-center gap-3 px-4 py-3 bg-primary-container text-on-primary-container rounded-lg font-bold transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-subhead-md text-subhead-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant hover:text-on-surface rounded-lg cursor-pointer active:opacity-70 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-subhead-md text-subhead-md">Employees</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant hover:text-on-surface rounded-lg cursor-pointer active:opacity-70 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-subhead-md text-subhead-md">Invoices</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant hover:text-on-surface rounded-lg cursor-pointer active:opacity-70 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">admin_panel_settings</span>
+<span class="font-subhead-md text-subhead-md">Policies</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant hover:text-on-surface rounded-lg cursor-pointer active:opacity-70 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-subhead-md text-subhead-md">Settings</span>
+</a>
+</nav>
+<div class="p-4 mt-auto">
+<a class="flex items-center justify-center gap-2 w-full py-3 border border-slate-border text-on-surface hover:bg-surface-variant rounded-lg font-subhead-md text-subhead-md transition-colors" href="#">
+<span class="material-symbols-outlined">logout</span>
+                Logout
+            </a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 lg:ml-72 flex flex-col h-full bg-background relative overflow-hidden">
+<!-- Top App Bar (Mobile Only Placeholder for structure) -->
+<header class="lg:hidden flex items-center justify-between px-margin-lg h-16 w-full bg-surface shadow-sm z-50">
+<span class="font-headline-lg-mobile text-headline-lg-mobile font-extrabold text-primary-container">Hurriya Ride</span>
+<span class="material-symbols-outlined text-primary text-2xl">menu</span>
+</header>
+<!-- Scrollable Canvas -->
+<div class="flex-1 overflow-y-auto p-4 md:p-margin-xl space-y-section-gap relative z-10">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h1 class="font-display-xl text-display-xl text-white-high-emphasis">Corporate Overview</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Manage spending, policies, and employee mobility across your organization.</p>
+</div>
+<div class="flex gap-3">
+<button class="bg-primary-container text-slate-surface font-subhead-md text-subhead-md font-bold py-2 px-6 rounded-lg glow-gold hover:opacity-90 active:scale-95 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">download</span>
+                        Export Report
+                    </button>
+</div>
+</div>
+<!-- Top Stats Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter-md">
+<!-- Stat Card 1: Total Spend -->
+<div class="bg-slate-surface rounded-xl p-4 border border-slate-border flex flex-col relative overflow-hidden group hover:border-primary-container transition-colors">
+<div class="absolute top-0 right-0 p-3 opacity-20 group-hover:opacity-40 transition-opacity">
+<span class="material-symbols-outlined text-4xl text-primary-container">payments</span>
+</div>
+<span class="font-label-bold text-label-bold text-on-surface-variant uppercase tracking-wider mb-2">Total MTD Spend</span>
+<span class="font-display-xl text-display-xl text-white-high-emphasis">$14,250.00</span>
+<div class="flex items-center gap-1 mt-2">
+<span class="material-symbols-outlined text-safety-emerald text-sm">trending_up</span>
+<span class="font-micro-bold text-micro-bold text-safety-emerald">+12.5%</span>
+<span class="font-micro-reg text-micro-reg text-secondary-fixed-dim ml-1">vs last month</span>
+</div>
+</div>
+<!-- Stat Card 2: Active Employees -->
+<div class="bg-slate-surface rounded-xl p-4 border border-slate-border flex flex-col relative overflow-hidden group hover:border-primary-container transition-colors">
+<div class="absolute top-0 right-0 p-3 opacity-20 group-hover:opacity-40 transition-opacity">
+<span class="material-symbols-outlined text-4xl text-tertiary">group</span>
+</div>
+<span class="font-label-bold text-label-bold text-on-surface-variant uppercase tracking-wider mb-2">Active Employees</span>
+<span class="font-display-xl text-display-xl text-white-high-emphasis">128</span>
+<div class="flex items-center gap-1 mt-2">
+<span class="font-micro-reg text-micro-reg text-secondary-fixed-dim">Out of 150 registered</span>
+</div>
+</div>
+<!-- Stat Card 3: Total Rides -->
+<div class="bg-slate-surface rounded-xl p-4 border border-slate-border flex flex-col relative overflow-hidden group hover:border-primary-container transition-colors">
+<div class="absolute top-0 right-0 p-3 opacity-20 group-hover:opacity-40 transition-opacity">
+<span class="material-symbols-outlined text-4xl text-utility-cyan">local_taxi</span>
+</div>
+<span class="font-label-bold text-label-bold text-on-surface-variant uppercase tracking-wider mb-2">Total Rides (MTD)</span>
+<span class="font-display-xl text-display-xl text-white-high-emphasis">842</span>
+<div class="flex items-center gap-1 mt-2">
+<span class="font-micro-reg text-micro-reg text-secondary-fixed-dim">Avg $16.92 per ride</span>
+</div>
+</div>
+<!-- Stat Card 4: Policy Alerts -->
+<div class="bg-slate-surface rounded-xl p-4 border border-slate-border flex flex-col relative overflow-hidden group hover:border-error transition-colors">
+<div class="absolute top-0 right-0 p-3 opacity-20 group-hover:opacity-40 transition-opacity">
+<span class="material-symbols-outlined text-4xl text-error">warning</span>
+</div>
+<span class="font-label-bold text-label-bold text-on-surface-variant uppercase tracking-wider mb-2">Policy Exceptions</span>
+<span class="font-display-xl text-display-xl text-error">3</span>
+<div class="flex items-center gap-1 mt-2">
+<span class="font-micro-reg text-micro-reg text-error cursor-pointer hover:underline">Review required</span>
+</div>
+</div>
+</div>
+<!-- Main Layout Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter-md">
+<!-- Left Column: Employee List (Takes up 2 cols on LG) -->
+<div class="lg:col-span-2 bg-slate-surface rounded-xl border border-slate-border overflow-hidden flex flex-col h-[500px]">
+<!-- Header -->
+<div class="p-4 border-b border-slate-border flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-surface-container-high/50">
+<h2 class="font-subhead-md text-subhead-md text-white-high-emphasis flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container">badge</span>
+                            Employee Usage
+                        </h2>
+<div class="relative w-full sm:w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="w-full hollow-input text-body-sm font-body-sm text-on-surface rounded-lg pl-9 pr-3 py-2 focus:outline-none focus:ring-1 focus:ring-primary-container focus:border-primary-container transition-shadow placeholder:text-on-surface-variant/50" placeholder="Search employee..." type="text">
+</div>
+</div>
+<!-- Table Container -->
+<div class="flex-1 overflow-auto">
+<table class="w-full text-left border-collapse min-w-[600px]">
+<thead class="sticky top-0 bg-slate-surface border-b border-slate-border z-10">
+<tr>
+<th class="p-4 font-label-bold text-label-bold text-on-surface-variant uppercase">Employee</th>
+<th class="p-4 font-label-bold text-label-bold text-on-surface-variant uppercase">Department</th>
+<th class="p-4 font-label-bold text-label-bold text-on-surface-variant uppercase">Rides</th>
+<th class="p-4 font-label-bold text-label-bold text-on-surface-variant uppercase text-right">Total Spend</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm divide-y divide-slate-border/50">
+<tr class="hover:bg-surface-variant/30 transition-colors group">
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-utility-indigo/20 text-utility-indigo flex items-center justify-center font-bold text-xs">SJ</div>
+<div>
+<div class="text-white-high-emphasis font-medium">Sarah Jenkins</div>
+<div class="text-micro-reg font-micro-reg text-secondary-fixed-dim">sarah.j@acmecorp.com</div>
+</div>
+</div>
+</td>
+<td class="p-4 text-secondary-fixed-dim">Sales</td>
+<td class="p-4 text-white-high-emphasis">24</td>
+<td class="p-4 text-right text-white-high-emphasis font-medium">$450.20</td>
+</tr>
+<tr class="hover:bg-surface-variant/30 transition-colors group">
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-tertiary/20 text-tertiary flex items-center justify-center font-bold text-xs">MC</div>
+<div>
+<div class="text-white-high-emphasis font-medium">Michael Chen</div>
+<div class="text-micro-reg font-micro-reg text-secondary-fixed-dim">m.chen@acmecorp.com</div>
+</div>
+</div>
+</td>
+<td class="p-4 text-secondary-fixed-dim">Engineering</td>
+<td class="p-4 text-white-high-emphasis">12</td>
+<td class="p-4 text-right text-white-high-emphasis font-medium">$180.50</td>
+</tr>
+<tr class="hover:bg-surface-variant/30 transition-colors group">
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-error/20 text-error flex items-center justify-center font-bold text-xs">AR</div>
+<div>
+<div class="text-white-high-emphasis font-medium flex items-center gap-2">
+                                                    Amanda Ross
+                                                    <span class="material-symbols-outlined text-[14px] text-error" title="Policy Exception">warning</span>
+</div>
+<div class="text-micro-reg font-micro-reg text-secondary-fixed-dim">aross@acmecorp.com</div>
+</div>
+</div>
+</td>
+<td class="p-4 text-secondary-fixed-dim">Marketing</td>
+<td class="p-4 text-white-high-emphasis">31</td>
+<td class="p-4 text-right text-error font-medium">$890.00</td>
+</tr>
+<tr class="hover:bg-surface-variant/30 transition-colors group">
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-utility-cyan/20 text-utility-cyan flex items-center justify-center font-bold text-xs">DK</div>
+<div>
+<div class="text-white-high-emphasis font-medium">David Kim</div>
+<div class="text-micro-reg font-micro-reg text-secondary-fixed-dim">dkim@acmecorp.com</div>
+</div>
+</div>
+</td>
+<td class="p-4 text-secondary-fixed-dim">Operations</td>
+<td class="p-4 text-white-high-emphasis">18</td>
+<td class="p-4 text-right text-white-high-emphasis font-medium">$320.10</td>
+</tr>
+<tr class="hover:bg-surface-variant/30 transition-colors group">
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-container/20 text-primary-container flex items-center justify-center font-bold text-xs">EL</div>
+<div>
+<div class="text-white-high-emphasis font-medium">Elena Lopez</div>
+<div class="text-micro-reg font-micro-reg text-secondary-fixed-dim">elopez@acmecorp.com</div>
+</div>
+</div>
+</td>
+<td class="p-4 text-secondary-fixed-dim">Executive</td>
+<td class="p-4 text-white-high-emphasis">8</td>
+<td class="p-4 text-right text-white-high-emphasis font-medium">$510.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-3 border-t border-slate-border text-center bg-surface-container-high/30">
+<button class="text-primary-container font-label-bold text-label-bold hover:underline">View All Employees</button>
+</div>
+</div>
+<!-- Right Column: Policies & Invoices -->
+<div class="flex flex-col gap-gutter-md h-[500px]">
+<!-- Policy Controls -->
+<div class="bg-slate-surface rounded-xl border border-slate-border p-5 flex-1 flex flex-col">
+<h2 class="font-subhead-md text-subhead-md text-white-high-emphasis mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary">admin_panel_settings</span>
+                            Quick Policies
+                        </h2>
+<div class="space-y-4 flex-1">
+<!-- Toggle 1 -->
+<div class="flex items-center justify-between p-3 bg-midnight-bg rounded-lg border border-slate-border/50">
+<div>
+<div class="font-body-sm text-body-sm text-white-high-emphasis font-medium">Late Night Rides</div>
+<div class="font-micro-reg text-micro-reg text-on-surface-variant">Allow booking between 10PM - 5AM</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox">
+<div class="w-11 h-6 bg-slate-border rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</div>
+<!-- Toggle 2 -->
+<div class="flex items-center justify-between p-3 bg-midnight-bg rounded-lg border border-slate-border/50">
+<div>
+<div class="font-body-sm text-body-sm text-white-high-emphasis font-medium">Premium Vehicle Tier</div>
+<div class="font-micro-reg text-micro-reg text-on-surface-variant">Allow booking of executive SUVs</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox">
+<div class="w-11 h-6 bg-slate-border rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</div>
+<!-- Toggle 3 -->
+<div class="flex items-center justify-between p-3 bg-midnight-bg rounded-lg border border-slate-border/50">
+<div>
+<div class="font-body-sm text-body-sm text-white-high-emphasis font-medium">Auto-Approve &lt; $50</div>
+<div class="font-micro-reg text-micro-reg text-on-surface-variant">Skip manager review for low fares</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox">
+<div class="w-11 h-6 bg-slate-border rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</div>
+</div>
+<button class="mt-4 w-full py-2 border border-slate-border text-on-surface hover:bg-surface-variant rounded-lg font-label-bold text-label-bold transition-colors">Manage All Policies</button>
+</div>
+<!-- Invoices -->
+<div class="bg-slate-surface rounded-xl border border-slate-border p-5 h-[200px] flex flex-col">
+<h2 class="font-subhead-md text-subhead-md text-white-high-emphasis mb-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-utility-cyan">receipt_long</span>
+                            Recent Invoices
+                        </h2>
+<div class="space-y-2 flex-1 overflow-auto pr-1">
+<div class="flex items-center justify-between p-2 hover:bg-surface-variant/50 rounded-lg transition-colors group cursor-pointer border border-transparent hover:border-slate-border">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary-fixed-dim">picture_as_pdf</span>
+<div>
+<div class="font-body-sm text-body-sm text-white-high-emphasis font-medium">INV-Oct-2023</div>
+<div class="font-micro-reg text-micro-reg text-on-surface-variant">Nov 1, 2023 • $13,420.00</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary-container opacity-0 group-hover:opacity-100 transition-opacity">download</span>
+</div>
+<div class="flex items-center justify-between p-2 hover:bg-surface-variant/50 rounded-lg transition-colors group cursor-pointer border border-transparent hover:border-slate-border">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary-fixed-dim">picture_as_pdf</span>
+<div>
+<div class="font-body-sm text-body-sm text-white-high-emphasis font-medium">INV-Sep-2023</div>
+<div class="font-micro-reg text-micro-reg text-on-surface-variant">Oct 1, 2023 • $12,850.00</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary-container opacity-0 group-hover:opacity-100 transition-opacity">download</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Spacer for mobile nav if needed later -->
+<div class="h-8 lg:hidden"></div>
+</div>
+</main>
+</body></html>

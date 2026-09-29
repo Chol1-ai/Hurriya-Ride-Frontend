@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Driver Performance Analytics - Hurriya Command</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#142537",
+                        "on-secondary": "#00354a",
+                        "primary-fixed-dim": "#ffb95f",
+                        "surface-container-high": "#1c2b3c",
+                        "on-secondary-container": "#00374d",
+                        "inverse-on-surface": "#233143",
+                        "outline-variant": "#534434",
+                        "primary-container": "#f59e0b",
+                        "secondary": "#7bd0ff",
+                        "surface-container-low": "#0d1c2d",
+                        "tertiary-container": "#a3abff",
+                        "on-error": "#690005",
+                        "on-surface-variant": "#d8c3ad",
+                        "secondary-container": "#00a6e0",
+                        "primary-fixed": "#ffddb8",
+                        "background": "#051424",
+                        "status-warning": "#f59e0b",
+                        "tertiary-fixed": "#e0e0ff",
+                        "secondary-fixed-dim": "#7bd0ff",
+                        "on-primary-fixed": "#2a1700",
+                        "on-error-container": "#ffdad6",
+                        "status-inactive": "#6b7280",
+                        "error-container": "#93000a",
+                        "tertiary-fixed-dim": "#bdc2ff",
+                        "inverse-surface": "#d4e4fa",
+                        "inverse-primary": "#855300",
+                        "tertiary": "#c5c9ff",
+                        "on-primary-container": "#613b00",
+                        "status-success": "#10b981",
+                        "surface-variant": "#273647",
+                        "surface-container-highest": "#2c3a4c",
+                        "surface-container-lowest": "#010f1f",
+                        "on-primary-fixed-variant": "#653e00",
+                        "error": "#ffb4ab",
+                        "on-secondary-fixed": "#001e2c",
+                        "on-primary": "#472a00",
+                        "on-tertiary-container": "#2c36a0",
+                        "primary": "#ffc174",
+                        "on-surface": "#d4e4fa",
+                        "on-tertiary-fixed-variant": "#2f3aa3",
+                        "outline": "#a08e7a",
+                        "on-tertiary-fixed": "#000767",
+                        "status-danger": "#ef4444",
+                        "on-tertiary": "#131e8c",
+                        "on-background": "#d4e4fa",
+                        "on-secondary-fixed-variant": "#004c69",
+                        "surface-tint": "#ffb95f",
+                        "surface-bright": "#2c3a4c",
+                        "surface-dim": "#051424",
+                        "secondary-fixed": "#c4e7ff",
+                        "surface": "#051424"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-gap-sm": "0.5rem",
+                        "sidebar-width": "16rem",
+                        "header-height": "5rem",
+                        "stack-gap-md": "1.5rem",
+                        "stack-gap-lg": "2rem",
+                        "container-padding": "2rem"
+                    },
+                    "fontFamily": {
+                        "stats-lg": ["Plus Jakarta Sans"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "title-md": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "label-sm": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "stats-lg": ["30px", {"lineHeight": "1", "fontWeight": "700"}],
+                        "display-lg": ["30px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "title-md": ["18px", {"lineHeight": "1.4", "fontWeight": "700"}],
+                        "body-md": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-md": ["20px", {"lineHeight": "1.2", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Glassmorphism utilities */
+        .glass-panel {
+            background: rgba(20, 37, 55, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(28, 43, 60, 0.5);
+        }
+        
+        /* Custom scrollbar for dark mode */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #010f1f; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #273647; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ffb95f; 
+        }
+    </style>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-background text-on-surface font-body-md text-body-md antialiased overflow-hidden flex h-screen">
+<!-- SideNavBar -->
+<nav class="bg-surface-container-low dark:bg-surface-container-lowest border-r border-slate-border docked h-screen w-64 left-0 sticky z-50 flex flex-col h-full py-margin-xl hidden lg:flex">
+<div class="px-6 mb-8 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary icon-fill" data-icon="local_taxi">local_taxi</span>
+</div>
+<div>
+<h1 class="font-headline-lg text-headline-lg font-extrabold text-primary dark:text-primary-fixed-dim tracking-tight">Hurriya Admin</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Juba Operations</p>
+</div>
+</div>
+<div class="flex-1 px-4 space-y-1 overflow-y-auto">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:hover:bg-surface-container transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-sm text-label-sm font-semibold">Command Center</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:hover:bg-surface-container transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="verified_user">verified_user</span>
+<span class="font-label-sm text-label-sm font-semibold">Verification</span>
+</a>
+<!-- Active State -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-surface-container-high text-primary dark:text-primary-fixed-dim font-bold border-l-4 border-primary shadow-sm transform translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined icon-fill" data-icon="local_taxi">local_taxi</span>
+<span class="font-label-sm text-label-sm font-bold">Fleet Performance</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:hover:bg-surface-container transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-label-sm text-label-sm font-semibold">Revenue</span>
+</a>
+</div>
+<div class="px-4 mt-auto space-y-1 pt-4 border-t border-surface-container-high">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:hover:bg-surface-container transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="support_agent">support_agent</span>
+<span class="font-label-sm text-label-sm font-semibold">Support</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:hover:bg-surface-container transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-label-sm text-label-sm font-semibold">Logout</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col h-screen overflow-hidden">
+<!-- TopNavBar -->
+<header class="bg-surface/80 dark:bg-surface/80 backdrop-blur-md border-b border-surface-container-high docked full-width top-0 sticky z-40 flex justify-between items-center w-full px-8 py-4 h-header-height">
+<div class="flex items-center gap-4 lg:hidden">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h1 class="font-display-xl text-display-xl font-black text-primary dark:text-primary-fixed-dim tracking-tight">Hurriya Ride</h1>
+</div>
+<div class="hidden lg:flex items-center flex-1 max-w-xl relative">
+<span class="material-symbols-outlined absolute left-3 text-on-surface-variant" data-icon="search">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-full py-2 pl-10 pr-4 text-body-md font-body-md text-on-surface focus:ring-2 focus:ring-primary placeholder-on-surface-variant transition-shadow" placeholder="Search drivers, trips, or ID..." type="text"/>
+</div>
+<div class="flex items-center gap-4 ml-auto">
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-200 relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full"></span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-200 hidden sm:flex">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-200 hidden sm:flex">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="h-8 w-px bg-surface-container-high mx-2 hidden sm:block"></div>
+<button class="flex items-center gap-2 hover:opacity-80 transition-opacity">
+<img alt="Admin Profile Avatar" class="w-10 h-10 rounded-full border-2 border-surface-container-highest object-cover" data-alt="A high-fidelity headshot of an African administrative professional in a dark modern office setting, bright amber lighting accents, sharp focus, professional corporate photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgoxKMFoceswIhV8RWg21K3qsMcTfNSfYizUEZphyl7UEMjjSNEoM6zTw-M4PfKNk3mHF7K5hyKQrLlF-hT9MDlmIm3G2j-Ne6M-BMMDWe96Qz_Pexjw6gdIC2UhdyN8DB33LqaoCXEq3uD1b_xie63lOguS_Zy9diWox2c6um3P5tUvperoeOLwPF1Kf-BPXjAl1jwD-d7Jpw5kSLj2HcSVtS2jC7GZm0CBH_NZpzfWXVLnp52WmK"/>
+</button>
+</div>
+</header>
+<!-- Dashboard Canvas -->
+<main class="flex-1 overflow-y-auto p-container-padding bg-surface">
+<div class="max-w-7xl mx-auto space-y-6">
+<!-- Page Header -->
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 mb-6">
+<div>
+<h2 class="font-display-lg text-display-lg text-on-surface">Driver Performance Analytics</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Real-time safety and behavior metrics for active fleet.</p>
+</div>
+<div class="flex gap-3">
+<button class="px-4 py-2 rounded-lg bg-surface-container-low border border-surface-container-high text-on-surface font-label-sm text-label-sm flex items-center gap-2 hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="calendar_today">calendar_today</span>
+                            Last 30 Days
+                        </button>
+<button class="px-4 py-2 rounded-lg bg-primary text-on-primary font-label-sm text-label-sm font-bold shadow-lg shadow-primary/20 flex items-center gap-2 hover:bg-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="download">download</span>
+                            Export Report
+                        </button>
+</div>
+</div>
+<!-- Section 1: Safety & Performance Index (Hero) -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Global Gauge -->
+<div class="glass-panel rounded-xl p-6 lg:col-span-1 flex flex-col items-center justify-center relative overflow-hidden shadow-2xl shadow-black/40">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent pointer-events-none"></div>
+<h3 class="font-title-md text-title-md text-on-surface w-full text-left mb-6">Fleet Safety Index</h3>
+<div class="relative w-48 h-48 flex items-center justify-center">
+<!-- SVG Gauge implementation for custom styling -->
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 100 100">
+<!-- Background circle -->
+<circle cx="50" cy="50" fill="none" r="45" stroke="#1c2b3c" stroke-dasharray="283" stroke-dashoffset="0" stroke-width="8"></circle>
+<!-- Progress circle (85%) -->
+<circle class="drop-shadow-[0_0_8px_rgba(245,158,11,0.5)]" cx="50" cy="50" fill="none" r="45" stroke="#f59e0b" stroke-dasharray="283" stroke-dashoffset="42.45" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="absolute flex flex-col items-center justify-center">
+<span class="font-display-lg text-[48px] font-black text-primary">85</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Excellent</span>
+</div>
+</div>
+<div class="flex items-center gap-2 mt-6 px-3 py-1 bg-status-success/10 rounded-full border border-status-success/20">
+<span class="material-symbols-outlined text-status-success text-[16px]" data-icon="trending_up">trending_up</span>
+<span class="font-label-sm text-label-sm text-status-success">+2.4% vs last month</span>
+</div>
+</div>
+<!-- Breakdown Metrics -->
+<div class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-4">
+<!-- Smooth Driving -->
+<div class="glass-panel rounded-xl p-5 flex flex-col justify-between shadow-lg shadow-black/20 group hover:border-primary/30 transition-colors">
+<div class="flex justify-between items-start mb-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="timeline">timeline</span>
+</div>
+<span class="font-title-md text-title-md text-on-surface">92<span class="text-sm text-on-surface-variant font-normal">/100</span></span>
+</div>
+<div>
+<h4 class="font-label-sm text-label-sm text-on-surface-variant mb-1 uppercase tracking-wider">Smooth Driving</h4>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full w-[92%]"></div>
+</div>
+</div>
+</div>
+<!-- Speed Compliance -->
+<div class="glass-panel rounded-xl p-5 flex flex-col justify-between shadow-lg shadow-black/20 group hover:border-primary/30 transition-colors">
+<div class="flex justify-between items-start mb-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-status-success">
+<span class="material-symbols-outlined" data-icon="speed">speed</span>
+</div>
+<span class="font-title-md text-title-md text-on-surface">88<span class="text-sm text-on-surface-variant font-normal">/100</span></span>
+</div>
+<div>
+<h4 class="font-label-sm text-label-sm text-on-surface-variant mb-1 uppercase tracking-wider">Speed Compliance</h4>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-status-success h-full rounded-full w-[88%]"></div>
+</div>
+</div>
+</div>
+<!-- Customer Service -->
+<div class="glass-panel rounded-xl p-5 flex flex-col justify-between shadow-lg shadow-black/20 group hover:border-primary/30 transition-colors">
+<div class="flex justify-between items-start mb-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-tertiary-container">
+<span class="material-symbols-outlined" data-icon="support_agent">support_agent</span>
+</div>
+<span class="font-title-md text-title-md text-on-surface">95<span class="text-sm text-on-surface-variant font-normal">/100</span></span>
+</div>
+<div>
+<h4 class="font-label-sm text-label-sm text-on-surface-variant mb-1 uppercase tracking-wider">Customer Service</h4>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-tertiary-container h-full rounded-full w-[95%]"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 2: Performance Over Time & Behavioral Hotspots -->
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+<!-- Chart -->
+<div class="glass-panel rounded-xl p-6 xl:col-span-2 shadow-2xl shadow-black/40 border border-surface-container-high">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-title-md text-title-md text-on-surface">Performance Trends</h3>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Safety Score</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-secondary"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Avg Rating</span>
+</div>
+</div>
+</div>
+<div class="h-64 w-full relative">
+<!-- Placeholder for Chart.js canvas -->
+<canvas id="performanceChart"></canvas>
+</div>
+</div>
+<!-- Behavioral Hotspots -->
+<div class="glass-panel rounded-xl p-0 flex flex-col overflow-hidden border border-surface-container-high shadow-2xl shadow-black/40">
+<div class="p-5 border-b border-surface-container-high bg-surface-container-lowest/50">
+<h3 class="font-title-md text-title-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="warning">warning</span>
+                                Behavioral Hotspots
+                            </h3>
+</div>
+<div class="p-2 flex-1 flex flex-col gap-1">
+<!-- Hotspot Item 1 -->
+<div class="p-3 rounded-lg hover:bg-surface-container/50 transition-colors flex items-center justify-between group">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-status-danger/10 text-status-danger flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]" data-icon="car_crash">car_crash</span>
+</div>
+<div>
+<p class="font-body-md text-body-md font-semibold text-on-surface">Hard Braking</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">24 incidents today</p>
+</div>
+</div>
+<div class="flex items-center gap-1 text-status-danger bg-status-danger/10 px-2 py-1 rounded">
+<span class="material-symbols-outlined text-[14px]" data-icon="arrow_upward">arrow_upward</span>
+<span class="font-label-sm text-[11px] font-bold">12%</span>
+</div>
+</div>
+<!-- Hotspot Item 2 -->
+<div class="p-3 rounded-lg hover:bg-surface-container/50 transition-colors flex items-center justify-between group">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-status-warning/10 text-status-warning flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]" data-icon="sports_score">sports_score</span>
+</div>
+<div>
+<p class="font-body-md text-body-md font-semibold text-on-surface">Rapid Accel.</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">18 incidents today</p>
+</div>
+</div>
+<div class="flex items-center gap-1 text-status-warning bg-status-warning/10 px-2 py-1 rounded">
+<span class="material-symbols-outlined text-[14px]" data-icon="arrow_upward">arrow_upward</span>
+<span class="font-label-sm text-[11px] font-bold">5%</span>
+</div>
+</div>
+<!-- Hotspot Item 3 -->
+<div class="p-3 rounded-lg hover:bg-surface-container/50 transition-colors flex items-center justify-between group">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary/10 text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]" data-icon="timer">timer</span>
+</div>
+<div>
+<p class="font-body-md text-body-md font-semibold text-on-surface">Idle Time &gt; 5m</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">42 incidents today</p>
+</div>
+</div>
+<div class="flex items-center gap-1 text-status-success bg-status-success/10 px-2 py-1 rounded">
+<span class="material-symbols-outlined text-[14px]" data-icon="arrow_downward">arrow_downward</span>
+<span class="font-label-sm text-[11px] font-bold">8%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<script>
+        // Initialize Chart.js
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('performanceChart').getContext('2d');
+            
+            // Generate dummy data
+            const labels = Array.from({length: 30}, (_, i) => `Day ${i+1}`);
+            const safetyData = Array.from({length: 30}, () => 80 + Math.random() * 15);
+            const ratingData = Array.from({length: 30}, () => 85 + Math.random() * 10);
+
+            // Create gradient for Safety Score
+            let gradientSafety = ctx.createLinearGradient(0, 0, 0, 400);
+            gradientSafety.addColorStop(0, 'rgba(245, 158, 11, 0.4)'); // primary with opacity
+            gradientSafety.addColorStop(1, 'rgba(245, 158, 11, 0.0)');
+
+            // Create gradient for Rating
+            let gradientRating = ctx.createLinearGradient(0, 0, 0, 400);
+            gradientRating.addColorStop(0, 'rgba(123, 208, 255, 0.2)'); // secondary with opacity
+            gradientRating.addColorStop(1, 'rgba(123, 208, 255, 0.0)');
+
+            Chart.defaults.color = '#d8c3ad';
+            Chart.defaults.font.family = '"Plus Jakarta Sans", sans-serif';
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Safety Score',
+                            data: safetyData,
+                            borderColor: '#f59e0b', // primary
+                            backgroundColor: gradientSafety,
+                            borderWidth: 2,
+                            pointBackgroundColor: '#f59e0b',
+                            pointBorderColor: '#051424', // background
+                            pointBorderWidth: 2,
+                            pointRadius: 3,
+                            pointHoverRadius: 6,
+                            fill: true,
+                            tension: 0.4
+                        },
+                        {
+                            label: 'Avg Rating',
+                            data: ratingData,
+                            borderColor: '#7bd0ff', // secondary
+                            backgroundColor: gradientRating,
+                            borderWidth: 2,
+                            pointBackgroundColor: '#7bd0ff',
+                            pointBorderColor: '#051424',
+                            pointBorderWidth: 2,
+                            pointRadius: 0, // Hide points for smoother look
+                            pointHoverRadius: 5,
+                            fill: true,
+                            tension: 0.4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    plugins: {
+                        legend: {
+                            display: false // Using custom legend in HTML
+                        },
+                        tooltip: {
+                            backgroundColor: '#1c2b3c',
+                            titleColor: '#d4e4fa',
+                            bodyColor: '#d8c3ad',
+                            borderColor: '#2c3a4c',
+                            borderWidth: 1,
+                            padding: 12,
+                            boxPadding: 6,
+                            usePointStyle: true,
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: {
+                                display: false,
+                                drawBorder: false
+                            },
+                            ticks: {
+                                maxTicksLimit: 7,
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        },
+                        y: {
+                            min: 60,
+                            max: 100,
+                            grid: {
+                                color: 'rgba(44, 58, 76, 0.5)', // surface-container-highest with opacity
+                                drawBorder: false,
+                                borderDash: [5, 5]
+                            },
+                            ticks: {
+                                stepSize: 10,
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body></html>

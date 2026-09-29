@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>General Configuration - Hurriya Command</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#7bd0ff",
+                        "surface-container-lowest": "#010f1f",
+                        "error": "#ffb4ab",
+                        "on-tertiary-fixed-variant": "#2f3aa3",
+                        "background": "#051424",
+                        "status-inactive": "#6b7280",
+                        "primary-fixed-dim": "#ffb95f",
+                        "inverse-on-surface": "#233143",
+                        "surface-container-high": "#203244",
+                        "on-surface": "#d4e4fa",
+                        "primary": "#ffc174",
+                        "secondary-fixed-dim": "#7bd0ff",
+                        "on-tertiary-container": "#2c36a0",
+                        "on-secondary-container": "#00374d",
+                        "surface-container-highest": "#273647",
+                        "status-success": "#10b981",
+                        "on-error": "#690005",
+                        "on-primary": "#472a00",
+                        "status-danger": "#ef4444",
+                        "surface-tint": "#ffb95f",
+                        "tertiary-fixed": "#e0e0ff",
+                        "on-primary-fixed-variant": "#653e00",
+                        "inverse-surface": "#d4e4fa",
+                        "outline-variant": "#534434",
+                        "on-primary-fixed": "#2a1700",
+                        "on-background": "#d4e4fa",
+                        "on-primary-container": "#613b00",
+                        "on-tertiary-fixed": "#000767",
+                        "outline": "#a08e7a",
+                        "tertiary-fixed-dim": "#bdc2ff",
+                        "primary-container": "#f59e0b",
+                        "surface-container-low": "#0d1c2d",
+                        "tertiary": "#c5c9ff",
+                        "status-warning": "#f59e0b",
+                        "tertiary-container": "#a3abff",
+                        "secondary-container": "#00a6e0",
+                        "surface-container": "#122131",
+                        "error-container": "#93000a",
+                        "on-tertiary": "#131e8c",
+                        "inverse-primary": "#855300",
+                        "surface-variant": "#273647",
+                        "on-surface-variant": "#d8c3ad",
+                        "on-secondary-fixed": "#001e2c",
+                        "on-error-container": "#ffdad6",
+                        "secondary-fixed": "#c4e7ff",
+                        "surface": "#051424",
+                        "primary-fixed": "#ffddb8",
+                        "surface-bright": "#2c3a4c",
+                        "surface-dim": "#051424",
+                        "on-secondary": "#00354a",
+                        "on-secondary-fixed-variant": "#004c69"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sidebar-width": "16rem",
+                        "header-height": "5rem",
+                        "container-padding": "2rem",
+                        "stack-gap-sm": "0.5rem",
+                        "stack-gap-lg": "2rem",
+                        "stack-gap-md": "1.5rem"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "stats-lg": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "label-sm": ["Plus Jakarta Sans"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "title-md": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["20px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "stats-lg": ["30px", { "lineHeight": "1", "fontWeight": "700" }],
+                        "body-md": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "display-lg": ["30px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "title-md": ["18px", { "lineHeight": "1.4", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: theme('colors.surface'); color: theme('colors.on-surface'); }
+        /* Custom Toggle Switch Styles */
+        .toggle-checkbox:checked { right: 0; border-color: theme('colors.primary'); }
+        .toggle-checkbox:checked + .toggle-label { background-color: theme('colors.primary'); }
+        .glass-panel { background: rgba(18, 33, 49, 0.4); backdrop-filter: blur(12px); border: 1px solid theme('colors.surface-container-high'); }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden font-body-md text-body-md bg-surface text-on-surface">
+<!-- SideNavBar (Shared Component) -->
+<nav class="fixed h-full w-sidebar-width left-0 top-0 bg-surface-container-lowest shadow-2xl flex flex-col z-50">
+<div class="p-stack-gap-lg border-b border-surface-container-high">
+<div class="flex items-center gap-stack-gap-sm mb-4">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary font-bold">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shield</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md text-primary font-bold">Hurriya Command</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Mobility Super-App Admin</p>
+</div>
+</div>
+<div class="bg-status-success/20 text-status-success px-3 py-1 rounded-full inline-flex items-center gap-2 font-label-sm text-label-sm w-full justify-center">
+<span class="w-2 h-2 rounded-full bg-status-success"></span>
+                System Status: Active
+            </div>
+</div>
+<ul class="flex-1 overflow-y-auto py-stack-gap-md px-stack-gap-sm space-y-2">
+<!-- Active Item: General Configuration -->
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-surface-container-high text-primary border-l-4 border-primary font-bold active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined">settings</span>
+                    General Configuration
+                </a>
+</li>
+<!-- Inactive Items -->
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors duration-200 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined">local_shipping</span>
+                    Fleet Parameters
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors duration-200 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined">security</span>
+                    Security &amp; Access
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors duration-200 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined">gavel</span>
+                    Compliance Protocols
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors duration-200 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined">api</span>
+                    System Integration
+                </a>
+</li>
+</ul>
+<div class="p-stack-gap-md border-t border-surface-container-high">
+<ul class="space-y-2">
+<li>
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">help</span>
+                        Support
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant hover:text-error hover:bg-error/10 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">logout</span>
+                        Logout
+                    </a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="ml-sidebar-width flex-1 flex flex-col h-full bg-surface relative">
+<!-- TopNavBar (Shared Component) -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] h-header-height z-40 bg-surface-container-lowest/80 backdrop-blur-md border-b border-surface-container-high shadow-sm flex justify-between items-center px-container-padding transition-all duration-300">
+<div class="flex items-center">
+<h2 class="font-title-md text-title-md text-primary font-bold">Admin Settings Panel</h2>
+</div>
+<div class="flex items-center gap-stack-gap-md">
+<!-- Search Bar -->
+<div class="relative hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="bg-surface-container border-none rounded-full py-2 pl-10 pr-4 text-on-surface focus:ring-2 focus:ring-primary w-64 placeholder-on-surface-variant/50" placeholder="Search settings..." type="text"/>
+</div>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-4 text-on-surface-variant">
+<button class="hover:text-primary transition-colors cursor-pointer relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="hover:text-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+<button class="hover:text-primary transition-colors cursor-pointer flex items-center">
+<img alt="Admin Profile" class="w-8 h-8 rounded-full border border-surface-container-high object-cover" data-alt="A small circular avatar of an admin user in a high-tech control room setting, wearing a headset, moody dark lighting with blue screens in background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjSApxW2J5snPlCKdUlVYX9IbA5z4dnvRJcrJ01FrfnT0PNMioZiROTplvFUjY2FTC5ibKEkR2z0kScMD_1Z1LvDWS4fRM44nef9rxD65yF-3xe50Oh11haMQeF5UtEBssdZiCTn3hRuJn4RpQDYpBnXSWGsFrUX2URjEmxY_9g-7tmfjEbQQNnd6Wxx6KoCxwObCkFgNpu_bJJJ3kdFYOtAqB3dCnTpbHYpn6WGZKHqwUmClckaQA"/>
+</button>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<div class="flex-1 overflow-y-auto mt-header-height p-container-padding">
+<div class="max-w-6xl mx-auto flex gap-stack-gap-lg">
+<!-- Left Sub-Navigation -->
+<div class="w-64 shrink-0 hidden lg:block">
+<div class="sticky top-container-padding glass-panel rounded-xl p-4">
+<h3 class="font-title-md text-title-md text-on-surface mb-4">Configuration Categories</h3>
+<ul class="space-y-1">
+<li><a class="block py-2 px-3 rounded-md bg-primary/10 text-primary font-bold" href="#operational-hours">Operational Hours</a></li>
+<li><a class="block py-2 px-3 rounded-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors" href="#pricing-thresholds">Pricing Thresholds</a></li>
+<li><a class="block py-2 px-3 rounded-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors" href="#system-safety">System Safety Toggles</a></li>
+<li><a class="block py-2 px-3 rounded-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors" href="#regional-settings">Regional Settings</a></li>
+</ul>
+</div>
+</div>
+<!-- Right Content Area -->
+<div class="flex-1 space-y-stack-gap-lg pb-20">
+<!-- Section: Operational Hours -->
+<section class="glass-panel rounded-xl p-6 shadow-2xl relative overflow-hidden" id="operational-hours">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full pointer-events-none"></div>
+<h3 class="font-title-md text-title-md text-primary mb-4 flex items-center gap-2 border-b border-surface-container-high pb-2">
+<span class="material-symbols-outlined">schedule</span> Operational Hours (Juba)
+                        </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-2">Service Status</label>
+<div class="flex items-center gap-4 bg-surface-container-low p-4 rounded-lg border border-surface-container-high">
+<div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" id="toggle1" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer" for="toggle1"></label>
+</div>
+<span class="text-on-surface font-bold">Currently Active</span>
+</div>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-2">Auto-Shutdown Schedule</label>
+<div class="flex gap-2 items-center">
+<input class="bg-surface-container border border-surface-container-high rounded-md p-2 text-on-surface focus:ring-2 focus:ring-primary focus:border-transparent outline-none" type="time" value="00:00"/>
+<span class="text-on-surface-variant">to</span>
+<input class="bg-surface-container border border-surface-container-high rounded-md p-2 text-on-surface focus:ring-2 focus:ring-primary focus:border-transparent outline-none" type="time" value="05:00"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Section: Pricing Thresholds -->
+<section class="glass-panel rounded-xl p-6 shadow-2xl" id="pricing-thresholds">
+<h3 class="font-title-md text-title-md text-primary mb-4 flex items-center gap-2 border-b border-surface-container-high pb-2">
+<span class="material-symbols-outlined">payments</span> Pricing Thresholds
+                        </h3>
+<div class="overflow-x-auto mt-4">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-lowest text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<th class="p-4 rounded-tl-lg">Vehicle Type</th>
+<th class="p-4">Base Fare (SSP)</th>
+<th class="p-4">Price / KM (SSP)</th>
+<th class="p-4 rounded-tr-lg">Max Surge Multiplier</th>
+</tr>
+</thead>
+<tbody class="text-on-surface">
+<tr class="border-b border-surface-container-high hover:bg-surface-container/30 transition-colors">
+<td class="p-4 font-bold flex items-center gap-2"><span class="material-symbols-outlined text-on-surface-variant">two_wheeler</span> Boda</td>
+<td class="p-4"><input class="w-24 bg-surface-container border border-surface-container-high rounded p-1 text-on-surface focus:ring-primary text-right" type="number" value="1500"/></td>
+<td class="p-4"><input class="w-24 bg-surface-container border border-surface-container-high rounded p-1 text-on-surface focus:ring-primary text-right" type="number" value="500"/></td>
+<td class="p-4"><input class="w-20 bg-surface-container border border-surface-container-high rounded p-1 text-on-surface focus:ring-primary text-right" step="0.1" type="number" value="2.5"/> x</td>
+</tr>
+<tr class="border-b border-surface-container-high hover:bg-surface-container/30 transition-colors">
+<td class="p-4 font-bold flex items-center gap-2"><span class="material-symbols-outlined text-on-surface-variant">electric_rickshaw</span> Tuktuk</td>
+<td class="p-4"><input class="w-24 bg-surface-container border border-surface-container-high rounded p-1 text-on-surface focus:ring-primary text-right" type="number" value="2500"/></td>
+<td class="p-4"><input class="w-24 bg-surface-container border border-surface-container-high rounded p-1 text-on-surface focus:ring-primary text-right" type="number" value="800"/></td>
+<td class="p-4"><input class="w-20 bg-surface-container border border-surface-container-high rounded p-1 text-on-surface focus:ring-primary text-right" step="0.1" type="number" value="2.0"/> x</td>
+</tr>
+<tr class="hover:bg-surface-container/30 transition-colors">
+<td class="p-4 font-bold flex items-center gap-2"><span class="material-symbols-outlined text-on-surface-variant">directions_car</span> Car</td>
+<td class="p-4"><input class="w-24 bg-surface-container border border-surface-container-high rounded p-1 text-on-surface focus:ring-primary text-right" type="number" value="5000"/></td>
+<td class="p-4"><input class="w-24 bg-surface-container border border-surface-container-high rounded p-1 text-on-surface focus:ring-primary text-right" type="number" value="1200"/></td>
+<td class="p-4"><input class="w-20 bg-surface-container border border-surface-container-high rounded p-1 text-on-surface focus:ring-primary text-right" step="0.1" type="number" value="3.0"/> x</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="mt-4 flex justify-end">
+<button class="bg-primary text-on-primary font-bold py-2 px-6 rounded-lg shadow-lg shadow-primary/20 hover:bg-primary-container transition-colors">Update Pricing</button>
+</div>
+</section>
+<!-- Section: System Safety Toggles -->
+<section class="glass-panel rounded-xl p-6 shadow-2xl" id="system-safety">
+<h3 class="font-title-md text-title-md text-primary mb-4 flex items-center gap-2 border-b border-surface-container-high pb-2">
+<span class="material-symbols-outlined">health_and_safety</span> System Safety Controls
+                        </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+<div class="bg-surface-container p-4 rounded-lg border border-surface-container-high flex justify-between items-center">
+<div>
+<h4 class="font-bold text-on-surface">Emergency SOS Features</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">Enable in-app panic button for all users</p>
+</div>
+<div class="relative inline-block w-12 align-middle select-none">
+<input checked="" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" id="toggle-sos" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-600 cursor-pointer" for="toggle-sos"></label>
+</div>
+</div>
+<div class="bg-surface-container p-4 rounded-lg border border-surface-container-high flex justify-between items-center">
+<div>
+<h4 class="font-bold text-on-surface">Algorithmic Matching</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">Smart Rider/Driver assignment engine</p>
+</div>
+<div class="relative inline-block w-12 align-middle select-none">
+<input checked="" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" id="toggle-match" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-600 cursor-pointer" for="toggle-match"></label>
+</div>
+</div>
+<div class="bg-surface-container p-4 rounded-lg border border-surface-container-high flex justify-between items-center">
+<div>
+<h4 class="font-bold text-on-surface">Strict Verification Mode</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">Require facial scan for drivers before shift</p>
+</div>
+<div class="relative inline-block w-12 align-middle select-none">
+<input class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" id="toggle-verify" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-surface-container-high cursor-pointer" for="toggle-verify"></label>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Simple script to handle toggle visuals if needed beyond CSS
+        document.querySelectorAll('.toggle-checkbox').forEach(toggle => {
+            toggle.addEventListener('change', function() {
+                // Future interaction logic here
+            });
+        });
+    </script>
+</body></html>

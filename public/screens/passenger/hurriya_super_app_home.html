@@ -1,0 +1,266 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Hurriya Ride - Passenger Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#0d1c2d",
+                        "on-secondary": "#283044",
+                        "surface-bright": "#2c3a4c",
+                        "surface-dim": "#051424",
+                        "on-primary": "#472a00",
+                        "outline": "#a08e7a",
+                        "on-surface": "#d4e4fa",
+                        "surface-container-highest": "#273647",
+                        "on-background": "#d4e4fa",
+                        "outline-variant": "#534434",
+                        "utility-indigo": "#818CF8",
+                        "surface-variant": "#273647",
+                        "surface": "#051424",
+                        "primary": "#ffc174",
+                        "secondary": "#bec6e0",
+                        "on-primary-fixed": "#2a1700",
+                        "midnight-bg": "#020617",
+                        "surface-container-high": "#1c2b3c",
+                        "primary-fixed": "#ffddb8",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "surface-container": "#122131",
+                        "on-primary-fixed-variant": "#653e00",
+                        "on-tertiary": "#003825",
+                        "slate-surface": "#1E293B",
+                        "on-error-container": "#ffdad6",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "inverse-surface": "#d4e4fa",
+                        "error": "#ffb4ab",
+                        "on-tertiary-fixed-variant": "#005137",
+                        "tertiary-fixed": "#68fcbf",
+                        "tertiary-container": "#22c990",
+                        "on-tertiary-container": "#004e35",
+                        "white-high-emphasis": "#FFFFFF",
+                        "background": "#051424",
+                        "on-surface-variant": "#d8c3ad",
+                        "on-secondary-container": "#adb4ce",
+                        "safety-emerald": "#34D399",
+                        "secondary-container": "#3f465c",
+                        "primary-fixed-dim": "#ffb95f",
+                        "on-error": "#690005",
+                        "tertiary-fixed-dim": "#45dfa4",
+                        "utility-cyan": "#22D3EE",
+                        "tertiary": "#4de6aa",
+                        "on-tertiary-fixed": "#002114",
+                        "surface-container-lowest": "#010f1f",
+                        "inverse-primary": "#855300",
+                        "error-container": "#93000a",
+                        "primary-container": "#f59e0b",
+                        "surface-tint": "#ffb95f",
+                        "inverse-on-surface": "#233143",
+                        "on-primary-container": "#613b00",
+                        "secondary-fixed": "#dae2fd",
+                        "slate-border": "#334155",
+                        "on-secondary-fixed": "#131b2e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter-md": "16px",
+                        "section-gap": "32px",
+                        "gutter-sm": "12px",
+                        "margin-lg": "20px",
+                        "unit": "4px",
+                        "margin-xl": "24px",
+                        "gutter-xs": "10px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "label-bold": ["Plus Jakarta Sans"],
+                        "micro-bold": ["Plus Jakarta Sans"],
+                        "micro-reg": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "subhead-md": ["Plus Jakarta Sans"],
+                        "display-xl": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["22px", { "lineHeight": "28px", "fontWeight": "800" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "800" }],
+                        "label-bold": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "micro-bold": ["11px", { "lineHeight": "14px", "fontWeight": "700" }],
+                        "micro-reg": ["10px", { "lineHeight": "12px", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "subhead-md": ["18px", { "lineHeight": "24px", "fontWeight": "800" }],
+                        "display-xl": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "800" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .gold-glow {
+            box-shadow: 0px 10px 15px -3px rgba(245, 158, 11, 0.2);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-sm antialiased h-screen flex flex-col md:hidden">
+<!-- Top App Bar - Shared Component Style -->
+<header class="bg-surface/80 dark:bg-surface/80 backdrop-blur-md flex justify-between items-center w-full px-margin-xl py-gutter-md sticky top-0 z-40">
+<div class="flex items-center gap-gutter-sm">
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A close up portrait of an East African professional in a modern urban setting, warm sunset lighting catching their face, highly detailed, cinematic, deep dark blue and bright amber color grading." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzkUYG0CHsjQV2SXZuKor7K8KEKrREX1Np2p3o524XsDBLWwyrZU_YTbXmOHSfRHo5HJg7t5dYJktFVklg3yHBuiODmwZ6f7LFDsOHK_Lui155y8zItUHWEaqyc-VmhtZjR3HEtCqQUNiVJMsJBMne7umlTlfmaZ_E3GRYZjr5ep46c8XyiyGT1pSoAvN3u6jT6-e14NNLJ-hY43vp5zVArj8Lz3WznGwvpkfjIwp-MFTPBmTYiSTr">
+</div>
+<div>
+<p class="font-micro-reg text-micro-reg text-on-surface-variant">Good Morning,</p>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Malou</h1>
+</div>
+</div>
+<div class="flex gap-gutter-sm">
+<button class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 overflow-y-auto px-margin-lg py-gutter-md space-y-section-gap hide-scrollbar">
+<!-- Hurriya Wallet Card -->
+<section>
+<div class="bg-surface-container-high rounded-xl p-gutter-md border border-slate-border hover:border-primary transition-colors duration-200 relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent pointer-events-none"></div>
+<div class="flex justify-between items-start mb-gutter-md relative z-10">
+<div>
+<h2 class="font-label-bold text-label-bold text-on-surface-variant uppercase tracking-wider mb-unit">Hurriya Wallet</h2>
+<div class="flex items-baseline gap-unit">
+<span class="font-subhead-md text-subhead-md text-primary">SSP</span>
+<span class="font-display-xl text-display-xl text-on-surface">45,000</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary text-3xl">account_balance_wallet</span>
+</div>
+<div class="flex gap-gutter-sm relative z-10">
+<button class="flex-1 bg-primary text-on-primary-fixed font-subhead-md text-subhead-md py-gutter-xs rounded-lg gold-glow hover:bg-primary-fixed-dim transition-colors flex items-center justify-center gap-unit">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add_circle</span>
+                        Top Up
+                    </button>
+<button class="flex-1 border border-slate-border text-on-surface font-subhead-md text-subhead-md py-gutter-xs rounded-lg hover:bg-surface-container transition-colors flex items-center justify-center gap-unit">
+<span class="material-symbols-outlined">swap_horiz</span>
+                        Transfer
+                    </button>
+</div>
+</div>
+</section>
+<!-- Service Grid -->
+<section>
+<h3 class="font-subhead-md text-subhead-md text-on-surface mb-gutter-md">Request a Ride</h3>
+<div class="grid grid-cols-2 gap-gutter-sm">
+<!-- Hurriya Boda -->
+<button class="bg-surface-container rounded-xl p-gutter-md border border-slate-border hover:border-primary transition-colors duration-200 flex flex-col items-center justify-center text-center gap-unit relative overflow-hidden group">
+<div class="absolute -right-4 -bottom-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary" style="font-variation-settings: 'FILL' 1;">two_wheeler</span>
+</div>
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center mb-unit text-primary">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">two_wheeler</span>
+</div>
+<span class="font-label-bold text-label-bold text-on-surface">Hurriya Boda</span>
+</button>
+<!-- Hurriya Tuktuk -->
+<button class="bg-surface-container rounded-xl p-gutter-md border border-slate-border hover:border-primary transition-colors duration-200 flex flex-col items-center justify-center text-center gap-unit relative overflow-hidden group">
+<div class="absolute -right-4 -bottom-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary" style="font-variation-settings: 'FILL' 1;">electric_rickshaw</span>
+</div>
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center mb-unit text-primary">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">electric_rickshaw</span>
+</div>
+<span class="font-label-bold text-label-bold text-on-surface">Hurriya Tuktuk</span>
+</button>
+<!-- Hurriya Car -->
+<button class="bg-surface-container rounded-xl p-gutter-md border border-slate-border hover:border-primary transition-colors duration-200 flex flex-col items-center justify-center text-center gap-unit relative overflow-hidden group">
+<div class="absolute -right-4 -bottom-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary" style="font-variation-settings: 'FILL' 1;">directions_car</span>
+</div>
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center mb-unit text-primary">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">directions_car</span>
+</div>
+<span class="font-label-bold text-label-bold text-on-surface">Hurriya Car</span>
+</button>
+<!-- Deliveries -->
+<button class="bg-surface-container rounded-xl p-gutter-md border border-slate-border hover:border-primary transition-colors duration-200 flex flex-col items-center justify-center text-center gap-unit relative overflow-hidden group">
+<div class="absolute -right-4 -bottom-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary" style="font-variation-settings: 'FILL' 1;">local_shipping</span>
+</div>
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center mb-unit text-primary">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">local_shipping</span>
+</div>
+<span class="font-label-bold text-label-bold text-on-surface">Deliveries</span>
+</button>
+</div>
+</section>
+<!-- Safety Banner -->
+<section class="pb-margin-xl">
+<div class="bg-surface-container-low rounded-xl p-gutter-md border border-slate-border flex items-center gap-gutter-md relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-2 bg-safety-emerald"></div>
+<div class="w-12 h-12 rounded-full bg-safety-emerald/10 flex items-center justify-center text-safety-emerald shrink-0">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+</div>
+<div>
+<h4 class="font-subhead-md text-subhead-md text-on-surface mb-unit">Juba Safety Pledge</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">All our drivers are vetted for your security.</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="bg-surface-container-lowest pb-safe pt-unit px-margin-lg">
+<ul class="flex justify-between items-center h-16">
+<!-- Home (Active) -->
+<li class="flex-1 flex flex-col items-center justify-center gap-1 group cursor-pointer">
+<div class="w-12 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">home</span>
+</div>
+<span class="font-label-bold text-label-bold text-primary">Home</span>
+</li>
+<!-- Activity -->
+<li class="flex-1 flex flex-col items-center justify-center gap-1 group cursor-pointer hover:text-on-surface">
+<div class="w-12 h-8 rounded-full flex items-center justify-center group-hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">receipt_long</span>
+</div>
+<span class="font-label-bold text-label-bold text-on-surface-variant">Activity</span>
+</li>
+<!-- Wallet -->
+<li class="flex-1 flex flex-col items-center justify-center gap-1 group cursor-pointer hover:text-on-surface">
+<div class="w-12 h-8 rounded-full flex items-center justify-center group-hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">account_balance_wallet</span>
+</div>
+<span class="font-label-bold text-label-bold text-on-surface-variant">Wallet</span>
+</li>
+<!-- Account -->
+<li class="flex-1 flex flex-col items-center justify-center gap-1 group cursor-pointer hover:text-on-surface">
+<div class="w-12 h-8 rounded-full flex items-center justify-center group-hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">person</span>
+</div>
+<span class="font-label-bold text-label-bold text-on-surface-variant">Account</span>
+</li>
+</ul>
+</nav>
+</body></html>

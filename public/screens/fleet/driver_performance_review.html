@@ -1,0 +1,407 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Driver Performance Review</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-primary": "#472a00",
+                        "on-background": "#d4e4fa",
+                        "surface-bright": "#2c3a4c",
+                        "tertiary-fixed": "#68fcbf",
+                        "white-high-emphasis": "#FFFFFF",
+                        "on-secondary": "#283044",
+                        "inverse-on-surface": "#233143",
+                        "inverse-surface": "#d4e4fa",
+                        "on-tertiary": "#003825",
+                        "midnight-bg": "#020617",
+                        "error": "#ffb4ab",
+                        "surface-container-lowest": "#010f1f",
+                        "utility-indigo": "#818CF8",
+                        "primary-container": "#f59e0b",
+                        "slate-border": "#334155",
+                        "surface-tint": "#ffb95f",
+                        "safety-emerald": "#34D399",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "surface-variant": "#273647",
+                        "on-tertiary-container": "#004e35",
+                        "tertiary": "#4de6aa",
+                        "tertiary-fixed-dim": "#45dfa4",
+                        "inverse-primary": "#855300",
+                        "secondary-fixed": "#dae2fd",
+                        "surface-container-highest": "#273647",
+                        "on-primary-fixed": "#2a1700",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "on-surface-variant": "#d8c3ad",
+                        "outline-variant": "#534434",
+                        "secondary-container": "#3f465c",
+                        "surface": "#051424",
+                        "surface-container-low": "#0d1c2d",
+                        "on-secondary-fixed": "#131b2e",
+                        "on-secondary-container": "#adb4ce",
+                        "utility-cyan": "#22D3EE",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed-variant": "#005137",
+                        "surface-container": "#122131",
+                        "outline": "#a08e7a",
+                        "surface-container-high": "#1c2b3c",
+                        "primary-fixed": "#ffddb8",
+                        "secondary": "#bec6e0",
+                        "slate-surface": "#1E293B",
+                        "on-surface": "#d4e4fa",
+                        "error-container": "#93000a",
+                        "on-primary-fixed-variant": "#653e00",
+                        "tertiary-container": "#22c990",
+                        "primary-fixed-dim": "#ffb95f",
+                        "on-tertiary-fixed": "#002114",
+                        "on-error-container": "#ffdad6",
+                        "surface-dim": "#051424",
+                        "on-primary-container": "#613b00",
+                        "primary": "#ffc174",
+                        "background": "#051424"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px"
+                    },
+                    spacing: {
+                        unit: "4px",
+                        "margin-xl": "24px",
+                        "gutter-sm": "12px",
+                        "section-gap": "32px",
+                        "margin-lg": "20px",
+                        "gutter-md": "16px",
+                        "gutter-xs": "10px"
+                    },
+                    fontFamily: {
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "subhead-md": ["Plus Jakarta Sans"],
+                        "micro-bold": ["Plus Jakarta Sans"],
+                        "micro-reg": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "label-bold": ["Plus Jakarta Sans"],
+                        "display-xl": ["Plus Jakarta Sans"]
+                    },
+                    fontSize: {
+                        "body-sm": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+                        "subhead-md": ["18px", { lineHeight: "24px", fontWeight: "800" }],
+                        "micro-bold": ["11px", { lineHeight: "14px", fontWeight: "700" }],
+                        "micro-reg": ["10px", { lineHeight: "12px", fontWeight: "400" }],
+                        "headline-lg": ["24px", { lineHeight: "32px", fontWeight: "800" }],
+                        "headline-lg-mobile": ["22px", { lineHeight: "28px", fontWeight: "800" }],
+                        "label-bold": ["12px", { lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "700" }],
+                        "display-xl": ["30px", { lineHeight: "38px", letterSpacing: "-0.02em", fontWeight: "800" }]
+                    }
+                }
+            }
+        };
+    </script>
+<style>
+        .gold-glow {
+            box-shadow: 0px 10px 15px -3px rgba(245, 158, 11, 0.2);
+        }
+        .emerald-glow {
+            box-shadow: 0px 10px 15px -3px rgba(52, 211, 153, 0.2);
+        }
+        /* Custom scrollbar for web */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #273647;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-sm antialiased h-screen flex flex-col md:flex-row overflow-hidden">
+<!-- Top App Bar (Mobile Only) -->
+<header class="md:hidden flex items-center justify-between px-margin-lg h-16 w-full fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md shadow-sm">
+<div class="flex items-center gap-3">
+<img class="w-8 h-8 rounded-full object-cover" data-alt="A small circular avatar profile picture of a professional male driver wearing a dark uniform, smiling slightly in a modern setting with high-key lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoV2_aacbumyRAcLeWNXl4psNEDpuMi_-nctoNMHl8BcJBd7vs3DW4Si8GX1YkssC4IJdKxml9f0dwhQ7PI307lMhset2HP_8xCVYyAxYrh-YQAyLC952YGdbhN9pLVuA0EyvM8d-3bbJysBlwsGMJvtfpqBhcxp8jwWUzDjOnfAroNw--kO7xTtJh_MuKnrG04ocuRD4EiVQcP45xagn1YCEYlkWEDzC3_ZOJSEEZJXl0qjFG1BV1">
+<h1 class="font-display-xl text-display-xl text-primary-container font-black">Hurriya Ride</h1>
+</div>
+<button class="text-primary p-2 hover:bg-surface-variant/20 rounded-full transition-colors duration-200">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</header>
+<!-- Navigation Drawer (Desktop Only) -->
+<aside class="hidden md:flex flex-col p-margin-xl gap-4 h-full w-80 rounded-r-xl bg-surface dark:bg-surface-container-lowest shadow-xl shrink-0 z-40 border-r border-slate-border">
+<div class="flex items-center gap-4 mb-section-gap">
+<img class="w-12 h-12 rounded-lg object-cover" data-alt="A square professional headshot avatar of a driver, wearing a uniform, with a confident expression, set against a dark blue background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrzWC4hKOSbct92VlM5IOS7W_PC2ty3dw3_k57FF5H-CCPw_09ONfKxH0rG3iHw-KE8YP8OhwHbfnlXst1p32ebUhp3pCq6n2kOD95mFadS02jJx9sVH3NSWMrI26Vve5ic-Ajre4H7fGZkHE0EMcSgnZm5mJBGR4mmCQGnnccz8WBvfAurAugvuN3WOxzp5QtetParpjYICk8sJ-Swi8ljvKbqSpdB9bkafXO21z8IkvoyJuQqNpl">
+<div>
+<h2 class="font-subhead-md text-subhead-md text-on-surface">Arop Deng</h2>
+<p class="font-body-sm text-body-sm text-primary">Gold Tier Driver</p>
+<div class="flex items-center gap-1 text-on-surface-variant font-micro-bold text-micro-bold mt-1">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span>4.9 Rating</span>
+</div>
+</div>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-variant/30 transition-all duration-300 ease-in-out font-subhead-md text-subhead-md" href="#">
+<span class="material-symbols-outlined" data-icon="local_taxi">local_taxi</span>
+                Ride History
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-primary-container text-on-primary-container font-bold transition-all duration-300 ease-in-out font-subhead-md text-subhead-md" href="#">
+<span class="material-symbols-outlined" data-icon="star">star</span>
+                Performance
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-variant/30 transition-all duration-300 ease-in-out font-subhead-md text-subhead-md" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+                Earnings
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-variant/30 transition-all duration-300 ease-in-out font-subhead-md text-subhead-md" href="#">
+<span class="material-symbols-outlined" data-icon="directions_car">directions_car</span>
+                Vehicle Info
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-variant/30 transition-all duration-300 ease-in-out font-subhead-md text-subhead-md" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                Settings
+            </a>
+</nav>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 overflow-y-auto pt-20 pb-28 md:pt-0 md:pb-0 px-margin-lg md:px-section-gap w-full">
+<div class="max-w-4xl mx-auto py-section-gap">
+<!-- Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-section-gap gap-4">
+<div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-surface mb-2">Your Performance</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Here is how you're doing this month.</p>
+</div>
+<div class="flex items-center gap-2 bg-surface-container-high px-4 py-2 rounded-full w-fit">
+<span class="font-subhead-md text-subhead-md text-on-surface">4.9</span>
+<span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<!-- Tier Status Card -->
+<section class="bg-surface-container rounded-xl p-margin-xl border border-slate-border mb-section-gap relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary-container/10 rounded-full blur-2xl -mr-10 -mt-10"></div>
+<div class="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+<div class="flex-1 w-full">
+<div class="flex items-center gap-3 mb-2">
+<span class="material-symbols-outlined text-primary-container text-[28px]" data-icon="workspace_premium" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+<h3 class="font-subhead-md text-subhead-md text-on-surface">Gold Tier Driver</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">You are in the top 15% of drivers. Enjoy lower commissions.</p>
+<!-- Progress Bar -->
+<div class="w-full">
+<div class="flex justify-between font-micro-bold text-micro-bold mb-2">
+<span class="text-primary-container">Gold</span>
+<span class="text-on-surface-variant">Platinum (150 trips to go)</span>
+</div>
+<div class="h-2 w-full bg-midnight-bg rounded-full overflow-hidden border border-slate-border">
+<div class="h-full bg-primary-container rounded-full" style="width: 70%;"></div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-high rounded-lg p-4 min-w-[140px] text-center border border-slate-border">
+<span class="font-micro-bold text-micro-bold text-safety-emerald uppercase tracking-wider block mb-1">Commission Rate</span>
+<span class="font-display-xl text-display-xl text-on-surface">12%</span>
+<span class="font-micro-reg text-micro-reg text-on-surface-variant block mt-1">Standard: 20%</span>
+</div>
+</div>
+</section>
+<!-- Key Metrics Grid -->
+<section class="grid grid-cols-1 sm:grid-cols-3 gap-gutter-md mb-section-gap">
+<!-- Total Trips -->
+<div class="bg-surface-container rounded-xl p-margin-xl border border-slate-border flex flex-col gap-2">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]" data-icon="route">route</span>
+<span class="font-label-bold text-label-bold">Total Trips</span>
+</div>
+<div class="flex items-end gap-3 mt-2">
+<span class="font-display-xl text-display-xl text-on-surface">432</span>
+<span class="font-micro-bold text-micro-bold text-safety-emerald bg-safety-emerald/10 px-2 py-1 rounded-full flex items-center gap-1 mb-1">
+<span class="material-symbols-outlined text-[12px]" data-icon="trending_up">trending_up</span> +12%
+                        </span>
+</div>
+</div>
+<!-- Acceptance Rate -->
+<div class="bg-surface-container rounded-xl p-margin-xl border border-slate-border flex flex-col gap-2">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]" data-icon="how_to_reg">how_to_reg</span>
+<span class="font-label-bold text-label-bold">Acceptance Rate</span>
+</div>
+<div class="flex items-end gap-3 mt-2">
+<span class="font-display-xl text-display-xl text-on-surface">94%</span>
+<span class="font-micro-bold text-micro-bold text-safety-emerald bg-safety-emerald/10 px-2 py-1 rounded-full flex items-center gap-1 mb-1">
+                            Excellent
+                        </span>
+</div>
+</div>
+<!-- Cancellation Rate -->
+<div class="bg-surface-container rounded-xl p-margin-xl border border-slate-border flex flex-col gap-2">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]" data-icon="block">block</span>
+<span class="font-label-bold text-label-bold">Cancellation Rate</span>
+</div>
+<div class="flex items-end gap-3 mt-2">
+<span class="font-display-xl text-display-xl text-on-surface">2%</span>
+<span class="font-micro-bold text-micro-bold text-safety-emerald bg-safety-emerald/10 px-2 py-1 rounded-full flex items-center gap-1 mb-1">
+                            Low
+                        </span>
+</div>
+</div>
+</section>
+<!-- Bottom Section: Graph & Reviews -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-section-gap">
+<!-- Weekly Earnings Chart (Simplified) -->
+<section class="bg-surface-container rounded-xl p-margin-xl border border-slate-border flex flex-col h-full">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-subhead-md text-subhead-md text-on-surface">Weekly Earnings</h3>
+<span class="font-micro-bold text-micro-bold text-on-surface-variant bg-surface-container-high px-3 py-1 rounded-full border border-slate-border">This Week</span>
+</div>
+<div class="flex-1 flex items-end justify-between gap-2 pt-4 h-48">
+<!-- Monday -->
+<div class="flex flex-col items-center gap-2 w-full group cursor-pointer">
+<div class="w-full bg-midnight-bg rounded-t-sm h-full flex items-end relative border-b border-slate-border">
+<div class="w-full bg-surface-variant rounded-t-sm h-[40%] group-hover:bg-primary-container/50 transition-colors"></div>
+</div>
+<span class="font-micro-reg text-micro-reg text-on-surface-variant">Mon</span>
+</div>
+<!-- Tuesday -->
+<div class="flex flex-col items-center gap-2 w-full group cursor-pointer">
+<div class="w-full bg-midnight-bg rounded-t-sm h-full flex items-end relative border-b border-slate-border">
+<div class="w-full bg-surface-variant rounded-t-sm h-[60%] group-hover:bg-primary-container/50 transition-colors"></div>
+</div>
+<span class="font-micro-reg text-micro-reg text-on-surface-variant">Tue</span>
+</div>
+<!-- Wednesday -->
+<div class="flex flex-col items-center gap-2 w-full group cursor-pointer">
+<div class="w-full bg-midnight-bg rounded-t-sm h-full flex items-end relative border-b border-slate-border">
+<div class="w-full bg-surface-variant rounded-t-sm h-[50%] group-hover:bg-primary-container/50 transition-colors"></div>
+</div>
+<span class="font-micro-reg text-micro-reg text-on-surface-variant">Wed</span>
+</div>
+<!-- Thursday -->
+<div class="flex flex-col items-center gap-2 w-full group cursor-pointer">
+<div class="w-full bg-midnight-bg rounded-t-sm h-full flex items-end relative border-b border-slate-border">
+<div class="w-full bg-surface-variant rounded-t-sm h-[80%] group-hover:bg-primary-container/50 transition-colors"></div>
+</div>
+<span class="font-micro-reg text-micro-reg text-on-surface-variant">Thu</span>
+</div>
+<!-- Friday -->
+<div class="flex flex-col items-center gap-2 w-full group cursor-pointer">
+<div class="w-full bg-midnight-bg rounded-t-sm h-full flex items-end relative border-b border-slate-border">
+<div class="w-full bg-primary-container rounded-t-sm h-[95%] gold-glow transition-colors"></div>
+</div>
+<span class="font-micro-bold text-micro-bold text-primary-container">Fri</span>
+</div>
+<!-- Saturday -->
+<div class="flex flex-col items-center gap-2 w-full group cursor-pointer">
+<div class="w-full bg-midnight-bg rounded-t-sm h-full flex items-end relative border-b border-slate-border">
+<div class="w-full bg-surface-variant rounded-t-sm h-[70%] group-hover:bg-primary-container/50 transition-colors"></div>
+</div>
+<span class="font-micro-reg text-micro-reg text-on-surface-variant">Sat</span>
+</div>
+<!-- Sunday -->
+<div class="flex flex-col items-center gap-2 w-full group cursor-pointer">
+<div class="w-full bg-midnight-bg rounded-t-sm h-full flex items-end relative border-b border-slate-border">
+<div class="w-full bg-surface-variant rounded-t-sm h-[30%] group-hover:bg-primary-container/50 transition-colors"></div>
+</div>
+<span class="font-micro-reg text-micro-reg text-on-surface-variant">Sun</span>
+</div>
+</div>
+</section>
+<!-- Recent Reviews -->
+<section class="bg-surface-container rounded-xl p-margin-xl border border-slate-border flex flex-col h-full max-h-[400px]">
+<div class="flex items-center justify-between mb-4 shrink-0">
+<h3 class="font-subhead-md text-subhead-md text-on-surface">Recent Reviews</h3>
+<a class="font-label-bold text-label-bold text-primary hover:underline" href="#">View All</a>
+</div>
+<div class="flex-1 overflow-y-auto pr-2 space-y-4">
+<!-- Review 1 -->
+<div class="p-4 bg-midnight-bg rounded-lg border border-slate-border">
+<div class="flex justify-between items-start mb-2">
+<div class="flex gap-1 text-primary-container text-[16px]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<span class="font-micro-reg text-micro-reg text-on-surface-variant">Today</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface">"Very safe rider, drove carefully through traffic."</p>
+</div>
+<!-- Review 2 -->
+<div class="p-4 bg-midnight-bg rounded-lg border border-slate-border">
+<div class="flex justify-between items-start mb-2">
+<div class="flex gap-1 text-primary-container text-[16px]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<span class="font-micro-reg text-micro-reg text-on-surface-variant">Yesterday</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface">"Punctual and polite. Car was very clean."</p>
+</div>
+<!-- Review 3 -->
+<div class="p-4 bg-midnight-bg rounded-lg border border-slate-border">
+<div class="flex justify-between items-start mb-2">
+<div class="flex gap-1 text-primary-container text-[16px]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">star</span>
+</div>
+<span class="font-micro-reg text-micro-reg text-on-surface-variant">Oct 24</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface">"Good trip overall, nice music."</p>
+</div>
+<!-- Review 4 -->
+<div class="p-4 bg-midnight-bg rounded-lg border border-slate-border">
+<div class="flex justify-between items-start mb-2">
+<div class="flex gap-1 text-primary-container text-[16px]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<span class="font-micro-reg text-micro-reg text-on-surface-variant">Oct 20</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface">"Great service, highly recommend."</p>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- Bottom Nav Bar (Mobile Only) -->
+<nav class="md:hidden flex justify-around items-center h-20 px-gutter-md pb-safe fixed bottom-0 w-full z-50 rounded-t-xl bg-surface-container dark:bg-surface-container-low border-t border-slate-border shadow-[0px_-4px_10px_rgba(0,0,0,0.1)]">
+<a class="flex flex-col items-center justify-center text-on-surface-variant scale-95 active:scale-90 transition-transform hover:bg-surface-variant p-2 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-bold text-label-bold mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant scale-95 active:scale-90 transition-transform hover:bg-surface-variant p-2 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-label-bold text-label-bold mt-1">Activity</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant scale-95 active:scale-90 transition-transform hover:bg-surface-variant p-2 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-label-bold text-label-bold mt-1">Wallet</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container/10 text-primary rounded-xl px-4 py-1 scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-bold text-label-bold mt-1">Profile</span>
+</a>
+</nav>
+</body></html>
