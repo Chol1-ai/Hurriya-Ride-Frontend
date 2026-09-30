@@ -70,6 +70,14 @@ export const api = {
     body: JSON.stringify(payload),
   }),
   getDrivers: () => apiRequest('/drivers/available'),
+  getDriverWorkspace: () => apiRequest('/drivers/me'),
+  setDriverAvailability: (online) => apiRequest('/drivers/me/availability', {
+    method: 'PATCH',
+    body: JSON.stringify({ online }),
+  }),
+  acceptDriverRide: (rideId) => apiRequest(`/drivers/me/rides/${rideId}/accept`, { method: 'POST' }),
+  startDriverRide: (rideId) => apiRequest(`/drivers/me/rides/${rideId}/start`, { method: 'POST' }),
+  completeDriverRide: (rideId) => apiRequest(`/drivers/me/rides/${rideId}/complete`, { method: 'POST' }),
   getPayments: () => apiRequest('/payments'),
   topup: (amount) => apiRequest('/payments/topup', {
     method: 'POST',

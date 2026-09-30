@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useRideStore } from '../stores/rideStore'
 import { useAuthStore } from '../stores/authStore'
@@ -23,22 +23,22 @@ const dashboardTitle = computed(() => {
   if (isPassenger.value) return ({ overview: 'Book a ride', rides: 'Ride history', wallet: 'Wallet' }[props.section] || 'Passenger workspace')
   if (isAdmin.value) return ({ overview: 'Operations overview', accounts: 'Manage accounts', drivers: 'Driver roster', ledger: 'Revenue ledger' }[props.section] || 'Admin workspace')
   if (isFleet.value) return props.section === 'drivers' ? 'Fleet drivers' : 'Fleet overview'
-  return ({ Driver: 'Driver desk', Fleet: 'Fleet overview', Admin: 'Operations overview' }[props.role] || 'Dashboard')
+  return ({ Driver: 'Juba driver desk', Fleet: 'Fleet overview', Admin: 'Operations overview' }[props.role] || 'Dashboard')
 })
 const subtitle = computed(() => {
   if (isPassenger.value) return ({
-    overview: 'Request a ride from your current location or enter a pickup.',
+    overview: 'Request a ride from your current location across Juba, South Sudan.',
     rides: 'Review the rides associated with your account.',
     wallet: 'Top up your wallet and review recorded transactions.',
   }[props.section] || '')
-  if (isAdmin.value && props.section === 'drivers') return 'Review drivers currently marked available.'
-  if (isAdmin.value && props.section === 'ledger') return 'Review payment records saved in the database.'
+  if (isAdmin.value && props.section === 'drivers') return 'Review drivers currently marked available across Juba.'
+  if (isAdmin.value && props.section === 'ledger') return 'Review SSP payment records saved in the database.'
   if (isAdmin.value && props.section === 'accounts') return 'Create the Driver and Fleet accounts that can access their private sign-in routes.'
-  if (isFleet.value && props.section === 'drivers') return 'Review drivers currently available in the fleet.'
+  if (isFleet.value && props.section === 'drivers') return 'Review drivers currently available in the Juba fleet.'
   return ({
-    Driver: 'Review your driver account and availability.',
-    Fleet: 'Monitor drivers currently available in the fleet.',
-    Admin: 'Live totals from the Hurriya Ride database.',
+    Driver: 'Review your Juba boda account, status, and city dispatch queue.',
+    Fleet: 'Monitor Juba drivers currently available in the fleet.',
+    Admin: 'Live totals from the Hurriya Ride database in South Sudan.',
   }[props.role] || '')
 })
 
@@ -47,6 +47,9 @@ const payments = ref([])
 const adminPayments = ref([])
 const managedAccounts = ref([])
 const drivers = ref([])
+const driverProfile = ref(null)
+const driverRequests = ref([])
+const activeDriverRide = ref(null)
 const overview = ref(null)
 const accountForm = ref({ name: '', email: '', password: '', role: 'Driver', phone: '', vehicle: 'Boda' })
 const pickup = ref({ label: '', lat: null, lng: null })
@@ -56,6 +59,7 @@ const vehicleType = ref('Boda')
 const topUpAmount = ref(5000)
 const loading = ref(false)
 const submitting = ref(false)
+const driverActionBusy = ref(false)
 const apiStatus = ref('Checking connection')
 const errorMessage = ref('')
 const feedback = ref('')
@@ -65,7 +69,12 @@ const recordedRevenue = computed(() => adminPayments.value
   .filter((payment) => payment.status === 'Completed')
   .reduce((total, payment) => total + Number(payment.amount || 0), 0))
 const activeRideCount = computed(() => rides.value.filter((ride) => !['Completed', 'Cancelled'].includes(ride.status)).length)
-const driverIsOnline = computed(() => rideStore.status !== 'offline')
+const driverIsOnline = computed(() => driverProfile.value?.status === 'Available')
+const driverStatusLabel = computed(() => {
+  if (activeDriverRide.value?.status === 'In progress') return 'On trip in Juba'
+  if (activeDriverRide.value) return 'Pickup assigned in Juba'
+  return driverIsOnline.value ? 'Online in Juba' : 'Offline in Juba'
+})
 
 function formatAmount(amount) {
   return `SSP ${Number(amount || 0).toLocaleString()}`
@@ -107,6 +116,8 @@ async function loadDashboard() {
         const response = await api.getAdminOverview()
         overview.value = response.overview
       }
+    } else if (isDriver.value) {
+      await refreshDriverWorkspace()
     } else if (isFleet.value) {
       const response = await api.getDrivers()
       drivers.value = response.drivers || []
@@ -117,6 +128,13 @@ async function loadDashboard() {
   } finally {
     loading.value = false
   }
+}
+
+async function refreshDriverWorkspace() {
+  const response = await api.getDriverWorkspace()
+  driverProfile.value = response.driver
+  driverRequests.value = response.requests || []
+  activeDriverRide.value = response.activeRide || null
 }
 
 async function requestRide() {
@@ -204,9 +222,54 @@ async function createManagedAccount() {
   }
 }
 
-function toggleDemoAvailability() {
-  rideStore.toggleOnline()
-  feedback.value = `Demo availability set to ${driverIsOnline.value ? 'online' : 'offline'}. This setting is local to this browser.`
+async function toggleDriverAvailability() {
+  if (!driverProfile.value || activeDriverRide.value) return
+  submitting.value = true
+  errorMessage.value = ''
+  feedback.value = ''
+  try {
+    const response = await api.setDriverAvailability(!driverIsOnline.value)
+    driverProfile.value = response.driver
+    feedback.value = `You are now ${driverIsOnline.value ? 'online for Juba dispatch' : 'offline for Juba dispatch'}.`
+  } catch (error) {
+    errorMessage.value = error.message || 'Could not update your availability.'
+  } finally {
+    submitting.value = false
+  }
+}
+
+async function runDriverAction(action, successMessage) {
+  driverActionBusy.value = true
+  errorMessage.value = ''
+  feedback.value = ''
+  try {
+    await action()
+    await refreshDriverWorkspace()
+    feedback.value = successMessage
+  } catch (error) {
+    errorMessage.value = error.message || 'Could not update this trip.'
+  } finally {
+    driverActionBusy.value = false
+  }
+}
+
+function acceptRide(rideId) {
+  return runDriverAction(() => api.acceptDriverRide(rideId), 'Trip accepted. Head to the pickup point in Juba.')
+}
+
+function startRide(rideId) {
+  return runDriverAction(() => api.startDriverRide(rideId), 'Trip started. Ride safely across Juba.')
+}
+
+function completeRide(rideId) {
+  return runDriverAction(() => api.completeDriverRide(rideId), 'Trip complete. You are available for another Juba request.')
+}
+
+function pickupDirections(ride) {
+  const destination = ride.pickupLat != null && ride.pickupLng != null
+    ? `${ride.pickupLat},${ride.pickupLng}`
+    : ride.pickup
+  return `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(destination)}`
 }
 
 function signOut() {
@@ -218,7 +281,20 @@ function goToDashboard() {
   router.push(({ Passenger: '/passenger', Driver: '/driver', Fleet: '/fleet', Admin: '/admin' }[props.role]) || '/')
 }
 
-onMounted(loadDashboard)
+let driverRefreshTimer
+
+onMounted(() => {
+  loadDashboard()
+  if (isDriver.value) {
+    driverRefreshTimer = window.setInterval(() => {
+      refreshDriverWorkspace().catch((error) => {
+        errorMessage.value = error.message || 'Could not refresh trip requests.'
+      })
+    }, 15000)
+  }
+})
+
+onUnmounted(() => window.clearInterval(driverRefreshTimer))
 </script>
 
 <template>
@@ -380,14 +456,52 @@ onMounted(loadDashboard)
       </template>
 
       <template v-else-if="isDriver">
-        <section class="dashboard-photo driver-photo" aria-label="Driver on a city motorcycle">
-          <img src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=1200&q=85" alt="Motorcycle ready for a city ride" loading="lazy">
+        <section class="driver-desk" aria-label="Driver operations">
+          <div class="driver-status-section">
+            <div>
+              <p class="eyebrow">Juba dispatch status</p>
+              <h2><span class="availability-dot" :class="driverIsOnline ? 'is-online' : ''"></span>{{ driverStatusLabel }}</h2>
+              <p class="plain-copy">{{ driverProfile?.name || authStore.user?.name }} · {{ driverProfile?.vehicle || 'Vehicle not set' }} · {{ driverProfile?.phone || 'Phone not set' }}</p>
+            </div>
+            <button class="button" :class="driverIsOnline ? 'button-secondary' : 'button-primary'" :disabled="submitting || loading || !!activeDriverRide" @click="toggleDriverAvailability">
+              {{ submitting ? 'Saving…' : driverIsOnline ? 'Go offline' : 'Go online' }}
+            </button>
+          </div>
+          <div class="driver-metrics" aria-label="Driver work summary">
+            <div><span>New requests</span><strong>{{ driverRequests.length }}</strong></div>
+            <div><span>Vehicle class</span><strong>{{ driverProfile?.vehicle || '—' }}</strong></div>
+            <div><span>Driver rating</span><strong>{{ Number(driverProfile?.rating || 0).toFixed(1) }}</strong></div>
+          </div>
         </section>
-        <section class="driver-status-section">
-          <div><p class="eyebrow">Availability preview</p><h2><span class="availability-dot" :class="driverIsOnline ? 'is-online' : ''"></span>{{ driverIsOnline ? 'Online' : 'Offline' }}</h2><p class="plain-copy">This toggle is a local demo state. Driver availability and trip dispatch are not yet persisted by the backend.</p></div>
-          <button class="button" :class="driverIsOnline ? 'button-secondary' : 'button-primary'" @click="toggleDemoAvailability">{{ driverIsOnline ? 'Go offline' : 'Go online' }}</button>
+
+        <section v-if="activeDriverRide" class="data-section active-trip-section">
+          <div class="section-heading"><div><p class="eyebrow">{{ activeDriverRide.status === 'In progress' ? 'Passenger on board' : 'Proceed to pickup' }}</p><h2>Current trip</h2></div><span class="status-label">{{ activeDriverRide.status }}</span></div>
+          <div class="trip-route">
+            <div><span class="route-marker pickup-marker"></span><div><span class="trip-label">Pickup</span><strong>{{ activeDriverRide.pickup }}</strong><small>{{ activeDriverRide.user?.name || 'Passenger' }}</small></div></div>
+            <div><span class="route-marker destination-marker"></span><div><span class="trip-label">Drop-off</span><strong>{{ activeDriverRide.destination }}</strong><small>{{ formatDistance(activeDriverRide.distanceMeters) }} · {{ formatAmount(activeDriverRide.fare) }}</small></div></div>
+          </div>
+          <div class="trip-actions">
+            <a class="button button-secondary" :href="pickupDirections(activeDriverRide)" target="_blank" rel="noopener noreferrer">Directions to pickup</a>
+            <button v-if="activeDriverRide.status === 'Accepted'" class="button button-primary" :disabled="driverActionBusy" @click="startRide(activeDriverRide.id)">{{ driverActionBusy ? 'Updating…' : 'Start trip' }}</button>
+            <button v-else class="button button-primary" :disabled="driverActionBusy" @click="completeRide(activeDriverRide.id)">{{ driverActionBusy ? 'Updating…' : 'Complete trip' }}</button>
+          </div>
         </section>
-        <section class="data-section"><div class="section-heading"><div><p class="eyebrow">Next capability</p><h2>Trip assignments</h2></div></div><p class="empty-state">The current API does not yet provide a driver trip queue or accept/complete-trip actions.</p></section>
+
+        <section class="data-section">
+          <div class="section-heading"><div><p class="eyebrow">Dispatch queue · {{ driverRequests.length }}</p><h2>Juba ride requests</h2></div><span class="plain-copy">Refreshes every 15 seconds</span></div>
+          <div v-if="driverRequests.length" class="driver-request-grid">
+            <article v-for="request in driverRequests" :key="request.id" class="driver-request">
+              <div class="request-heading"><span class="request-type">{{ request.vehicleType }}</span><span class="request-fare">{{ formatAmount(request.fare) }}</span></div>
+              <div class="trip-route request-route">
+                <div><span class="route-marker pickup-marker"></span><div><span class="trip-label">Pickup</span><strong>{{ request.pickup }}</strong></div></div>
+                <div><span class="route-marker destination-marker"></span><div><span class="trip-label">Drop-off</span><strong>{{ request.destination }}</strong></div></div>
+              </div>
+              <div class="request-footer"><span>{{ formatDistance(request.distanceMeters) }} · {{ formatDate(request.createdAt) }}</span><button class="button button-primary" :disabled="!driverIsOnline || !!activeDriverRide || driverActionBusy" @click="acceptRide(request.id)">{{ driverActionBusy ? 'Updating…' : 'Accept request' }}</button></div>
+            </article>
+          </div>
+          <p v-else-if="!driverIsOnline" class="empty-state">Go online to receive matching Juba ride requests for your vehicle.</p>
+          <p v-else class="empty-state">You’re online in Juba. No matching requests right now; keep the app open and new rides will appear here.</p>
+        </section>
       </template>
 
     </template>
@@ -448,6 +562,35 @@ td strong, .route-destination { display: block; }
 .empty-state { margin: 0; padding: 18px 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
 .driver-status-section { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 24px 0; border-bottom: 1px solid var(--outline); }
 .driver-status-section h2 { display: flex; align-items: center; gap: 9px; margin-bottom: 8px; }
+.driver-desk { padding: 14px 16px 8px; border: 1px solid rgba(244, 182, 61, 0.18); border-radius: 18px; background: linear-gradient(180deg, rgba(19, 33, 49, 0.96), rgba(11, 24, 36, 0.96)); box-shadow: 0 18px 40px rgba(4, 20, 31, 0.35); }
+.driver-desk .driver-status-section { padding-bottom: 18px; border-bottom: 0; }
+.driver-metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--outline); }
+.driver-metrics > div { min-width: 0; padding: 13px 16px 15px 0; }
+.driver-metrics > div + div { padding-left: 16px; border-left: 1px solid var(--outline); }
+.driver-metrics span, .driver-metrics strong { display: block; }
+.driver-metrics span, .trip-label { color: var(--muted); font-size: 11px; }
+.driver-metrics strong { margin-top: 5px; overflow-wrap: anywhere; font-size: 14px; }
+.active-trip-section { border-bottom-color: var(--primary); }
+.trip-route { display: grid; gap: 0; padding: 6px 0; }
+.trip-route > div { position: relative; display: grid; grid-template-columns: 14px minmax(0, 1fr); gap: 12px; padding-bottom: 17px; }
+.trip-route > div:last-child { padding-bottom: 0; }
+.trip-route > div:first-child::after { position: absolute; top: 10px; bottom: 0; left: 4px; width: 1px; background: var(--outline); content: ''; }
+.route-marker { z-index: 1; width: 9px; height: 9px; margin-top: 3px; border: 2px solid var(--surface-container); border-radius: 50%; background: var(--primary); }
+.destination-marker { background: var(--secondary); }
+.trip-route strong, .trip-route small { display: block; }
+.trip-route strong { margin-top: 3px; font-size: 14px; font-weight: 600; }
+.trip-route small { margin-top: 4px; color: var(--muted); font-size: 12px; }
+.trip-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.trip-actions .button { display: inline-flex; align-items: center; justify-content: center; text-decoration: none; }
+.driver-request-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.driver-request { min-width: 0; padding: 16px; border: 1px solid rgba(244, 182, 61, 0.14); border-radius: 14px; background: linear-gradient(180deg, rgba(21, 45, 67, 0.95), rgba(13, 35, 55, 0.9)); box-shadow: 0 10px 24px rgba(2, 14, 24, 0.18); }
+.request-heading, .request-footer { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.request-type { color: var(--muted); font-size: 12px; font-weight: 700; }
+.request-fare { color: var(--primary-soft); font-size: 15px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.request-route { padding: 16px 0; }
+.request-footer { align-items: flex-end; padding-top: 12px; border-top: 1px solid var(--outline); }
+.request-footer > span { color: var(--muted); font-size: 11px; line-height: 1.4; }
+.request-footer .button { flex: 0 0 auto; }
 .availability-dot { display: inline-block; background: var(--muted); }
 .availability-dot.is-online { background: var(--success); }
 .text-button { display: flex; justify-content: space-between; gap: 12px; min-height: 42px; padding: 10px 0; border: 0; border-top: 1px solid rgba(51,65,85,.7); background: transparent; color: var(--on-surface); font: inherit; font-size: 13px; text-align: left; cursor: pointer; }
@@ -466,6 +609,7 @@ td strong, .route-destination { display: block; }
   .metric-strip > div:nth-child(3) { padding-left: 0; border-top: 1px solid var(--outline); border-left: 0; }
   .metric-strip > div:nth-child(4) { border-top: 1px solid var(--outline); }
   .topup-form { justify-content: flex-start; flex-wrap: wrap; }
+  .driver-request-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 480px) {
   .dashboard-photo { height: 124px; margin-top: 16px; }
@@ -478,6 +622,12 @@ td strong, .route-destination { display: block; }
   .topup-form input { width: 100%; }
   .topup-form .button { width: 100%; }
   .driver-status-section { align-items: flex-start; flex-direction: column; }
+  .driver-status-section .button { width: 100%; }
+  .driver-metrics > div { padding-right: 8px; }
+  .driver-metrics > div + div { padding-left: 8px; }
+  .trip-actions .button { flex: 1 1 100%; }
+  .request-footer { align-items: stretch; flex-direction: column; }
+  .request-footer .button { width: 100%; }
   table { min-width: 620px; }
 }
 </style>
