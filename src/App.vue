@@ -1,18 +1,38 @@
 <script setup>
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
+import { RouterLink } from 'vue-router'
 import { useAuthStore } from './stores/authStore'
 import Sidebar from './components/common/Sidebar.vue'
 import Navbar from './components/common/Navbar.vue'
 
 const route = useRoute()
 const authStore = useAuthStore()
-const isPassenger = computed(() => route.path === '/passenger' || route.path.startsWith('/screen/') && route.path.includes('rider_'))
-const isAuthRoute = computed(() => route.path === '/login' || route.path === '/admin/login')
+const isPassenger = computed(() => route.path.startsWith('/passenger') || route.path.startsWith('/screen/') && route.path.includes('rider_'))
+const isStandaloneRoute = computed(() => ['/', '/login', '/admin/login', '/driver/login', '/fleet/login'].includes(route.path))
+const mobileLinksByRole = {
+  Admin: [
+    { to: '/admin', label: 'Overview' },
+    { to: '/accounts', label: 'Accounts' },
+    { to: '/drivers', label: 'Drivers' },
+    { to: '/ledger', label: 'Ledger' },
+  ],
+  Fleet: [
+    { to: '/fleet', label: 'Fleet' },
+    { to: '/fleet/drivers', label: 'Drivers' },
+  ],
+  Driver: [{ to: '/driver', label: 'Driver' }],
+  Passenger: [
+    { to: '/passenger', label: 'Book' },
+    { to: '/passenger/rides', label: 'Rides' },
+    { to: '/passenger/wallet', label: 'Wallet' },
+  ],
+}
+const mobileLinks = computed(() => mobileLinksByRole[authStore.role] || mobileLinksByRole.Passenger)
 </script>
 
 <template>
-  <div v-if="isAuthRoute" class="auth-shell">
+  <div v-if="isStandaloneRoute" class="auth-shell">
     <RouterView />
   </div>
 
@@ -22,6 +42,9 @@ const isAuthRoute = computed(() => route.path === '/login' || route.path === '/a
       <Navbar :role="isPassenger ? 'Passenger experience' : 'Hurriya operations'" />
       <main class="page-content"><RouterView /></main>
     </div>
+    <nav class="mobile-nav" aria-label="Primary navigation">
+      <RouterLink v-for="link in mobileLinks" :key="link.to" :to="link.to" exact-active-class="is-active">{{ link.label }}</RouterLink>
+    </nav>
   </div>
 </template>
 
@@ -47,5 +70,14 @@ const isAuthRoute = computed(() => route.path === '/login' || route.path === '/a
 .sidebar nav b { width: 20px; color: inherit; text-align: center; font-size: 16px; }
 .sidebar-foot { margin-top: auto; padding: 14px; color: var(--success); background: var(--surface-low); border: 1px solid var(--outline); border-radius: 8px; font-size: 12px; font-weight: 700; }
 .sidebar-foot small { color: var(--muted); font-weight: 400; }
-@media (max-width: 767px) { .app-shell { display: block; } .sidebar { display: none; } .page-content { padding: 16px; } .topbar { height: 68px; padding: 0 16px; } }
+.mobile-nav { display: none; }
+@media (max-width: 767px) {
+  .app-shell { display: block; }
+  .sidebar { display: none; }
+  .page-content { padding: 16px 16px calc(88px + env(safe-area-inset-bottom)); }
+  .topbar { height: 68px; padding: 0 16px; }
+  .mobile-nav { position: fixed; z-index: 30; right: 0; bottom: 0; left: 0; display: grid; grid-auto-columns: 1fr; grid-auto-flow: column; gap: 4px; padding: 7px 8px calc(7px + env(safe-area-inset-bottom)); border-top: 1px solid var(--outline); background: var(--surface-lowest); }
+  .mobile-nav a { display: grid; min-height: 44px; place-items: center; color: var(--muted); font-size: 12px; font-weight: 700; text-decoration: none; }
+  .mobile-nav a.is-active { color: var(--primary-soft); }
+}
 </style>

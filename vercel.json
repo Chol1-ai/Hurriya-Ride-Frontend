@@ -1,0 +1,21 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    { "source": "/login", "destination": "/index.html" },
+    { "source": "/admin/login", "destination": "/index.html" },
+    { "source": "/driver/login", "destination": "/index.html" },
+    { "source": "/fleet/login", "destination": "/index.html" },
+    { "source": "/admin", "destination": "/index.html" },
+    { "source": "/accounts", "destination": "/index.html" },
+    { "source": "/verification", "destination": "/index.html" },
+    { "source": "/drivers", "destination": "/index.html" },
+    { "source": "/fleet", "destination": "/index.html" },
+    { "source": "/fleet/drivers", "destination": "/index.html" },
+    { "source": "/ledger", "destination": "/index.html" },
+    { "source": "/driver", "destination": "/index.html" },
+    { "source": "/passenger", "destination": "/index.html" },
+    { "source": "/passenger/rides", "destination": "/index.html" },
+    { "source": "/passenger/wallet", "destination": "/index.html" },
+    { "source": "/screen/:slug", "destination": "/index.html" }
+  ]
+}

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Hurriya Ride - Welcome</title>
-<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&amp;display=swap"
         rel="stylesheet">
     <link
@@ -189,14 +189,14 @@
     </main>
     <!-- Bottom Actions -->
     <div class="w-full px-margin-lg pb-margin-xl relative z-10 max-w-md mx-auto mt-auto pt-4">
-        <button
-            class="w-full bg-primary text-on-primary-fixed font-subhead-md text-subhead-md py-4 rounded-xl gold-glow hover:bg-primary-fixed-dim transition-colors duration-200 flex items-center justify-center gap-2 shadow-lg shadow-primary/20">
+        <a href="/login?mode=register" target="_top"
+            class="w-full bg-primary text-on-primary-fixed font-subhead-md text-subhead-md py-4 rounded-xl gold-glow hover:bg-primary-fixed-dim transition-colors duration-200 flex items-center justify-center gap-2 shadow-lg shadow-primary/20 no-underline">
             Get Started
             <span class="material-symbols-outlined">arrow_forward</span>
-        </button>
+        </a>
         <div class="mt-6 text-center">
             <p class="font-body-sm text-body-sm text-on-surface-variant">
-                Already have an account? <a class="text-primary font-bold hover:underline transition-all" href="#">Log
+                Already have an account? <a class="text-primary font-bold hover:underline transition-all" href="/login" target="_top">Log
                     in</a>
             </p>
         </div>

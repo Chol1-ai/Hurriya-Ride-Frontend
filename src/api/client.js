@@ -76,6 +76,12 @@ export const api = {
     body: JSON.stringify({ amount }),
   }),
   getAdminOverview: () => apiRequest('/admin/overview'),
+  getAdminPayments: () => apiRequest('/admin/payments'),
+  getAdminAccounts: () => apiRequest('/admin/accounts'),
+  createAdminAccount: (payload) => apiRequest('/admin/accounts', {
+    method: 'POST',
+    body: JSON.stringify(payload),
+  }),
 };
 
 export default api;

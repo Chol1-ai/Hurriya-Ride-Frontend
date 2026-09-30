@@ -7,15 +7,20 @@ const props = defineProps({ role: { type: String, default: 'Passenger' } })
 const linksByRole = {
   Admin: [
     { to: '/admin', label: 'Command center', icon: '⌘' },
-    { to: '/verification', label: 'Verification', icon: '✓' },
+    { to: '/accounts', label: 'Manage accounts', icon: '＋' },
+    { to: '/drivers', label: 'Driver roster', icon: '✓' },
     { to: '/ledger', label: 'Revenue ledger', icon: '₤' },
   ],
   Fleet: [
-    { to: '/fleet', label: 'Fleet management', icon: '▣' },
-    { to: '/ledger', label: 'Revenue ledger', icon: '₤' },
+    { to: '/fleet', label: 'Overview', icon: '▣' },
+    { to: '/fleet/drivers', label: 'Drivers', icon: '◉' },
   ],
   Driver: [{ to: '/driver', label: 'Driver app', icon: '◉' }],
-  Passenger: [{ to: '/passenger', label: 'Passenger app', icon: '⌂' }],
+  Passenger: [
+    { to: '/passenger', label: 'Book a ride', icon: '⌂' },
+    { to: '/passenger/rides', label: 'Ride history', icon: '↗' },
+    { to: '/passenger/wallet', label: 'Wallet', icon: '$' },
+  ],
 }
 
 const links = computed(() => linksByRole[props.role] || linksByRole.Passenger)

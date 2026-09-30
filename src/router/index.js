@@ -7,6 +7,7 @@ import RevenueLedger from '../views/RevenueLedger.vue'
 import DriverAppView from '../views/DriverAppView.vue'
 import PassengerAppView from '../views/PassengerAppView.vue'
 import AuthView from '../views/AuthView.vue'
+import LandingPage from '../views/LandingPage.vue'
 
 function getHomeRouteForRole(role) {
   if (role === 'Admin') return '/admin'
@@ -84,18 +85,22 @@ screenCatalog.forEach((screen) => {
 const views = { AdminDashboard, DriverVerification, FleetManagement, RevenueLedger, DriverAppView, PassengerAppView }
 
 const routes = [
-  { path: '/login', component: AuthView },
-  { path: '/admin/login', component: AuthView, props: { adminOnly: true } },
-  { path: '/', redirect: () => {
-      const authStore = useAuthStore()
-      return authStore.authenticated ? getHomeRouteForRole(authStore.role) : '/login'
-    } },
+  { path: '/login', component: AuthView, props: { allowedRole: 'Passenger' } },
+  { path: '/admin/login', component: AuthView, props: { allowedRole: 'Admin' } },
+  { path: '/driver/login', component: AuthView, props: { allowedRole: 'Driver' } },
+  { path: '/fleet/login', component: AuthView, props: { allowedRole: 'Fleet' } },
+  { path: '/', component: LandingPage },
   { path: '/admin', component: AdminDashboard, meta: { requiresAuth: true, allowedRoles: ['Admin'] } },
-  { path: '/verification', component: DriverVerification, meta: { requiresAuth: true, allowedRoles: ['Admin', 'Driver'] } },
+  { path: '/accounts', component: AdminDashboard, props: { section: 'accounts' }, meta: { requiresAuth: true, allowedRoles: ['Admin'] } },
+  { path: '/verification', redirect: '/drivers' },
+  { path: '/drivers', component: DriverVerification, props: { section: 'drivers' }, meta: { requiresAuth: true, allowedRoles: ['Admin'] } },
   { path: '/fleet', component: FleetManagement, meta: { requiresAuth: true, allowedRoles: ['Fleet', 'Admin'] } },
-  { path: '/ledger', component: RevenueLedger, meta: { requiresAuth: true, allowedRoles: ['Admin', 'Fleet'] } },
+  { path: '/fleet/drivers', component: FleetManagement, props: { section: 'drivers' }, meta: { requiresAuth: true, allowedRoles: ['Fleet', 'Admin'] } },
+  { path: '/ledger', component: RevenueLedger, meta: { requiresAuth: true, allowedRoles: ['Admin'] } },
   { path: '/driver', component: DriverAppView, meta: { requiresAuth: true, allowedRoles: ['Driver'] } },
   { path: '/passenger', component: PassengerAppView, meta: { requiresAuth: true, allowedRoles: ['Passenger'] } },
+  { path: '/passenger/rides', component: PassengerAppView, props: { section: 'rides' }, meta: { requiresAuth: true, allowedRoles: ['Passenger'] } },
+  { path: '/passenger/wallet', component: PassengerAppView, props: { section: 'wallet' }, meta: { requiresAuth: true, allowedRoles: ['Passenger'] } },
   ...screenCatalog.map((screen) => ({
     path: `/screen/${screen.slug}`,
     component: views[screen.module],
@@ -116,11 +121,15 @@ router.beforeEach(async (to, from) => {
     await authStore.restoreSession()
   }
 
+  if (to.path === '/' && authStore.authenticated) {
+    return getHomeRouteForRole(authStore.role)
+  }
+
   if (to.path === '/login' && authStore.authenticated) {
     return getHomeRouteForRole(authStore.role)
   }
 
-  if (to.path === '/admin/login' && authStore.authenticated) {
+  if (['/admin/login', '/driver/login', '/fleet/login'].includes(to.path) && authStore.authenticated) {
     return getHomeRouteForRole(authStore.role)
   }
 

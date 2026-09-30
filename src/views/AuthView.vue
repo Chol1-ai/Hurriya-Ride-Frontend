@@ -1,18 +1,21 @@
 <script setup>
 import { computed, ref } from 'vue'
-import { RouterLink, useRoute, useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { useAuthStore } from '../stores/authStore'
 
-const props = defineProps({ adminOnly: { type: Boolean, default: false } })
+const props = defineProps({ allowedRole: { type: String, default: 'Passenger' } })
 const route = useRoute()
 const router = useRouter()
 const authStore = useAuthStore()
-const mode = ref('login')
-const form = ref({ name: '', email: props.adminOnly ? 'admin@hurriya.io' : 'demo@hurriya.io', password: 'Password123!' })
+const mode = ref(props.allowedRole === 'Passenger' && route.query.mode === 'register' ? 'register' : 'login')
+const form = ref({ name: '', email: '', password: '' })
 const error = ref('')
 const loading = ref(false)
 
-const redirectPath = computed(() => route.query.redirect || (props.adminOnly ? '/admin' : '/'))
+const roleHome = { Passenger: '/passenger', Driver: '/driver', Fleet: '/fleet', Admin: '/admin' }
+const isPublicPassengerLogin = computed(() => props.allowedRole === 'Passenger')
+const roleLabel = computed(() => ({ Passenger: 'Passenger', Driver: 'Driver', Fleet: 'Fleet', Admin: 'Admin' }[props.allowedRole] || 'Passenger'))
+const redirectPath = computed(() => route.query.redirect || roleHome[props.allowedRole] || '/passenger')
 
 async function submit() {
   error.value = ''
@@ -21,9 +24,9 @@ async function submit() {
   try {
     if (mode.value === 'login') {
       await authStore.login(form.value.email, form.value.password)
-      if (props.adminOnly && authStore.role !== 'Admin') {
+      if (authStore.role !== props.allowedRole) {
         authStore.signOut()
-        error.value = 'This sign-in is for admin accounts only.'
+        error.value = `This sign-in is for ${roleLabel.value.toLowerCase()} accounts only.`
         return
       }
     } else {
@@ -41,6 +44,9 @@ async function submit() {
 function toggleMode() {
   mode.value = mode.value === 'login' ? 'register' : 'login'
   error.value = ''
+  if (mode.value === 'register') {
+    form.value = { name: '', email: '', password: '' }
+  }
 }
 </script>
 
@@ -48,9 +54,9 @@ function toggleMode() {
   <div class="auth-page">
     <div class="auth-card">
       <div class="brand-block">
-        <span class="brand-pill">{{ adminOnly ? 'Hurriya Admin' : 'Hurriya Ride' }}</span>
-        <h1>{{ adminOnly ? 'Admin sign in' : mode === 'login' ? 'Welcome back' : 'Create your account' }}</h1>
-        <p>{{ adminOnly ? 'Sign in to the Hurriya operations console.' : mode === 'login' ? 'Sign in to continue to your mobility workspace.' : 'Set up a rider account to start booking trips and payments.' }}</p>
+          <span class="brand-pill">{{ roleLabel === 'Passenger' ? 'Hurriya Ride' : `Hurriya ${roleLabel}` }}</span>
+          <h1>{{ mode === 'login' ? `${roleLabel} sign in` : 'Create your account' }}</h1>
+          <p>{{ mode === 'login' ? `Sign in to continue to your ${roleLabel.toLowerCase()} workspace.` : 'Set up a passenger account to start booking trips and payments.' }}</p>
       </div>
 
       <form class="auth-form" @submit.prevent="submit">
@@ -75,13 +81,11 @@ function toggleMode() {
           {{ loading ? 'Please wait...' : mode === 'login' ? 'Sign in' : 'Create account' }}
         </button>
 
-        <button v-if="!adminOnly" class="secondary-button" type="button" @click="toggleMode">
+        <button v-if="isPublicPassengerLogin" class="secondary-button" type="button" @click="toggleMode">
           {{ mode === 'login' ? 'Need an account? Register' : 'Already have an account? Sign in' }}
         </button>
       </form>
 
-      <RouterLink v-if="!adminOnly" class="admin-link" to="/admin/login">Admin sign in</RouterLink>
-      <RouterLink v-else class="admin-link" to="/login">Passenger or partner sign in</RouterLink>
     </div>
   </div>
 </template>
@@ -170,20 +174,6 @@ button {
   background: transparent;
   border: 1px solid rgba(148, 163, 184, 0.32);
   color: #e2e8f0;
-}
-
-.admin-link {
-  display: block;
-  margin-top: 18px;
-  color: #fbbf24;
-  font-size: 13px;
-  font-weight: 700;
-  text-align: center;
-  text-decoration: none;
-}
-
-.admin-link:hover {
-  text-decoration: underline;
 }
 
 .error-message {

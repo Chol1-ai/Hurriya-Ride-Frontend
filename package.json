@@ -10,10 +10,10 @@
   },
   "dependencies": {
     "@vitejs/plugin-vue": "latest",
+    "leaflet": "^1.9.4",
+    "pinia": "latest",
     "vite": "latest",
     "vue": "latest",
-    "vue-router": "latest",
-    "pinia": "latest"
-  },
-  "devDependencies": {}
+    "vue-router": "latest"
+  }
 }
